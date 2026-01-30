@@ -9,8 +9,8 @@ const globalStyles = `
   }
 
   @keyframes neon-pulse {
-    0%, 100% { box-shadow: 0 0 5px #00d4aa, 0 0 10px #00d4aa, 0 0 15px #00d4aa; }
-    50% { box-shadow: 0 0 10px #00d4aa, 0 0 20px #00d4aa, 0 0 30px #00d4aa, 0 0 40px #00d4aa; }
+    0%, 100% { box-shadow: 0 0 10px #00d4aa, 0 0 20px #00d4aa; }
+    50% { box-shadow: 0 0 15px #00d4aa, 0 0 30px #00d4aa; }
   }
 
   @keyframes gradient-rotate {
@@ -18,40 +18,23 @@ const globalStyles = `
     100% { transform: rotate(360deg); }
   }
 
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-
   @keyframes float-up {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes circuit-pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-
-  @keyframes aurora {
-    0% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 0.5; }
-    33% { transform: translateX(-50%) translateY(-20px) rotate(120deg); opacity: 0.7; }
-    66% { transform: translateX(-50%) translateY(20px) rotate(240deg); opacity: 0.6; }
-    100% { transform: translateX(-50%) translateY(0) rotate(360deg); opacity: 0.5; }
-  }
-
   .glassmorphism {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .glassmorphism-strong {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .holographic-bg {
@@ -122,113 +105,71 @@ const colors = {
   holoPink: '#ec4899'
 };
 
-// Enhanced Animated floating orbs with glassmorphism
+// Floating orbs - optimized for performance
 function FloatingOrbs() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Main orbs with glow */}
-      <div className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-40 animate-pulse"
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
+      <div className="absolute top-20 left-10 w-48 h-48 rounded-full opacity-12 animate-pulse"
         style={{
-          background: `radial-gradient(circle, ${colors.teal}60 0%, ${colors.neonCyan}20 50%, transparent 70%)`,
+          background: `radial-gradient(circle, ${colors.teal}50 0%, transparent 70%)`,
           animationDuration: '4s',
-          filter: 'blur(40px)',
-          boxShadow: `0 0 60px ${colors.teal}40`
+          filter: 'blur(25px)'
         }} />
-      <div className="absolute top-40 right-20 w-96 h-96 rounded-full opacity-30 animate-pulse"
+      <div className="absolute top-40 right-20 w-56 h-56 rounded-full opacity-12 animate-pulse"
         style={{
-          background: `radial-gradient(circle, ${colors.electricPurple}40 0%, ${colors.glowBlue}20 50%, transparent 70%)`,
+          background: `radial-gradient(circle, ${colors.electricPurple}40 0%, transparent 70%)`,
           animationDuration: '6s',
           animationDelay: '1s',
-          filter: 'blur(50px)',
-          boxShadow: `0 0 80px ${colors.electricPurple}30`
-        }} />
-      <div className="absolute bottom-20 left-1/3 w-64 h-64 rounded-full opacity-35 animate-pulse"
-        style={{
-          background: `radial-gradient(circle, ${colors.holoPink}40 0%, ${colors.teal}20 50%, transparent 70%)`,
-          animationDuration: '5s',
-          animationDelay: '2s',
-          filter: 'blur(45px)',
-          boxShadow: `0 0 70px ${colors.holoPink}30`
+          filter: 'blur(25px)'
         }} />
     </div>
   );
 }
 
-// Enhanced Animated grid background with glow
+// Animated grid background
 function GridBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 hidden md:block">
       <div className="absolute inset-0" style={{
         backgroundImage: `
           linear-gradient(${colors.teal}20 1px, transparent 1px),
           linear-gradient(90deg, ${colors.teal}20 1px, transparent 1px)
         `,
-        backgroundSize: '50px 50px',
-        filter: 'drop-shadow(0 0 2px #00d4aa30)'
+        backgroundSize: '50px 50px'
       }} />
     </div>
   );
 }
 
-// Aurora borealis gradient effect
-function AuroraBackground() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-      <div
-        className="absolute top-0 left-1/2 w-[150%] h-[150%]"
-        style={{
-          background: `
-            radial-gradient(ellipse at center,
-              ${colors.teal}30 0%,
-              ${colors.neonCyan}20 25%,
-              ${colors.electricPurple}15 50%,
-              ${colors.holoPink}10 75%,
-              transparent 100%
-            )
-          `,
-          animation: 'aurora 20s ease-in-out infinite',
-          transformOrigin: 'center center'
-        }}
-      />
-    </div>
-  );
-}
 
-// Enhanced Animated particles with glow
+// Animated particles - simplified
 function Particles() {
-  const particles = Array.from({length: 25}, (_, i) => ({
+  const particles = Array.from({length: 15}, (_, i) => ({
     id: i,
     left: Math.random() * 100,
     delay: Math.random() * 5,
-    duration: 3 + Math.random() * 4,
-    size: 3 + Math.random() * 6
+    duration: 4 + Math.random() * 3,
+    size: 2 + Math.random() * 4
   }));
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map(p => {
-        const colorIndex = p.id % 4;
-        const particleColor = [colors.teal, colors.neonCyan, colors.electricPurple, colors.holoPink][colorIndex];
-
-        return (
-          <div
-            key={p.id}
-            className="absolute rounded-full animate-bounce"
-            style={{
-              left: `${p.left}%`,
-              bottom: '-20px',
-              width: p.size,
-              height: p.size,
-              backgroundColor: particleColor,
-              opacity: 0.4,
-              animationDuration: `${p.duration}s`,
-              animationDelay: `${p.delay}s`,
-              boxShadow: `0 0 ${p.size * 2}px ${particleColor}80, 0 0 ${p.size * 4}px ${particleColor}40`,
-              filter: 'blur(0.5px)'
-            }}
-          />
-        );
-      })}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
+      {particles.map(p => (
+        <div
+          key={p.id}
+          className="absolute rounded-full animate-bounce"
+          style={{
+            left: `${p.left}%`,
+            bottom: '-20px',
+            width: p.size,
+            height: p.size,
+            backgroundColor: colors.teal,
+            opacity: 0.25,
+            animationDuration: `${p.duration}s`,
+            animationDelay: `${p.delay}s`
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -254,24 +195,15 @@ function AIVisualization() {
   }, []);
 
   const nodes = [
-    {x: 150, y: 80}, {x: 250, y: 60}, {x: 300, y: 140},
-    {x: 260, y: 220}, {x: 140, y: 200}, {x: 100, y: 130}
+    {x: 250, y: 180}, {x: 350, y: 160}, {x: 400, y: 280},
+    {x: 350, y: 400}, {x: 250, y: 420}, {x: 200, y: 300}
   ];
 
   return (
-    <svg viewBox="0 0 400 280" className="w-full h-full">
+    <svg viewBox="0 0 600 600" className="w-full h-full">
       <defs>
-        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={colors.neonCyan} stopOpacity="0.2" />
-          <stop offset="50%" stopColor={colors.teal} stopOpacity="0.8" />
-          <stop offset="100%" stopColor={colors.electricPurple} stopOpacity="0.2" />
-        </linearGradient>
         <filter id="glow">
-          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="strongGlow">
-          <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
           <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
         <radialGradient id="nodeGrad">
@@ -280,109 +212,45 @@ function AIVisualization() {
         </radialGradient>
       </defs>
 
-      {/* Rotating outer ring */}
-      <circle
-        cx="200" cy="140" r="120"
-        fill="none"
-        stroke="url(#lineGrad)"
-        strokeWidth="2"
-        opacity="0.3"
-        strokeDasharray="10 5"
-        transform={`rotate(${rotation} 200 140)`}
-      />
-
-      {/* Connection lines with glow */}
+      {/* Connection lines */}
       {nodes.map((node, i) => (
         nodes.slice(i + 1).map((target, j) => (
-          <g key={`${i}-${j}`}>
-            <line
-              x1={node.x} y1={node.y}
-              x2={target.x} y2={target.y}
-              stroke={colors.teal}
-              strokeWidth="2"
-              opacity="0.15"
-            />
-            {/* Data pulse animation */}
-            <line
-              x1={node.x} y1={node.y}
-              x2={target.x} y2={target.y}
-              stroke={colors.neonCyan}
-              strokeWidth="2"
-              opacity="0"
-              filter="url(#glow)"
-            >
-              <animate
-                attributeName="opacity"
-                values="0;0.6;0"
-                dur="2s"
-                begin={`${(i + j) * 0.3}s`}
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="stroke-dashoffset"
-                from="100"
-                to="0"
-                dur="2s"
-                repeatCount="indefinite"
-              />
-            </line>
-          </g>
+          <line
+            key={`${i}-${j}`}
+            x1={node.x} y1={node.y}
+            x2={target.x} y2={target.y}
+            stroke={colors.teal}
+            strokeWidth="2"
+            opacity="0.2"
+          />
         ))
       ))}
 
-      {/* Animated pulse rings */}
-      <circle cx={nodes[activeNode].x} cy={nodes[activeNode].y} r="30" fill={colors.teal} opacity="0.1">
-        <animate attributeName="r" values="15;50;15" dur="1.5s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.4;0;0.4" dur="1.5s" repeatCount="indefinite" />
-      </circle>
-
-      {/* Nodes with enhanced glow */}
+      {/* Nodes */}
       {nodes.map((node, i) => (
         <g key={i}>
-          {/* Outer glow */}
           <circle
-            cx={node.x} cy={node.y} r={i === activeNode ? "18" : "15"}
-            fill={i === activeNode ? colors.neonCyan : colors.teal}
-            opacity="0.2"
+            cx={node.x} cy={node.y} r={i === activeNode ? "14" : "10"}
+            fill={i === activeNode ? "url(#nodeGrad)" : colors.navy}
             filter="url(#glow)"
             className="transition-all duration-300"
           />
-          {/* Main node */}
           <circle
-            cx={node.x} cy={node.y} r="12"
-            fill={i === activeNode ? "url(#nodeGrad)" : colors.navy}
-            filter={i === activeNode ? "url(#strongGlow)" : "url(#glow)"}
-            className="transition-all duration-300"
-          />
-          {/* Inner core */}
-          <circle
-            cx={node.x} cy={node.y} r="5"
+            cx={node.x} cy={node.y} r="4"
             fill={i === activeNode ? colors.neonCyan : "white"}
-            opacity={i === activeNode ? "1" : "0.8"}
+            opacity={i === activeNode ? "1" : "0.6"}
           />
-          {/* Pulse ring */}
-          {i === activeNode && (
-            <circle cx={node.x} cy={node.y} r="8" fill="none" stroke={colors.neonCyan} strokeWidth="2" opacity="0.6">
-              <animate attributeName="r" values="8;16;8" dur="1s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.6;0;0.6" dur="1s" repeatCount="indefinite" />
-            </circle>
-          )}
         </g>
       ))}
 
-      {/* Enhanced center brain icon with holographic effect */}
-      <g transform="translate(175, 115)">
-        {/* Outer glow ring */}
-        <circle cx="25" cy="25" r="40" fill={colors.electricPurple} opacity="0.1" filter="url(#glow)" />
-        <circle cx="25" cy="25" r="35" fill={colors.navy} opacity="0.95" />
-        {/* Rotating background circle */}
-        <circle cx="25" cy="25" r="33" fill="none" stroke="url(#lineGrad)" strokeWidth="1" opacity="0.3" strokeDasharray="5 3" transform={`rotate(${-rotation} 25 25)`} />
+      {/* Center brain icon */}
+      <g transform="translate(275, 275)">
+        <circle cx="25" cy="25" r="30" fill={colors.navy} opacity="0.95" />
         <path
           d="M25 10 L25 15 M35 15 L32 18 M40 25 L35 25 M15 15 L18 18 M10 25 L15 25 M18 32 L15 35 M32 32 L35 35 M20 20 Q25 15 30 20 Q35 25 30 30 Q25 35 20 30 Q15 25 20 20"
-          stroke={colors.neonCyan}
-          strokeWidth="2.5"
+          stroke={colors.teal}
+          strokeWidth="2"
           fill="none"
-          filter="url(#glow)"
         />
       </g>
     </svg>
@@ -491,27 +359,26 @@ function Hero({ setCurrentPage }) {
   }, []);
 
   return (
-    <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-24 px-4 overflow-hidden min-h-screen flex items-center">
-      <AuroraBackground />
+    <section className="relative py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center">
       <FloatingOrbs />
       <GridBackground />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <div className="relative">
             {/* Glassmorphism card wrapper */}
             <div className="absolute inset-0 glassmorphism rounded-3xl -z-10 opacity-60" style={{
-              boxShadow: `0 8px 32px ${colors.teal}15, inset 0 0 20px ${colors.neonCyan}10`
+              boxShadow: `0 8px 32px ${colors.teal}15`
             }}></div>
 
-            <div className="relative p-8 lg:p-10">
-            <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 border animate-pulse" 
+            <div className="relative p-6 sm:p-8 lg:p-12">
+            <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 border"
               style={{backgroundColor: `${colors.teal}10`, borderColor: `${colors.teal}30`, color: colors.teal}}>
-              <span className="w-2 h-2 rounded-full mr-2 animate-ping" style={{backgroundColor: colors.teal}}></span>
+              <span className="w-2 h-2 rounded-full mr-2" style={{backgroundColor: colors.teal}}></span>
               AI Consultancy voor Noord-Nederland
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               <span className="gradient-text" style={{
                 background: `linear-gradient(135deg, ${colors.navy} 0%, ${colors.teal} 50%, ${colors.neonCyan} 100%)`,
                 backgroundClip: 'text',
@@ -524,8 +391,8 @@ function Hero({ setCurrentPage }) {
               </span>
               <span className="animate-pulse" style={{color: colors.teal}}>|</span>
             </h1>
-            
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
               AI hoeft niet ingewikkeld te zijn. Wij helpen bedrijven in Noord-Nederland om slimmer te werken met 
               <span className="font-semibold text-gray-800"> Microsoft Copilot</span>, 
               <span className="font-semibold text-gray-800"> Claude</span> en 
@@ -536,30 +403,21 @@ function Hero({ setCurrentPage }) {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setCurrentPage('ai-scan')}
-                className="group inline-flex items-center justify-center px-6 py-3 rounded-full text-white font-medium transition-all hover:scale-105 neon-glow relative overflow-hidden"
+                className="group inline-flex items-center justify-center px-6 py-3 rounded-full text-white font-medium transition-all hover:scale-105 neon-glow"
                 style={{
                   backgroundColor: colors.teal,
-                  boxShadow: `0 0 20px ${colors.teal}60, 0 0 40px ${colors.teal}30, 0 4px 20px ${colors.teal}40`
+                  boxShadow: `0 0 20px ${colors.teal}60`
                 }}
               >
-                {/* Shimmer effect */}
-                <span className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity" style={{
-                  background: `linear-gradient(90deg, transparent, ${colors.neonCyan}80, transparent)`,
-                  animation: 'shimmer 2s infinite'
-                }}></span>
-                <span className="relative">Start gratis AI Scan</span>
-                <span className="ml-2 group-hover:translate-x-1 transition-transform relative"><ArrowRight /></span>
+                <span>Start gratis AI Scan</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform"><ArrowRight /></span>
               </button>
               <button
                 onClick={() => setCurrentPage('contact')}
-                className="group inline-flex items-center justify-center px-6 py-3 rounded-full font-medium border-2 transition-all hover:scale-105 glassmorphism relative overflow-hidden"
-                style={{borderColor: colors.teal, color: colors.navy, boxShadow: `0 0 15px ${colors.teal}20`}}
+                className="group inline-flex items-center justify-center px-6 py-3 rounded-full font-medium border-2 transition-all hover:scale-105 glassmorphism"
+                style={{borderColor: colors.teal, color: colors.navy}}
               >
-                <span className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity" style={{
-                  background: `linear-gradient(90deg, transparent, ${colors.teal}, transparent)`,
-                  animation: 'shimmer 2s infinite'
-                }}></span>
-                <span className="relative">Plan een gesprek</span>
+                <span>Plan een gesprek</span>
               </button>
             </div>
 
@@ -579,12 +437,12 @@ function Hero({ setCurrentPage }) {
             </div>
           </div>
 
-          {/* AI Visualization with enhanced styling */}
+          {/* AI Visualization */}
           <div className="hidden lg:block relative">
-            <div className="aspect-square rounded-3xl p-8 relative overflow-hidden card-3d glassmorphism"
+            <div className="max-w-md mx-auto aspect-square rounded-3xl p-8 relative overflow-hidden card-3d glassmorphism"
               style={{
                 background: `linear-gradient(135deg, ${colors.navy}08 0%, ${colors.teal}12 50%, ${colors.electricPurple}08 100%)`,
-                boxShadow: `0 8px 32px ${colors.teal}20, inset 0 0 20px ${colors.neonCyan}05`,
+                boxShadow: `0 8px 32px ${colors.teal}20`,
                 border: `1px solid ${colors.teal}20`
               }}>
               <AIVisualization />
@@ -647,11 +505,11 @@ function Services({ setCurrentPage }) {
   ];
 
   return (
-    <section className="relative py-16 sm:py-24 px-4 overflow-hidden" style={{backgroundColor: colors.lightGray}}>
+    <section className="relative py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{backgroundColor: colors.lightGray}}>
       <Particles />
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <span className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 glassmorphism" style={{
             backgroundColor: `${colors.teal}20`,
             color: colors.teal,
@@ -663,7 +521,7 @@ function Services({ setCurrentPage }) {
               Onze expertise
             </span>
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 gradient-text" style={{
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text" style={{
             background: `linear-gradient(135deg, ${colors.navy}, ${colors.teal}, ${colors.electricPurple})`,
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
@@ -671,12 +529,12 @@ function Services({ setCurrentPage }) {
           }}>
             Wat we voor je kunnen doen
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Van eerste oriëntatie tot volledige implementatie. Wij begeleiden je bij elke stap.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {services.map((service, i) => {
             const gradientColors = [
               [colors.teal, colors.neonCyan],
@@ -687,34 +545,17 @@ function Services({ setCurrentPage }) {
             return (
             <div
               key={i}
-              className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-pointer card-3d relative overflow-hidden"
+              className="group bg-white rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer card-3d"
               onMouseEnter={() => setHoveredCard(i)}
               onMouseLeave={() => setHoveredCard(null)}
               onClick={() => setCurrentPage('diensten')}
               style={{
                 boxShadow: hoveredCard === i
-                  ? `0 20px 60px ${gradientColors[0]}30, 0 0 40px ${gradientColors[1]}20`
+                  ? `0 10px 30px ${gradientColors[0]}30`
                   : '0 2px 10px rgba(0,0,0,0.1)'
               }}
             >
-              {/* Animated gradient border */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
-                background: `linear-gradient(135deg, ${gradientColors[0]}, ${gradientColors[1]}, ${gradientColors[0]})`,
-                backgroundSize: '200% 200%',
-                animation: 'holographic 3s ease infinite',
-                padding: '2px',
-                WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                WebkitMaskComposite: 'xor',
-                maskComposite: 'exclude'
-              }}></div>
-
-              {/* Shimmer effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none" style={{
-                background: `linear-gradient(90deg, transparent, ${gradientColors[1]}60, transparent)`,
-                animation: hoveredCard === i ? 'shimmer 2s infinite' : 'none'
-              }}></div>
-
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-500 relative ${hoveredCard === i ? 'scale-110 rotate-6' : ''}`}
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${hoveredCard === i ? 'scale-110' : ''}`}
                 style={{
                   background: hoveredCard === i
                     ? `linear-gradient(135deg, ${gradientColors[0]}30, ${gradientColors[1]}20)`
@@ -726,12 +567,12 @@ function Services({ setCurrentPage }) {
                   {service.icon}
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2 transition-all duration-300 relative z-10" style={{
+              <h3 className="text-lg sm:text-xl font-semibold mb-2 transition-all duration-300" style={{
                 color: hoveredCard === i ? gradientColors[0] : colors.navy
               }}>
                 {service.title}
               </h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
+              <p className="text-sm sm:text-base text-gray-600 mb-4">{service.description}</p>
               <ul className="space-y-2 mb-6">
                 {service.features.map((feature, j) => (
                   <li key={j} className="flex items-center text-sm text-gray-600">
@@ -754,81 +595,23 @@ function Services({ setCurrentPage }) {
   );
 }
 
-// Enhanced Stats Section with glowing bars and circuits
+// Stats Section
 function Stats() {
   return (
     <section className="py-12 px-4 relative overflow-hidden" style={{backgroundColor: colors.navy}}>
-      {/* Animated circuit lines background */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <svg className="w-full h-full">
-          <defs>
-            <linearGradient id="circuitGrad">
-              <stop offset="0%" stopColor={colors.teal} />
-              <stop offset="100%" stopColor={colors.neonCyan} />
-            </linearGradient>
-          </defs>
-          {/* Horizontal lines */}
-          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="url(#circuitGrad)" strokeWidth="1" opacity="0.5">
-            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" />
-          </line>
-          {/* Vertical lines */}
-          <line x1="25%" y1="0" x2="25%" y2="100%" stroke="url(#circuitGrad)" strokeWidth="1" opacity="0.5" />
-          <line x1="50%" y1="0" x2="50%" y2="100%" stroke="url(#circuitGrad)" strokeWidth="1" opacity="0.5" />
-          <line x1="75%" y1="0" x2="75%" y2="100%" stroke="url(#circuitGrad)" strokeWidth="1" opacity="0.5" />
-          {/* Circuit nodes */}
-          <circle cx="25%" cy="50%" r="3" fill={colors.neonCyan}>
-            <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="50%" cy="50%" r="3" fill={colors.teal}>
-            <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="75%" cy="50%" r="3" fill={colors.neonCyan}>
-            <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="1s" repeatCount="indefinite" />
-          </circle>
-        </svg>
-      </div>
-
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
           {[
             { value: 40, suffix: 'km', label: 'Serviceregio', color: colors.teal },
             { value: 100, suffix: '%', label: 'Persoonlijk', color: colors.neonCyan },
             { value: 24, suffix: 'u', label: 'Reactietijd', color: colors.electricPurple },
             { value: 3, suffix: '', label: 'AI Platforms', color: colors.holoPink }
           ].map((stat, i) => (
-            <div key={i} className="group relative">
-              {/* Glowing background on hover */}
-              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                style={{
-                  background: `radial-gradient(circle, ${stat.color}60 0%, transparent 70%)`,
-                  filter: 'blur(20px)'
-                }}></div>
-
-              <div className="relative">
-                <div className="text-4xl font-bold mb-1 transition-all duration-300 group-hover:scale-125" style={{
-                  background: `linear-gradient(135deg, ${stat.color}, ${colors.neonCyan})`,
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  filter: 'drop-shadow(0 0 10px ' + stat.color + '60)'
-                }}>
-                  <Counter end={stat.value} suffix={stat.suffix} duration={2000 + i * 200} />
-                </div>
-                <div className="text-gray-400 text-sm mb-3">{stat.label}</div>
-
-                {/* Glowing progress bar */}
-                <div className="w-full h-1 bg-gray-700 rounded-full overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-1000"
-                    style={{
-                      width: `${(stat.value / (stat.suffix === 'km' ? 50 : stat.suffix === '%' ? 100 : stat.suffix === 'u' ? 24 : 5)) * 100}%`,
-                      background: `linear-gradient(90deg, ${stat.color}, ${colors.neonCyan})`,
-                      boxShadow: `0 0 10px ${stat.color}80`,
-                      animation: 'circuit-pulse 2s ease-in-out infinite'
-                    }}
-                  ></div>
-                </div>
+            <div key={i} className="group">
+              <div className="text-3xl sm:text-4xl font-bold mb-1 transition-all duration-300" style={{color: stat.color}}>
+                <Counter end={stat.value} suffix={stat.suffix} duration={2000 + i * 200} />
               </div>
+              <div className="text-gray-400 text-sm">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -886,11 +669,11 @@ function WhyUs() {
   ];
 
   return (
-    <section className="relative py-16 sm:py-24 px-4 overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <FloatingOrbs />
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div>
             <span className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 glassmorphism" style={{
               backgroundColor: `${colors.teal}20`,
@@ -900,7 +683,7 @@ function WhyUs() {
             }}>
               Waarom wij
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 gradient-text" style={{
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 gradient-text" style={{
               background: `linear-gradient(135deg, ${colors.navy}, ${colors.teal}, ${colors.neonCyan})`,
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
@@ -908,7 +691,7 @@ function WhyUs() {
             }}>
               Waarom bedrijven kiezen voor EnableFlow AI
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-base sm:text-lg text-gray-600 mb-8">
               AI-implementatie hoeft geen groot, duur project te zijn. Wij geloven in kleine stappen met direct resultaat.
             </p>
             <div className="space-y-4">
@@ -987,21 +770,14 @@ function WhyUs() {
 // Enhanced CTA Section with holographic effects
 function CTA({ setCurrentPage }) {
   return (
-    <section className="relative py-16 sm:py-24 px-4 overflow-hidden" style={{backgroundColor: colors.navy}}>
-      {/* Enhanced glowing orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20 animate-pulse"
+    <section className="relative py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{backgroundColor: colors.navy}}>
+      {/* Simplified background orbs */}
+      <div className="absolute inset-0 overflow-hidden hidden sm:block">
+        <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full opacity-15 animate-pulse"
           style={{
-            background: `radial-gradient(circle, ${colors.teal}60 0%, ${colors.neonCyan}30 50%, transparent 70%)`,
-            filter: 'blur(60px)',
+            background: `radial-gradient(circle, ${colors.teal}60 0%, transparent 70%)`,
+            filter: 'blur(40px)',
             animationDuration: '3s'
-          }} />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-20 animate-pulse"
-          style={{
-            background: `radial-gradient(circle, ${colors.electricPurple}40 0%, ${colors.holoPink}20 50%, transparent 70%)`,
-            filter: 'blur(50px)',
-            animationDuration: '4s',
-            animationDelay: '1s'
           }} />
       </div>
 
@@ -1017,22 +793,16 @@ function CTA({ setCurrentPage }) {
       </div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
-        {/* Glowing icon */}
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 relative animate-bounce"
+        {/* Icon */}
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6"
           style={{
             background: `radial-gradient(circle, ${colors.teal}40, ${colors.neonCyan}20)`,
-            boxShadow: `0 0 30px ${colors.teal}60, 0 0 60px ${colors.teal}30`,
-            animation: 'neon-pulse 2s ease-in-out infinite'
+            boxShadow: `0 0 20px ${colors.teal}40`
           }}>
           <SparkleIcon />
-          {/* Rotating ring */}
-          <div className="absolute inset-0 rounded-full border-2 opacity-30" style={{
-            borderColor: colors.neonCyan,
-            animation: 'gradient-rotate 3s linear infinite'
-          }}></div>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{
           background: `linear-gradient(135deg, white, ${colors.neonCyan}, ${colors.teal})`,
           backgroundClip: 'text',
           WebkitBackgroundClip: 'text',
@@ -1043,26 +813,21 @@ function CTA({ setCurrentPage }) {
           Benieuwd wat AI voor jouw bedrijf kan betekenen?
         </h2>
 
-        <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
           Doe de gratis AI Readiness Scan en ontdek in 3 minuten waar de kansen liggen. Vrijblijvend en direct inzicht.
         </p>
 
         <button
           onClick={() => setCurrentPage('ai-scan')}
-          className="group inline-flex items-center px-8 py-4 rounded-full text-lg font-medium transition-all hover:scale-110 neon-glow relative overflow-hidden"
+          className="group inline-flex items-center px-8 py-4 rounded-full text-lg font-medium transition-all hover:scale-110 neon-glow"
           style={{
             backgroundColor: colors.teal,
             color: colors.navy,
-            boxShadow: `0 0 20px ${colors.teal}80, 0 0 40px ${colors.teal}50, 0 4px 30px ${colors.teal}60`
+            boxShadow: `0 0 20px ${colors.teal}80`
           }}
         >
-          {/* Shimmer overlay */}
-          <span className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity" style={{
-            background: `linear-gradient(90deg, transparent, ${colors.neonCyan}80, transparent)`,
-            animation: 'shimmer 2s infinite'
-          }}></span>
-          <span className="relative font-bold">Start de gratis AI Scan</span>
-          <span className="ml-2 group-hover:translate-x-2 transition-transform relative"><ArrowRight /></span>
+          <span className="font-bold">Start de gratis AI Scan</span>
+          <span className="ml-2 group-hover:translate-x-2 transition-transform"><ArrowRight /></span>
         </button>
       </div>
     </section>
@@ -1430,22 +1195,17 @@ function ChatWidget() {
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-white z-50 transition-all hover:scale-110 neon-glow"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-white z-50 transition-all hover:scale-110"
         style={{
           backgroundColor: colors.teal,
-          boxShadow: `0 0 20px ${colors.teal}70, 0 0 40px ${colors.teal}40, 0 4px 20px ${colors.teal}50`
+          boxShadow: `0 4px 20px ${colors.teal}40`
         }}>
         {open ? <XIcon /> : <ChatIcon />}
-        {/* Pulsating ring */}
-        <span className="absolute inset-0 rounded-full border-2 animate-ping" style={{
-          borderColor: colors.neonCyan,
-          opacity: 0.4
-        }}></span>
       </button>
 
       {open && (
-        <div className="fixed bottom-28 right-6 w-80 bg-white rounded-3xl shadow-2xl z-50 overflow-hidden glassmorphism-strong" style={{
-          boxShadow: `0 20px 60px rgba(0,0,0,0.2), 0 0 40px ${colors.teal}20`
+        <div className="fixed bottom-28 right-6 w-full sm:w-80 max-w-sm mx-6 sm:mx-0 bg-white rounded-3xl shadow-2xl z-50 overflow-hidden glassmorphism-strong" style={{
+          boxShadow: `0 20px 60px rgba(0,0,0,0.2)`
         }}>
           <div className="p-4 relative overflow-hidden" style={{
             background: `linear-gradient(135deg, ${colors.navy}, ${colors.teal}20)`
