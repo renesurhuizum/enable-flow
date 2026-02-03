@@ -20,7 +20,7 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <p className="text-sm mb-2">📍 Noord-Nederland</p>
-            <p className="text-sm mb-2">📧 info@enableflow.ai</p>
+            <p className="text-sm mb-2">📧 info@enableflow.nl</p>
             <p className="text-sm">📞 Op aanvraag</p>
           </div>
 

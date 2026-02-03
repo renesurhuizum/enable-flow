@@ -29,7 +29,7 @@ const HashRedirectHandler = () => {
 
 function App() {
   return (
-    <BrowserRouter basename="/enable-flow/">
+    <BrowserRouter basename="/">
       <HashRedirectHandler />
       <Routes>
         <Route path="/" element={<Layout><HomePage /></Layout>} />

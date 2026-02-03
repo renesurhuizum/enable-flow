@@ -1,0 +1,379 @@
+{
+  "name": "EnableFlow - AI Lead Scoring",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Trigger - Daily",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "",
+      "credentials": {},
+      "notes": "Runs every day at 10:00 AM"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "EnableFlow Leads Master"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Leads_Raw"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "column": "ai_score_total",
+              "condition": "empty"
+            }
+          ]
+        },
+        "options": {
+          "rangeDefinition": "detectAutomatically"
+        }
+      },
+      "id": "read-unscored",
+      "name": "Google Sheets - Read Unscored Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [450, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-creds",
+          "name": "Google Sheets OAuth2"
+        }
+      },
+      "notes": "Read leads that haven't been scored yet"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "limit-50",
+              "name": "limited",
+              "value": "={{ $input.all().slice(0, 50) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "limit-batch",
+      "name": "Limit to 50 leads",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [650, 300],
+      "notes": "Batch process max 50 leads per run (API rate limiting)"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "limited",
+        "options": {}
+      },
+      "id": "split-items",
+      "name": "Split Into Items",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "anthropicApi",
+        "resource": "message",
+        "model": "claude-3-5-sonnet-20241022",
+        "prompt": {
+          "messages": [
+            {
+              "role": "user",
+              "content": "=Je bent een AI consultant die bedrijven beoordeelt op hun geschiktheid voor AI-automatisering.\n\nBedrijfsgegevens:\n- Naam: {{$json.bedrijfsnaam}}\n- Branche: {{$json.branche}} (SBI: {{$json.sbi_code}})\n- Aantal werknemers: {{$json.employees}}\n- Website: {{$json.website}}\n- Google Rating: {{$json.google_rating}}\n\nBeoordeel dit bedrijf op de volgende criteria (schaal 0-100):\n\n1. SIZE_SCORE: Is het bedrijf in de MKB sweet spot (3-50 medewerkers)?\n   - 3-10 medewerkers: 80 punten\n   - 11-25 medewerkers: 100 punten\n   - 26-50 medewerkers: 90 punten\n   - Buiten range: lagere score\n\n2. INDUSTRY_SCORE: Hoeveel baat heeft deze branche bij AI-automatisering?\n   - Kantoorwerk, consultancy, administratie: 90-100\n   - Dienstverlening met klantcontact: 70-90\n   - Detailhandel, horeca: 50-70\n   - Productie, bouw: 30-50\n   - Anders: 20-40\n\n3. TECH_READINESS: Hoe tech-savvy lijkt het bedrijf?\n   - Goede website + hoge rating: +20\n   - Geen website: -30\n   - Moderne branche (IT, marketing): +15\n\n4. PAIN_POINTS: Identificeer top 3 waarschijnlijke pijnpunten voor dit bedrijf waar AI kan helpen.\n   Voorbeelden:\n   - Repetitieve emailafhandeling\n   - Offertes/contracten opstellen\n   - Data-analyse en rapportage\n   - Klantcommunicatie\n   - Agenda/planning\n\nTOTAL_SCORE = (SIZE_SCORE * 0.3) + (INDUSTRY_SCORE * 0.5) + (TECH_READINESS * 0.2)\n\nOutput als JSON:\n{\n  \"size_score\": 0-100,\n  \"industry_score\": 0-100,\n  \"tech_readiness\": 0-100,\n  \"total_score\": 0-100,\n  \"primary_pain_point\": \"...\",\n  \"secondary_pain_point\": \"...\",\n  \"tertiary_pain_point\": \"...\",\n  \"reasoning\": \"Korte uitleg van de score\"\n}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3,
+          "maxTokens": 1000
+        }
+      },
+      "id": "claude-scoring",
+      "name": "Claude - AI Scoring",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1,
+      "position": [1050, 300],
+      "credentials": {
+        "anthropicApi": {
+          "id": "anthropic-api",
+          "name": "Anthropic API"
+        }
+      },
+      "notes": "Score each lead using Claude AI (temperature 0.3 for consistency)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Claude's JSON response\nconst response = $input.item.json.response || $input.item.json.content?.[0]?.text || '{}';\n\nlet scores;\ntry {\n  // Try to extract JSON from response (Claude might wrap it in markdown)\n  const jsonMatch = response.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    scores = JSON.parse(jsonMatch[0]);\n  } else {\n    scores = JSON.parse(response);\n  }\n} catch (e) {\n  // Fallback if parsing fails\n  scores = {\n    size_score: 50,\n    industry_score: 50,\n    tech_readiness: 50,\n    total_score: 50,\n    primary_pain_point: 'Unable to analyze',\n    secondary_pain_point: 'Unable to analyze',\n    tertiary_pain_point: 'Unable to analyze',\n    reasoning: 'Error parsing AI response'\n  };\n}\n\n// Merge with original lead data\nreturn {\n  json: {\n    ...$input.item.json,\n    ai_score_total: scores.total_score,\n    ai_score_size: scores.size_score,\n    ai_score_industry: scores.industry_score,\n    ai_score_tech: scores.tech_readiness,\n    pain_point_1: scores.primary_pain_point,\n    pain_point_2: scores.secondary_pain_point,\n    pain_point_3: scores.tertiary_pain_point,\n    ai_reasoning: scores.reasoning,\n    scoring_date: new Date().toISOString().split('T')[0]\n  }\n};"
+      },
+      "id": "parse-scores",
+      "name": "Parse AI Scores",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300],
+      "notes": "Extract scores from Claude's JSON response"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "EnableFlow Leads Master"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Leads_Raw"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ai_score_total": "={{$json.ai_score_total}}",
+            "ai_score_size": "={{$json.ai_score_size}}",
+            "ai_score_industry": "={{$json.ai_score_industry}}",
+            "ai_score_tech": "={{$json.ai_score_tech}}",
+            "pain_point_1": "={{$json.pain_point_1}}",
+            "pain_point_2": "={{$json.pain_point_2}}",
+            "pain_point_3": "={{$json.pain_point_3}}",
+            "scoring_date": "={{$json.scoring_date}}"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "update-sheet",
+      "name": "Google Sheets - Update Scores",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1450, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-creds",
+          "name": "Google Sheets OAuth2"
+        }
+      },
+      "notes": "Update raw sheet with AI scores"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.ai_score_total}}",
+              "operation": "largerEqual",
+              "value2": 60
+            }
+          ]
+        }
+      },
+      "id": "filter-high-scores",
+      "name": "Filter - Score >= 60",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1650, 300],
+      "notes": "Only keep high-value leads (score >= 60)"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "EnableFlow Leads Master"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=1",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Leads_Qualified"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "bedrijfsnaam": "={{$json.bedrijfsnaam}}",
+            "eigenaar": "={{$json.eigenaar}}",
+            "email": "={{$json.email}}",
+            "telefoon": "={{$json.telefoon}}",
+            "branche": "={{$json.branche}}",
+            "employees": "={{$json.employees}}",
+            "ai_score": "={{$json.ai_score_total}}",
+            "top_pijnpunt": "={{$json.pain_point_1}}",
+            "status": "Pending",
+            "website": "={{$json.website}}",
+            "kvk_nummer": "={{$json.kvk_nummer}}"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED",
+          "useAppend": true
+        }
+      },
+      "id": "append-qualified",
+      "name": "Google Sheets - Qualified Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1850, 200],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-creds",
+          "name": "Google Sheets OAuth2"
+        }
+      },
+      "notes": "Add high-scoring leads to Qualified sheet"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Scoring run summary\nconst allItems = $input.all();\nconst qualifiedItems = allItems.filter(item => item.json.ai_score_total >= 60);\n\nconst avgScore = allItems.reduce((sum, item) => sum + item.json.ai_score_total, 0) / allItems.length;\n\nreturn {\n  json: {\n    total_scored: allItems.length,\n    qualified_count: qualifiedItems.length,\n    average_score: Math.round(avgScore),\n    timestamp: new Date().toISOString(),\n    status: 'completed',\n    message: `Scored ${allItems.length} leads, ${qualifiedItems.length} qualified (>= 60)`\n  }\n};"
+      },
+      "id": "summary",
+      "name": "Scoring Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2050, 300]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger - Daily": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Read Unscored Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets - Read Unscored Leads": {
+      "main": [
+        [
+          {
+            "node": "Limit to 50 leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit to 50 leads": {
+      "main": [
+        [
+          {
+            "node": "Split Into Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Into Items": {
+      "main": [
+        [
+          {
+            "node": "Claude - AI Scoring",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude - AI Scoring": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Scores",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Scores": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Update Scores",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets - Update Scores": {
+      "main": [
+        [
+          {
+            "node": "Filter - Score >= 60",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Score >= 60": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Qualified Leads",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Scoring Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets - Qualified Leads": {
+      "main": [
+        [
+          {
+            "node": "Scoring Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-03T00:00:00.000Z",
+  "versionId": "1"
+}

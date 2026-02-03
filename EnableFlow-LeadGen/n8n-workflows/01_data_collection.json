@@ -1,0 +1,382 @@
+{
+  "name": "EnableFlow - Lead Collection",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Trigger - Weekly",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "",
+      "credentials": {},
+      "notes": "Runs every Monday at 9:00 AM"
+    },
+    {
+      "parameters": {
+        "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "queryAuth",
+        "qs": {
+          "parameter": [
+            {
+              "name": "location",
+              "value": "53.1833,6.1667"
+            },
+            {
+              "name": "radius",
+              "value": "10000"
+            },
+            {
+              "name": "type",
+              "value": "establishment"
+            },
+            {
+              "name": "keyword",
+              "value": "bedrijf"
+            },
+            {
+              "name": "key",
+              "value": "={{$credentials.apiKey}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "google-places-search",
+      "name": "Google Places - Nearby Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 300],
+      "credentials": {
+        "queryAuth": {
+          "id": "google-places-api",
+          "name": "Google Places API"
+        }
+      },
+      "notes": "Search for businesses within 10km of Surhuisterveen"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract results from Google Places API response\nconst results = $input.item.json.results || [];\n\n// Filter out non-business types\nconst excludeTypes = ['school', 'hospital', 'church', 'gas_station', 'parking', 'cemetery'];\n\nconst filteredResults = results.filter(place => {\n  // Check if place has any excluded types\n  const hasExcludedType = place.types?.some(type => excludeTypes.includes(type));\n  \n  // Only keep operational businesses\n  const isOperational = place.business_status === 'OPERATIONAL';\n  \n  return !hasExcludedType && isOperational;\n});\n\n// Return each place as separate item\nreturn filteredResults.map(place => ({\n  json: {\n    place_id: place.place_id,\n    name: place.name,\n    vicinity: place.vicinity,\n    types: place.types,\n    rating: place.rating || 0,\n    user_ratings_total: place.user_ratings_total || 0\n  }\n}));"
+      },
+      "id": "filter-businesses",
+      "name": "Filter - Remove Non-Business",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300],
+      "notes": "Remove schools, hospitals, etc."
+    },
+    {
+      "parameters": {
+        "url": "=https://maps.googleapis.com/maps/api/place/details/json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "queryAuth",
+        "qs": {
+          "parameter": [
+            {
+              "name": "place_id",
+              "value": "={{$json.place_id}}"
+            },
+            {
+              "name": "fields",
+              "value": "name,formatted_address,formatted_phone_number,website,business_status,types,rating,user_ratings_total,opening_hours"
+            },
+            {
+              "name": "key",
+              "value": "={{$credentials.apiKey}}"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 10,
+              "batchInterval": 1000
+            }
+          }
+        }
+      },
+      "id": "google-places-details",
+      "name": "Google Places - Get Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 300],
+      "credentials": {
+        "queryAuth": {
+          "id": "google-places-api",
+          "name": "Google Places API"
+        }
+      },
+      "notes": "Get full details for each business (batched to avoid rate limits)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Google Place Details and prepare for KvK lookup\nconst result = $input.item.json.result || {};\n\n// Extract company name (remove legal forms for KvK search)\nconst companyName = result.name\n  .replace(/\\b(B\\.?V\\.?|N\\.?V\\.?|VOF|Eenmanszaak|Maatschap)\\b/gi, '')\n  .trim();\n\n// Extract city from address\nconst address = result.formatted_address || '';\nconst cityMatch = address.match(/\\d{4}\\s*[A-Z]{2}\\s*([^,]+)/i);\nconst city = cityMatch ? cityMatch[1].trim() : 'Surhuisterveen';\n\n// Extract domain from website for email discovery\nlet domain = '';\nif (result.website) {\n  try {\n    const url = new URL(result.website);\n    domain = url.hostname.replace('www.', '');\n  } catch (e) {\n    domain = '';\n  }\n}\n\nreturn {\n  json: {\n    // Google data\n    bedrijfsnaam: result.name,\n    adres: result.formatted_address,\n    telefoon: result.formatted_phone_number || '',\n    website: result.website || '',\n    google_rating: result.rating || 0,\n    user_ratings_total: result.user_ratings_total || 0,\n    types: result.types || [],\n    \n    // For KvK lookup\n    kvk_search_name: companyName,\n    kvk_search_city: city,\n    \n    // For email discovery\n    domain: domain,\n    \n    // Metadata\n    data_source: 'google_places',\n    collected_date: new Date().toISOString().split('T')[0]\n  }\n};"
+      },
+      "id": "parse-place-details",
+      "name": "Parse Place Details",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.kvk.nl/api/v1/zoeken",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "headerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameter": [
+            {
+              "name": "apikey",
+              "value": "={{$credentials.apiKey}}"
+            }
+          ]
+        },
+        "qs": {
+          "parameter": [
+            {
+              "name": "naam",
+              "value": "={{$json.kvk_search_name}}"
+            },
+            {
+              "name": "plaats",
+              "value": "={{$json.kvk_search_city}}"
+            },
+            {
+              "name": "pagina",
+              "value": "1"
+            },
+            {
+              "name": "aantal",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 5,
+              "batchInterval": 1000
+            }
+          }
+        }
+      },
+      "id": "kvk-lookup",
+      "name": "KvK API - Enrichment",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1250, 300],
+      "credentials": {
+        "headerAuth": {
+          "id": "kvk-api",
+          "name": "KvK API"
+        }
+      },
+      "notes": "Lookup company in KvK database (batched to 5 requests/sec)",
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge Google and KvK data\nconst googleData = $input.item.json;\nconst kvkResponse = $input.item.json.resultaten?.[0] || {};\n\n// Extract KvK data\nconst kvkData = {\n  kvk_nummer: kvkResponse.kvkNummer || '',\n  eigenaar: kvkResponse.handelsnaam || '',\n  sbi_code: kvkResponse.hoofdSbiCode || '',\n  branche: kvkResponse.sbiOmschrijving || '',\n  employees: kvkResponse.totaalWerkzamePersonen || 0\n};\n\n// Determine if we should keep this lead (3-50 employees, office-based work)\nconst employees = kvkData.employees;\nconst isRightSize = employees >= 3 && employees <= 50;\n\n// SBI codes for office/knowledge work\nconst targetSBICodes = [\n  '62', '63', // IT/Software\n  '69', '70', // Legal/Consultancy\n  '68', // Real Estate\n  '71', // Architecture/Engineering\n  '73', '74', // Marketing/Design\n  '64', '65', '66', // Financial services\n  '85.5', '85.6' // Education/Training\n];\n\nconst sbiCode = kvkData.sbi_code.substring(0, 2);\nconst isTargetIndustry = targetSBICodes.some(code => sbiCode.startsWith(code));\n\n// Only proceed if right size AND right industry\nif (!isRightSize || !isTargetIndustry) {\n  return null; // This will filter out the item\n}\n\n// Merge data\nreturn {\n  json: {\n    ...googleData,\n    ...kvkData,\n    data_source: 'google+kvk'\n  }\n};"
+      },
+      "id": "merge-data",
+      "name": "Data Merge & Filter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1450, 300],
+      "notes": "Merge Google + KvK data, filter by size (3-50) and industry"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Email discovery strategies\nconst item = $input.item.json;\nconst domain = item.domain;\nconst eigenaar = item.eigenaar;\n\nconst emails = [];\n\n// Strategy 1: Common patterns\nif (domain) {\n  emails.push(`info@${domain}`);\n  emails.push(`contact@${domain}`);\n  emails.push(`hello@${domain}`);\n  \n  // Strategy 2: Owner name pattern\n  if (eigenaar) {\n    const nameParts = eigenaar.toLowerCase().split(' ');\n    if (nameParts.length >= 2) {\n      const firstName = nameParts[0];\n      const lastName = nameParts[nameParts.length - 1];\n      \n      emails.push(`${firstName}.${lastName}@${domain}`);\n      emails.push(`${firstName}@${domain}`);\n      emails.push(`${lastName}@${domain}`);\n    }\n  }\n}\n\n// TODO: If website exists, could scrape for emails (add HTTP Request node)\n// For now, we'll use the pattern-based emails\n\nreturn {\n  json: {\n    ...item,\n    email_candidates: emails,\n    email: emails[0] || '' // Use first candidate as primary\n  }\n};"
+      },
+      "id": "email-discovery",
+      "name": "Email Discovery",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1650, 300],
+      "notes": "Generate likely email addresses based on patterns"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "EnableFlow Leads Master"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Leads_Raw"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "bedrijfsnaam": "={{$json.bedrijfsnaam}}",
+            "eigenaar": "={{$json.eigenaar}}",
+            "email": "={{$json.email}}",
+            "telefoon": "={{$json.telefoon}}",
+            "website": "={{$json.website}}",
+            "adres": "={{$json.adres}}",
+            "employees": "={{$json.employees}}",
+            "branche": "={{$json.branche}}",
+            "sbi_code": "={{$json.sbi_code}}",
+            "google_rating": "={{$json.google_rating}}",
+            "kvk_nummer": "={{$json.kvk_nummer}}",
+            "data_source": "={{$json.data_source}}",
+            "collected_date": "={{$json.collected_date}}"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED",
+          "useAppend": true
+        }
+      },
+      "id": "append-to-sheet",
+      "name": "Google Sheets - Append Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1850, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-creds",
+          "name": "Google Sheets OAuth2"
+        }
+      },
+      "notes": "Append new leads to raw data sheet"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Summary of collection run\nconst items = $input.all();\n\nreturn {\n  json: {\n    total_leads_collected: items.length,\n    timestamp: new Date().toISOString(),\n    status: 'completed',\n    message: `Successfully collected ${items.length} qualified leads`\n  }\n};"
+      },
+      "id": "summary",
+      "name": "Collection Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2050, 300]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger - Weekly": {
+      "main": [
+        [
+          {
+            "node": "Google Places - Nearby Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Places - Nearby Search": {
+      "main": [
+        [
+          {
+            "node": "Filter - Remove Non-Business",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Remove Non-Business": {
+      "main": [
+        [
+          {
+            "node": "Google Places - Get Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Places - Get Details": {
+      "main": [
+        [
+          {
+            "node": "Parse Place Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Place Details": {
+      "main": [
+        [
+          {
+            "node": "KvK API - Enrichment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "KvK API - Enrichment": {
+      "main": [
+        [
+          {
+            "node": "Data Merge & Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Merge & Filter": {
+      "main": [
+        [
+          {
+            "node": "Email Discovery",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Discovery": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Append Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets - Append Leads": {
+      "main": [
+        [
+          {
+            "node": "Collection Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-03T00:00:00.000Z",
+  "versionId": "1"
+}

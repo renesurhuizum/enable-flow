@@ -1,0 +1,305 @@
+{
+  "name": "EnableFlow - Simplified Test (No KvK)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "location",
+              "value": "53.1833,6.1667"
+            },
+            {
+              "name": "radius",
+              "value": "5000"
+            },
+            {
+              "name": "type",
+              "value": "establishment"
+            },
+            {
+              "name": "keyword",
+              "value": "kantoor"
+            },
+            {
+              "name": "key",
+              "value": "AIzaSyC692OQYXF_11T5mbYOkksItASFkCjVc2s"
+            }
+          ]
+        }
+      },
+      "id": "google-places-search",
+      "name": "Google Places Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract and clean Places API results\nconst results = $input.item.json.results || [];\n\n// Exclude non-relevant types\nconst excludeTypes = ['school', 'hospital', 'church', 'gas_station', 'parking', 'cemetery', 'store', 'restaurant', 'cafe'];\n\n// Filter and map results\nconst businesses = results\n  .filter(place => {\n    const hasExcludedType = place.types?.some(type => excludeTypes.includes(type));\n    const isOperational = place.business_status === 'OPERATIONAL';\n    return !hasExcludedType && isOperational;\n  })\n  .map(place => ({\n    json: {\n      place_id: place.place_id,\n      bedrijfsnaam: place.name,\n      adres: place.vicinity,\n      types: place.types?.join(', ') || '',\n      google_rating: place.rating || 0,\n      review_count: place.user_ratings_total || 0,\n      // Estimate business size from rating count\n      estimated_size: place.user_ratings_total > 50 ? 'Medium (10-50)' : place.user_ratings_total > 10 ? 'Small (3-10)' : 'Micro (1-3)',\n      data_source: 'google_places',\n      collected_date: new Date().toISOString().split('T')[0]\n    }\n  }));\n\nreturn businesses;"
+      },
+      "id": "process-results",
+      "name": "Process & Filter Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "url": "=https://maps.googleapis.com/maps/api/place/details/json",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "place_id",
+              "value": "={{$json.place_id}}"
+            },
+            {
+              "name": "fields",
+              "value": "name,formatted_address,formatted_phone_number,website,business_status,rating,user_ratings_total"
+            },
+            {
+              "name": "key",
+              "value": "AIzaSyC692OQYXF_11T5mbYOkksItASFkCjVc2s"
+            }
+          ]
+        },
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 10,
+              "batchInterval": 1000
+            }
+          }
+        }
+      },
+      "id": "get-place-details",
+      "name": "Get Place Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract full details and discover email\nconst result = $input.item.json.result || {};\n\n// Email discovery strategies\nlet email = '';\nconst website = result.website || '';\n\nif (website) {\n  // Extract domain\n  const domain = website.replace(/^https?:\\/\\//, '').replace(/^www\\./, '').split('/')[0];\n  \n  // Common email patterns\n  const patterns = [\n    `info@${domain}`,\n    `contact@${domain}`,\n    `hello@${domain}`\n  ];\n  \n  email = patterns[0]; // Default to info@\n}\n\nreturn [{\n  json: {\n    bedrijfsnaam: result.name || $json.bedrijfsnaam,\n    adres: result.formatted_address || $json.adres,\n    telefoon: result.formatted_phone_number || '',\n    website: website,\n    email: email,\n    google_rating: result.rating || 0,\n    review_count: result.user_ratings_total || 0,\n    estimated_size: $json.estimated_size,\n    business_status: result.business_status,\n    data_source: 'google_places_detailed',\n    collected_date: $json.collected_date\n  }\n}]);"
+      },
+      "id": "enrich-data",
+      "name": "Enrich Data + Email Discovery",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oz6sTWX4pFCBU60u6leJzZvg3bZEHSYn0vWZtNc0KCU",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "EnableFlow_Leads_Raw",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "bedrijfsnaam": "={{$json.bedrijfsnaam}}",
+            "adres": "={{$json.adres}}",
+            "telefoon": "={{$json.telefoon}}",
+            "website": "={{$json.website}}",
+            "email": "={{$json.email}}",
+            "google_rating": "={{$json.google_rating}}",
+            "review_count": "={{$json.review_count}}",
+            "estimated_size": "={{$json.estimated_size}}",
+            "data_source": "={{$json.data_source}}",
+            "collected_date": "={{$json.collected_date}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "bedrijfsnaam",
+              "displayName": "bedrijfsnaam",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "adres",
+              "displayName": "adres",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "telefoon",
+              "displayName": "telefoon",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "google_rating",
+              "displayName": "google_rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "review_count",
+              "displayName": "review_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "estimated_size",
+              "displayName": "estimated_size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data_source",
+              "displayName": "data_source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "collected_date",
+              "displayName": "collected_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "write-to-sheet",
+      "name": "Write to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [1340, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "your-google-sheets-oauth",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Places Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Places Search": {
+      "main": [
+        [
+          {
+            "node": "Process & Filter Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process & Filter Results": {
+      "main": [
+        [
+          {
+            "node": "Get Place Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Place Details": {
+      "main": [
+        [
+          {
+            "node": "Enrich Data + Email Discovery",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enrich Data + Email Discovery": {
+      "main": [
+        [
+          {
+            "node": "Write to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-03T00:00:00.000Z",
+  "versionId": "1"
+}

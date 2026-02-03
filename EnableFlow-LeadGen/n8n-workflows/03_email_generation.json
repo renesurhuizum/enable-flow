@@ -1,0 +1,287 @@
+{
+  "name": "EnableFlow - Email Generation & Review",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-emails",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Trigger Email Generation",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [250, 300],
+      "webhookId": "generate-emails-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=1",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Leads_Qualified"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "column": "status",
+              "condition": "equal",
+              "value": "Pending"
+            }
+          ]
+        },
+        "options": {
+          "rangeDefinition": "detectAutomatically"
+        }
+      },
+      "id": "read-pending",
+      "name": "Read Pending Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "limit-10",
+              "name": "limited",
+              "value": "={{ $input.all().slice(0, 10) }}",
+              "type": "array"
+            }
+          ]
+        }
+      },
+      "id": "limit-batch",
+      "name": "Limit to 10 emails",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "limited"
+      },
+      "id": "split-items",
+      "name": "Split Into Items",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "anthropicApi",
+        "resource": "message",
+        "model": "claude-3-5-sonnet-20241022",
+        "prompt": {
+          "messages": [
+            {
+              "role": "user",
+              "content": "=Je schrijft een persoonlijke outreach email voor EnableFlow AI, een lokaal AI-consultancy bureau in Noord-Nederland.\n\nBRAND VOICE:\n- Direct, praktisch, geen corporate jargon\n- Informeel Nederlands (\"je\" niet \"u\")\n- Action-oriented met concrete voorbeelden\n- Eerlijk en nuchter over wat AI wel/niet kan\n- Lokaal en hands-on (\"wij komen bij je langs\")\n- Gebruik enkele emoji's waar passend (niet overdrijven)\n\nLEAD INFORMATIE:\n- Bedrijf: {{$json.bedrijfsnaam}}\n- Branche: {{$json.branche}}\n- Aantal medewerkers: {{$json.employees}}\n- Top pijnpunt (AI-analyse): {{$json.top_pijnpunt}}\n- Contact: {{$json.eigenaar || 'Beste ' + $json.bedrijfsnaam + ' team'}}\n\nENABLEFLOW DIENSTEN (kies meest relevante):\n1. AI Readiness Scan (gratis, vrijblijvend) - analyse van huidige processen\n2. Microsoft Copilot 365 implementatie - voor teams die al M365 gebruiken\n3. Proces automatisering met AI - voor repetitieve taken\n4. AI Training & Workshops - voor teams die AI willen leren\n\nSTRUCTUUR:\n1. Persoonlijke opening (referentie naar branche/locatie, max 1-2 zinnen)\n2. Pijnpunt identificatie (laat zien dat je hun uitdaging begrijpt, 2-3 zinnen)\n3. Concrete oplossing met voorbeeld/ROI (specifiek voor hun situatie, 3-4 zinnen)\n4. Lokale USP (Noord-Nederland, persoonlijk, geen lange trajecten, 1-2 zinnen)\n5. Duidelijke CTA: gratis AI Readiness Scan aanbieden\n\nTONE EXAMPLES (van de website):\n- \"Geen langdradige adviezen, maar concrete resultaten\"\n- \"We spreken jouw taal, geen corporate jargon\"\n- \"Lokaal in Noord-Nederland, wij komen bij je langs\"\n- \"Gratis en vrijblijvend, geen verborgen kosten\"\n\nBELANGRIJKE REGELS:\n- Max 150 woorden totaal (kort en krachtig)\n- Geen generic sales praat\n- Verwijs naar SPECIFIEK pijnpunt voor hun branche\n- Include concrete tijdbesparing of ROI als mogelijk\n- Sluit af met simpele vraag, niet met corporate signature\n- Gebruik max 2-3 emoji's in hele email\n\nONDERWERPREGEL:\nSchrijf ook een pakkende onderwerpregel (max 50 karakters) die:\n- Nieuwsgierigheid wekt\n- Relevant is voor hun branche\n- Niet spammy klinkt\n- Action-oriented is\n\nVoorbeelden:\n- \"30% minder tijd aan offertes? ⚡\"\n- \"AI voor {{branche}} in {{plaats}} 💡\"\n- \"Jouw eerste AI-pilot in 2 weken 🚀\"\n\nOutput als JSON:\n{\n  \"subject\": \"...\",\n  \"body\": \"...\",\n  \"primary_cta\": \"Gratis AI Readiness Scan plannen\",\n  \"personalization_notes\": \"Korte uitleg waarom deze aanpak gekozen is\"\n}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 1500
+        }
+      },
+      "id": "claude-email-gen",
+      "name": "Claude - Generate Email",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse email from Claude response\nconst response = $input.item.json.response || $input.item.json.content?.[0]?.text || '{}';\n\nlet emailData;\ntry {\n  const jsonMatch = response.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    emailData = JSON.parse(jsonMatch[0]);\n  } else {\n    emailData = JSON.parse(response);\n  }\n} catch (e) {\n  emailData = {\n    subject: 'AI kan jouw bedrijf helpen',\n    body: 'Error generating email',\n    primary_cta: 'Neem contact op',\n    personalization_notes: 'Error'\n  };\n}\n\nreturn {\n  json: {\n    ...$input.item.json,\n    email_subject: emailData.subject,\n    email_body: emailData.body,\n    email_cta: emailData.primary_cta,\n    personalization_notes: emailData.personalization_notes,\n    generated_date: new Date().toISOString()\n  }\n};"
+      },
+      "id": "parse-email",
+      "name": "Parse Email JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read HTML template and inject email content\nconst fs = require('fs');\nconst path = require('path');\n\n// NOTE: Update this path to where your email template is stored\nconst templatePath = '/Users/renedeboer/Enable Flow/EnableFlow-LeadGen/templates/email_template.html';\nlet htmlTemplate = fs.readFileSync(templatePath, 'utf8');\n\n// Replace placeholders\nconst replacements = {\n  '{{CONTACT_NAME}}': $json.eigenaar || 'daar',\n  '{{EMAIL_BODY}}': $json.email_body.replace(/\\n/g, '<br><br>'),\n  '{{CTA_TEXT}}': $json.email_cta,\n  '{{CTA_LINK}}': 'https://calendly.com/enableflow-ai/gratis-ai-readiness-scan',\n  '{{COMPANY_NAME}}': $json.bedrijfsnaam,\n  '{{PHONE_NUMBER}}': '+31 6 XXXXXXXX', // Add your phone number\n  '{{UNSUBSCRIBE_LINK}}': 'https://enableflow.ai/unsubscribe?email=' + encodeURIComponent($json.email)\n};\n\nfor (const [placeholder, value] of Object.entries(replacements)) {\n  htmlTemplate = htmlTemplate.replace(new RegExp(placeholder, 'g'), value);\n}\n\nreturn {\n  json: {\n    ...$json,\n    email_html: htmlTemplate\n  }\n};"
+      },
+      "id": "create-html",
+      "name": "Create HTML Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=2",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Email_ReviewQueue"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead_id": "={{$json.kvk_nummer}}",
+            "bedrijfsnaam": "={{$json.bedrijfsnaam}}",
+            "email_to": "={{$json.email}}",
+            "subject": "={{$json.email_subject}}",
+            "body_plain": "={{$json.email_body}}",
+            "body_html": "={{$json.email_html}}",
+            "status": "Pending Review",
+            "generated_date": "={{$json.generated_date}}",
+            "personalization_notes": "={{$json.personalization_notes}}"
+          }
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "id": "append-review-queue",
+      "name": "Add to Review Queue",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nreturn {\n  json: {\n    emails_generated: items.length,\n    timestamp: new Date().toISOString(),\n    message: `Generated ${items.length} emails. Check the Review Queue sheet to approve.`,\n    review_url: 'https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2'\n  }\n};"
+      },
+      "id": "summary",
+      "name": "Generation Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1850, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [2050, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Trigger Email Generation": {
+      "main": [
+        [
+          {
+            "node": "Read Pending Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Pending Leads": {
+      "main": [
+        [
+          {
+            "node": "Limit to 10 emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit to 10 emails": {
+      "main": [
+        [
+          {
+            "node": "Split Into Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Into Items": {
+      "main": [
+        [
+          {
+            "node": "Claude - Generate Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude - Generate Email": {
+      "main": [
+        [
+          {
+            "node": "Parse Email JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Email JSON": {
+      "main": [
+        [
+          {
+            "node": "Create HTML Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create HTML Email": {
+      "main": [
+        [
+          {
+            "node": "Add to Review Queue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Review Queue": {
+      "main": [
+        [
+          {
+            "node": "Generation Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generation Summary": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

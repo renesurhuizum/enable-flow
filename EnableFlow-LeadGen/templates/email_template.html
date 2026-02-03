@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnableFlow AI - Email</title>
+    <style>
+        /* Reset */
+        body, p, h1, h2, h3 {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #334155;
+            background-color: #f8fafc;
+        }
+
+        /* Container */
+        .email-wrapper {
+            width: 100%;
+            background-color: #f8fafc;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Header with gradient */
+        .header {
+            background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 50%, #8b5cf6 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Content */
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .body-text {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .body-text strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0f9ff 100%);
+            border-left: 4px solid #14b8a6;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 15px;
+            color: #0f172a;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #14b8a6, #06b6d4);
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 28px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(20, 184, 166, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f8fafc;
+            padding: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .signature {
+            margin-bottom: 20px;
+        }
+
+        .signature-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .signature-title {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .contact-info a {
+            color: #14b8a6;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .unsubscribe {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .unsubscribe a {
+            color: #64748b;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .email-wrapper {
+                padding: 20px 10px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .footer {
+                padding: 20px;
+            }
+
+            .cta-button {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">EnableFlow AI</div>
+                <div class="tagline">Lokaal AI-consultancy in Noord-Nederland</div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="greeting">
+                    Hoi {{CONTACT_NAME}},
+                </div>
+
+                <div class="body-text">
+                    {{EMAIL_BODY}}
+                </div>
+
+                <!-- Optional Highlight Box (remove if not needed) -->
+                <!--
+                <div class="highlight-box">
+                    <p><strong>💡 Did you know?</strong> Bedrijven in jouw branche besparen gemiddeld 30-40% tijd met AI-automatisering.</p>
+                </div>
+                -->
+
+                <!-- CTA Button -->
+                <div class="cta-container">
+                    <a href="{{CTA_LINK}}" class="cta-button">
+                        {{CTA_TEXT}} →
+                    </a>
+                </div>
+
+                <div class="body-text">
+                    Tot snel!
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="signature">
+                    <div class="signature-name">René de Boer</div>
+                    <div class="signature-title">Founder & AI Consultant - EnableFlow AI</div>
+                </div>
+
+                <div class="contact-info">
+                    📍 Surhuisterveen, Noord-Nederland<br>
+                    📧 <a href="mailto:rene@enableflow.ai">rene@enableflow.ai</a><br>
+                    🌐 <a href="https://enableflow.ai">enableflow.ai</a><br>
+                    📞 <a href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
+                </div>
+
+                <div class="unsubscribe">
+                    Deze mail is verstuurd omdat wij denken dat {{COMPANY_NAME}} baat kan hebben bij AI-automatisering.
+                    We respecteren je privacy en sturen je geen onnodige emails.<br><br>
+                    Niet geïnteresseerd? <a href="{{UNSUBSCRIBE_LINK}}">Klik hier om je af te melden</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

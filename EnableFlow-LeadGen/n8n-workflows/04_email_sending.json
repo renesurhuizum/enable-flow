@@ -1,0 +1,299 @@
+{
+  "name": "EnableFlow - Email Sending",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-email",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Approve Email",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [250, 300],
+      "webhookId": "send-email-webhook",
+      "notes": "Triggered when email is approved in review interface"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=2",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Email_ReviewQueue"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "column": "lead_id",
+              "condition": "equal",
+              "value": "={{$json.body.lead_id}}"
+            }
+          ]
+        }
+      },
+      "id": "read-email",
+      "name": "Read Approved Email",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.brevo.com/v3/smtp/email",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api-key",
+              "value": "={{$credentials.apiKey}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"sender\": {\n    \"name\": \"René de Boer - EnableFlow AI\",\n    \"email\": \"rene@enableflow.ai\"\n  },\n  \"to\": [\n    {\n      \"email\": \"{{$json.email_to}}\",\n      \"name\": \"{{$json.bedrijfsnaam}}\"\n    }\n  ],\n  \"subject\": \"{{$json.subject}}\",\n  \"htmlContent\": \"{{$json.body_html}}\",\n  \"tags\": [\"outreach\", \"ai-consulting\", \"enableflow\"],\n  \"params\": {\n    \"bedrijfsnaam\": \"{{$json.bedrijfsnaam}}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "send-brevo",
+      "name": "Brevo - Send Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [650, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "brevo-api",
+          "name": "Brevo API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.statusCode}}",
+              "value2": "201"
+            }
+          ]
+        }
+      },
+      "id": "check-success",
+      "name": "Check Send Success",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=2",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Email_ReviewQueue"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "Sent",
+            "sent_date": "={{$now.toISO()}}",
+            "brevo_message_id": "={{$json.messageId}}"
+          }
+        },
+        "options": {}
+      },
+      "id": "update-sent",
+      "name": "Update Status - Sent",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1050, 200]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=1",
+          "mode": "list",
+          "cachedResultName": "EnableFlow_Leads_Qualified"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "Sent",
+            "last_contact_date": "={{$now.toISO()}}"
+          }
+        }
+      },
+      "id": "update-lead-status",
+      "name": "Update Lead Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1250, 200]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=2",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "Failed",
+            "error_message": "={{$json.error}}"
+          }
+        }
+      },
+      "id": "update-failed",
+      "name": "Update Status - Failed",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1050, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "respond-success",
+      "name": "Respond - Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1450, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"error\", \"message\": $json.error } }}",
+        "options": {
+          "responseCode": 500
+        }
+      },
+      "id": "respond-error",
+      "name": "Respond - Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1450, 400]
+    }
+  ],
+  "connections": {
+    "Webhook - Approve Email": {
+      "main": [
+        [
+          {
+            "node": "Read Approved Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Approved Email": {
+      "main": [
+        [
+          {
+            "node": "Brevo - Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brevo - Send Email": {
+      "main": [
+        [
+          {
+            "node": "Check Send Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Send Success": {
+      "main": [
+        [
+          {
+            "node": "Update Status - Sent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Status - Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status - Sent": {
+      "main": [
+        [
+          {
+            "node": "Update Lead Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Lead Status": {
+      "main": [
+        [
+          {
+            "node": "Respond - Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status - Failed": {
+      "main": [
+        [
+          {
+            "node": "Respond - Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
