@@ -44,22 +44,48 @@ export const AIBenefits = () => {
             </div>
           </div>
 
-          {/* Right column - Visual/Image placeholder */}
+          {/* Right column - AI Tools */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-slate-900 via-purple-900 to-pink-900 rounded-2xl p-8 shadow-2xl relative overflow-hidden aspect-square flex items-center justify-center">
+            <div className="bg-gradient-to-br from-slate-900 via-purple-900 to-pink-900 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-teal-400 to-cyan-400 rounded-full blur-3xl opacity-20"></div>
               <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-3xl opacity-20"></div>
 
-              {/* Center content - Data visualization placeholder */}
-              <div className="relative z-10 text-center">
-                <div className="text-8xl mb-4">📊</div>
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  Data-Driven Beslissingen
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  AI-tools die wij implementeren
                 </h3>
-                <p className="text-slate-300 text-sm">
-                  AI analyseert jouw data en geeft direct actionable insights
-                </p>
+                <div className="space-y-4">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold">M</span>
+                      </div>
+                      <h4 className="font-bold text-white">Microsoft Copilot 365</h4>
+                    </div>
+                    <p className="text-slate-300 text-sm">AI-assistent geïntegreerd in Word, Excel, PowerPoint, Outlook en Teams.</p>
+                  </div>
+
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold">C</span>
+                      </div>
+                      <h4 className="font-bold text-white">Claude (Anthropic)</h4>
+                    </div>
+                    <p className="text-slate-300 text-sm">Geavanceerde AI voor complexe analyse, strategie en content creatie.</p>
+                  </div>
+
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold">G</span>
+                      </div>
+                      <h4 className="font-bold text-white">Gemini (Google)</h4>
+                    </div>
+                    <p className="text-slate-300 text-sm">Multimodale AI voor tekst, beeld en data-analyse binnen Google Workspace.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

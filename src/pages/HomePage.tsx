@@ -10,10 +10,10 @@ export const HomePage = () => {
   return (
     <>
       <Hero />
-      <PartnersSection />
       <AIBenefits />
       <USPs />
       <Services />
+      <PartnersSection />
       <FAQ />
     </>
   );
