@@ -42,30 +42,43 @@ export const FAQ = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4" role="list">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-2 border-slate-200 rounded-xl overflow-hidden hover:border-teal-300 transition-all">
-              <button
-                onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                className="w-full text-left px-6 py-4 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors"
-              >
-                <span className="font-semibold text-slate-900 pr-4">{faq.q}</span>
-                <svg
-                  className={`w-6 h-6 text-teal-500 flex-shrink-0 transition-transform duration-300 ${
-                    openFaq === index ? 'rotate-180' : ''
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            <div key={index} className="border-2 border-slate-200 rounded-xl overflow-hidden hover:border-teal-300 transition-all" role="listitem">
+              <h3>
+                <button
+                  id={`faq-trigger-${index}`}
+                  aria-expanded={openFaq === index}
+                  aria-controls={`faq-panel-${index}`}
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full text-left px-6 py-4 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {openFaq === index && (
+                  <span className="font-semibold text-slate-900 pr-4">{faq.q}</span>
+                  <svg
+                    className={`w-6 h-6 text-teal-500 flex-shrink-0 transition-transform duration-300 ${
+                      openFaq === index ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </h3>
+              <div
+                id={`faq-panel-${index}`}
+                role="region"
+                aria-labelledby={`faq-trigger-${index}`}
+                className={`overflow-hidden transition-all duration-300 ${
+                  openFaq === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
                 <div className="px-6 py-4 bg-slate-50 border-t-2 border-slate-200">
                   <p className="text-slate-700">{faq.a}</p>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>

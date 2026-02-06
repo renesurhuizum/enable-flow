@@ -5,6 +5,7 @@ import { AIBenefits } from '../components/sections/AIBenefits';
 import { USPs } from '../components/sections/USPs';
 import { Services } from '../components/sections/Services';
 import { FAQ } from '../components/sections/FAQ';
+import { ROICalculator } from '../components/sections/ROICalculator';
 
 export const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ export const HomePage = () => {
       <Hero />
       <AIBenefits />
       <USPs />
+      <ROICalculator />
       <Services />
       <PartnersSection />
       <FAQ />

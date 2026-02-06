@@ -56,11 +56,24 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     setIsSubmitting(true);
 
     try {
-      // Placeholder: In production this would send to Convex
-      console.log('Form submission:', { formType, formData });
+      // Send to n8n webhook
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'https://renedeboer.app.n8n.cloud/webhook/enableflow-contact';
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType,
+          submittedAt: new Date().toISOString(),
+          ...formData,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Webhook request failed');
+      }
 
       setSubmitSuccess(true);
 
@@ -230,10 +243,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   {/* Basic Fields */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label htmlFor="consult-naam" className="block text-sm font-medium text-slate-700 mb-2">
                         Naam <span className="text-red-500">*</span>
                       </label>
                       <input
+                        id="consult-naam"
                         type="text"
                         required
                         value={formData.naam}
@@ -243,10 +257,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label htmlFor="consult-bedrijf" className="block text-sm font-medium text-slate-700 mb-2">
                         Bedrijf <span className="text-red-500">*</span>
                       </label>
                       <input
+                        id="consult-bedrijf"
                         type="text"
                         required
                         value={formData.bedrijf}
@@ -259,10 +274,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label htmlFor="consult-email" className="block text-sm font-medium text-slate-700 mb-2">
                         E-mail <span className="text-red-500">*</span>
                       </label>
                       <input
+                        id="consult-email"
                         type="email"
                         required
                         value={formData.email}
@@ -273,16 +289,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                             : 'border-slate-200 focus:border-teal-400 focus:ring-teal-100'
                         }`}
                         placeholder="je@email.nl"
+                        aria-describedby={formData.email && !isValidEmail(formData.email) ? 'consult-email-error' : undefined}
                       />
                       {formData.email && !isValidEmail(formData.email) && (
-                        <p className="text-red-600 text-sm mt-1">Voer een geldig e-mailadres in</p>
+                        <p id="consult-email-error" className="text-red-600 text-sm mt-1" role="alert">Voer een geldig e-mailadres in</p>
                       )}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label htmlFor="consult-telefoon" className="block text-sm font-medium text-slate-700 mb-2">
                         Telefoon <span className="text-red-500">*</span>
                       </label>
                       <input
+                        id="consult-telefoon"
                         type="tel"
                         required
                         value={formData.telefoon}
@@ -296,10 +314,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   {/* Context Fields */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label htmlFor="consult-bedrijfsgrootte" className="block text-sm font-medium text-slate-700 mb-2">
                         Bedrijfsgrootte <span className="text-red-500">*</span>
                       </label>
                       <select
+                        id="consult-bedrijfsgrootte"
                         required
                         value={formData.bedrijfsgrootte}
                         onChange={(e) => setFormData({...formData, bedrijfsgrootte: e.target.value})}
@@ -313,10 +332,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                      <label htmlFor="consult-sector" className="block text-sm font-medium text-slate-700 mb-2">
                         Sector <span className="text-red-500">*</span>
                       </label>
                       <select
+                        id="consult-sector"
                         required
                         value={formData.sector}
                         onChange={(e) => setFormData({...formData, sector: e.target.value})}
@@ -337,7 +357,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                     <label className="block text-sm font-medium text-slate-700 mb-2">
                       Heeft jullie organisatie Microsoft 365? <span className="text-red-500">*</span>
                     </label>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4" role="radiogroup" aria-label="Microsoft 365 beschikbaarheid">
                       <label className="flex items-center">
                         <input
                           type="radio"
