@@ -102,9 +102,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-purple-50 relative overflow-hidden">
+    <section id="contact" className="py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-violet-50 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full blur-3xl opacity-20"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-200 to-rose-200 rounded-full blur-3xl opacity-20"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-200 to-cyan-200 rounded-full blur-3xl opacity-20"></div>
 
       <div className="max-w-5xl mx-auto relative z-10">
@@ -139,7 +139,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               onClick={() => setActiveTab('scan')}
               className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                 activeTab === 'scan'
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-violet-500 to-rose-500 text-white shadow-lg'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -162,11 +162,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   <span className="text-slate-700">Lokaal in Noord-Nederland - wij komen bij je langs</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-purple-500 font-bold flex-shrink-0">🔧</span>
+                  <span className="text-violet-500 font-bold flex-shrink-0">🔧</span>
                   <span className="text-slate-700">Hands-on implementatie, niet alleen adviezen</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-pink-500 font-bold flex-shrink-0">💬</span>
+                  <span className="text-rose-500 font-bold flex-shrink-0">💬</span>
                   <span className="text-slate-700">Geen corporate jargon, we spreken jouw taal</span>
                 </div>
                 <div className="flex items-start gap-2">
@@ -184,7 +184,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           {/* Right content - Form */}
           <div className="lg:col-span-2">
             {/* Trust Badges - Prominent */}
-            <div className="bg-gradient-to-r from-teal-50 via-purple-50 to-pink-50 rounded-2xl p-6 mb-6 border-2 border-teal-200">
+            <div className="bg-gradient-to-r from-teal-50 via-violet-50 to-rose-50 rounded-2xl p-6 mb-6 border-2 border-teal-200">
               <div className="grid sm:grid-cols-2 gap-4 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">✓</span>
@@ -484,15 +484,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             )}
 
             {activeTab === 'scan' && (
-              <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
+              <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-violet-200">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">AI Readiness Scan</h3>
                   <p className="text-slate-600 mb-4">
                     Ontdek jouw AI-potentieel met een persoonlijk rapport inclusief readiness score (0-100).
                   </p>
-                  <div className="bg-purple-50 rounded-xl p-4 text-sm">
-                    <p className="font-semibold text-purple-900 mb-2">Je ontvangt:</p>
-                    <ul className="space-y-1 text-purple-800">
+                  <div className="bg-violet-50 rounded-xl p-4 text-sm">
+                    <p className="font-semibold text-violet-900 mb-2">Je ontvangt:</p>
+                    <ul className="space-y-1 text-violet-800">
                       <li>• Je AI Readiness Score (0-100)</li>
                       <li>• Top 3 kansen specifiek voor jouw bedrijf</li>
                       <li>• Concrete aanbevelingen voor de volgende stappen</li>
@@ -526,7 +526,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                         required
                         value={formData.naam}
                         onChange={(e) => setFormData({...formData, naam: e.target.value})}
-                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100 outline-none transition-all"
                         placeholder="Je naam"
                       />
                     </div>
@@ -539,7 +539,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                         required
                         value={formData.bedrijf}
                         onChange={(e) => setFormData({...formData, bedrijf: e.target.value})}
-                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100 outline-none transition-all"
                         placeholder="Bedrijfsnaam"
                       />
                     </div>
@@ -558,7 +558,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                         className={`w-full px-4 py-3 rounded-xl border-2 focus:ring-4 outline-none transition-all ${
                           formData.email && !isValidEmail(formData.email)
                             ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
-                            : 'border-slate-200 focus:border-purple-400 focus:ring-purple-100'
+                            : 'border-slate-200 focus:border-violet-400 focus:ring-violet-100'
                         }`}
                         placeholder="je@email.nl"
                       />
@@ -575,7 +575,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                         required
                         value={formData.telefoon}
                         onChange={(e) => setFormData({...formData, telefoon: e.target.value})}
-                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100 outline-none transition-all"
                         placeholder="06-12345678"
                       />
                     </div>
@@ -590,7 +590,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                         required
                         value={formData.bedrijfsgrootte}
                         onChange={(e) => setFormData({...formData, bedrijfsgrootte: e.target.value})}
-                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100 outline-none transition-all"
                       >
                         <option value="">Selecteer...</option>
                         <option value="1-10">1-10 medewerkers</option>
@@ -607,7 +607,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                         required
                         value={formData.sector}
                         onChange={(e) => setFormData({...formData, sector: e.target.value})}
-                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100 outline-none transition-all"
                       >
                         <option value="">Selecteer...</option>
                         <option value="zakelijke-dienstverlening">Zakelijke dienstverlening</option>
@@ -722,14 +722,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                       value={formData.uitdaging}
                       onChange={(e) => setFormData({...formData, uitdaging: e.target.value})}
                       rows={3}
-                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-violet-400 focus:ring-4 focus:ring-violet-100 outline-none transition-all"
                       placeholder="Bijvoorbeeld: tijdgebrek, handmatig werk, data-analyse..."
                     ></textarea>
                   </div>
 
                   {/* SCAN-SPECIFIC FIELDS */}
-                  <div className="border-t-2 border-purple-200 pt-6">
-                    <p className="font-semibold text-purple-900 mb-4">📊 Extra vragen voor jouw AI Readiness Score</p>
+                  <div className="border-t-2 border-violet-200 pt-6">
+                    <p className="font-semibold text-violet-900 mb-4">📊 Extra vragen voor jouw AI Readiness Score</p>
 
                     <div className="mb-4">
                       <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -812,14 +812,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="w-full bg-gradient-to-r from-violet-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     {isSubmitting ? 'Versturen...' : 'Vraag gratis AI Scan aan →'}
                   </button>
 
                   {/* How it works - Scan */}
-                  <div className="mt-6 bg-purple-50 rounded-xl p-4 text-sm text-purple-800">
-                    <p className="font-semibold text-purple-900 mb-2">Hoe werkt het?</p>
+                  <div className="mt-6 bg-violet-50 rounded-xl p-4 text-sm text-violet-800">
+                    <p className="font-semibold text-violet-900 mb-2">Hoe werkt het?</p>
                     <ol className="list-decimal list-inside space-y-1">
                       <li>Vul uitgebreide scan in (5-10 min)</li>
                       <li>We analyseren je antwoorden</li>

@@ -29,7 +29,7 @@ const industries = [
   },
   {
     name: 'Customer Service',
-    gradient: 'from-purple-400 via-purple-500 to-purple-600',
+    gradient: 'from-violet-400 via-violet-500 to-violet-600',
     icon: '💬',
     description: 'Verbeter klanttevredenheid en verkort wachttijden met AI-ondersteunde klantenservice. Van slimme chatbots tot real-time sentiment analyse die je team helpt om klanten beter te bedienen.',
     useCases: [
@@ -53,7 +53,7 @@ const industries = [
   },
   {
     name: 'Operations & Finance',
-    gradient: 'from-pink-400 via-pink-500 to-pink-600',
+    gradient: 'from-rose-400 via-rose-500 to-rose-600',
     icon: '💼',
     description: 'Stroomlijn je financiële processen en operaties met AI. Van automatische factuurverwerking tot geavanceerde budgetvoorspellingen — bespaar uren per week op administratieve taken.',
     useCases: [
@@ -113,14 +113,14 @@ const concreteExamples = [
     title: 'Meeting Notes',
     description: 'Vergaderingen automatisch samenvatten in Teams. Inclusief actiepunten, besluiten en follow-ups — direct na de meeting klaar.',
     icon: '📝',
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: 'from-violet-500 to-rose-500',
     tool: 'Microsoft Copilot 365',
   },
   {
     title: 'Data Analysis',
     description: 'Excel rapporten genereren met één prompt. Draaitabellen, grafieken en inzichten — zonder formule-kennis. Stel vragen in gewoon Nederlands.',
     icon: '📊',
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: 'from-rose-500 to-rose-500',
     tool: 'Microsoft Copilot 365',
   },
   {
@@ -141,17 +141,17 @@ const concreteExamples = [
     title: 'Process Automation',
     description: 'Repetitieve taken automatiseren met AI workflows via n8n. Verbind je CRM, email, boekhouding en meer in slimme automatiseringen.',
     icon: '⚡',
-    gradient: 'from-indigo-500 to-purple-500',
+    gradient: 'from-indigo-500 to-violet-500',
     tool: 'n8n + AI',
   },
 ];
 
 export const UseCasesPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-violet-50">
       {/* Hero Section */}
       <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-300 to-pink-300 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-300 to-rose-300 rounded-full blur-3xl opacity-30 animate-pulse"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-300 to-cyan-300 rounded-full blur-3xl opacity-30 animate-pulse" style={{animationDelay: '1s'}}></div>
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -166,8 +166,8 @@ export const UseCasesPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <span className="bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium">Sales & Marketing</span>
-            <span className="bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Customer Service</span>
-            <span className="bg-pink-100 text-pink-700 px-4 py-2 rounded-full text-sm font-medium">Operations & Finance</span>
+            <span className="bg-violet-100 text-violet-700 px-4 py-2 rounded-full text-sm font-medium">Customer Service</span>
+            <span className="bg-rose-100 text-rose-700 px-4 py-2 rounded-full text-sm font-medium">Operations & Finance</span>
             <span className="bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium">HR & Recruitment</span>
           </div>
         </div>
@@ -224,7 +224,7 @@ export const UseCasesPage = () => {
       </section>
 
       {/* Concrete Examples Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-violet-900 to-slate-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm font-semibold text-teal-400 uppercase tracking-wider mb-2">
@@ -273,8 +273,8 @@ export const UseCasesPage = () => {
       <ROICalculator showCTA={false} />
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-3xl opacity-20"></div>
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-900 via-violet-900 to-slate-900 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-400 to-rose-400 rounded-full blur-3xl opacity-20"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-400 to-cyan-400 rounded-full blur-3xl opacity-20"></div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -287,10 +287,10 @@ export const UseCasesPage = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               to="/contact"
-              className="inline-block group relative bg-gradient-to-r from-teal-500 via-cyan-500 to-purple-500 text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              className="inline-block group relative bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
               <span className="relative z-10">Plan je gratis AI Readiness Scan →</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-rose-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
             <Link
               to="/contact"
