@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-cyan-50/50 to-white">
 
       {/* Hero sectie */}
       <section className="py-20 px-4">
@@ -119,8 +119,8 @@ export const AboutPage = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-slate-50 to-white rounded-xl border-l-4 border-slate-400 shadow-sm">
-                <div className="w-10 h-10 bg-gradient-to-br from-slate-600 to-slate-800 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
+              <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-indigo-50 to-white rounded-xl border-l-4 border-indigo-400 shadow-sm">
+                <div className="w-10 h-10 bg-gradient-to-br from-indigo-400 to-violet-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -176,14 +176,14 @@ export const AboutPage = () => {
             </div>
 
             {/* Kaart 3: Teams */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-lg hover:border-slate-300 transition-all duration-300 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-800 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-lg hover:border-indigo-200 transition-all duration-300 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-indigo-400 to-violet-500 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
               <h3 className="font-bold text-slate-900 mb-2">Teams begeleiden & trainen</h3>
-              <p className="text-slate-500 text-sm font-medium mb-3">Adoptie & gedragsverandering</p>
+              <p className="text-indigo-600 text-sm font-medium mb-3">Adoptie & gedragsverandering</p>
               <p className="text-slate-600 text-sm leading-relaxed">
                 Nieuwe tools werken alleen als je team ze ook echt gebruikt. Ik train, ondersteun en zorg dat de verandering beklijft.
               </p>
