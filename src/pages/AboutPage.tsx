@@ -12,19 +12,11 @@ export const AboutPage = () => {
 
             {/* Foto kolom */}
             <div className="flex flex-col items-center md:items-start">
-              {/*
-                FOTO PLACEHOLDER
-                Vervang dit blok door:
-                <img
-                  src="[URL naar jouw foto]"
-                  alt="René de Boer"
-                  className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-lg"
-                />
-                zodra je een foto beschikbaar hebt.
-              */}
-              <div className="w-56 h-56 md:w-64 md:h-64 bg-gradient-to-br from-teal-500 to-teal-700 rounded-2xl shadow-lg flex items-center justify-center mb-6">
-                <span className="text-white text-6xl font-bold">RdB</span>
-              </div>
+              <img
+                src="/images/rene-de-boer.jpg"
+                alt="René de Boer - Oprichter EnableFlow AI"
+                className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-lg mb-6"
+              />
 
               {/* Naamkaartje */}
               <div className="bg-white rounded-xl shadow-md px-6 py-4 border border-stone-100 w-full max-w-xs">
