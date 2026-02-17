@@ -15,14 +15,14 @@ export const AboutPage = () => {
               <img
                 src="https://media.licdn.com/dms/image/v2/D4E03AQHeo-N8tWKdzQ/profile-displayphoto-crop_800_800/B4EZwJKiB8GcAI-/0/1769680284699?e=1772668800&v=beta&t=2cI_Rd47kfuxD_gUJJgt27gi6fro6rjm2DK3ZYwlj7s"
                 alt="René de Boer - Oprichter EnableFlow AI"
-                className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-lg mb-6"
+                className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-xl mb-6 ring-4 ring-teal-100"
               />
 
               {/* Naamkaartje */}
               <div className="bg-white rounded-xl shadow-md px-6 py-4 border border-stone-100 w-full max-w-xs">
                 <p className="font-bold text-slate-900 text-lg">René de Boer</p>
                 <p className="text-teal-600 text-sm font-medium">Oprichter EnableFlow AI</p>
-                <p className="text-slate-500 text-sm mt-1">Business Analist · Noord-Nederland</p>
+                <p className="text-slate-500 text-sm mt-1">AI Consultant & Trainer · Noord-Nederland</p>
                 <div className="mt-3 flex gap-3">
                   <a
                     href="tel:+31630534740"
@@ -57,10 +57,10 @@ export const AboutPage = () => {
                 Hallo, ik ben René
               </h1>
               <p className="text-lg text-slate-700 mb-4 leading-relaxed">
-                Als Business Analist bij de Provincie Groningen werk ik dagelijks met processen, mensen en technologie. Ik zie van binnenuit hoe organisaties wrstelen met efficiëntie — en hoe groot het verschil is als je de juiste tools op de juiste manier inzet.
+                Ik help Noord-Nederlandse ondernemers concreet resultaat halen uit AI. Niet via een theoretisch adviesrapport, maar gewoon langs komen, meedenken en samen aan de slag gaan.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
-                Toen AI-tools als Microsoft Copilot, Claude en Gemini steeds krachtiger werden, zag ik direct de kansen voor Noord-Nederlandse ondernemers. Niet als hype, maar als een praktisch hulpmiddel dat écht werkt.
+                Of je nu wil starten met Microsoft Copilot 365, een slim klantenservice-proces wil bouwen, of simpelweg wil weten wat AI voor jóuw bedrijf kan doen — ik zorg dat het werkt. Praktisch, eerlijk en zonder hype.
               </p>
             </div>
           </div>
@@ -82,7 +82,7 @@ export const AboutPage = () => {
                   EnableFlow is opgericht vanuit een eenvoudige overtuiging: AI moet ook beschikbaar zijn voor het MKB. Niet alleen voor grote bedrijven met een eigen IT-afdeling, maar ook voor de accountant, de aannemer of het marketingbureau in de regio.
                 </p>
                 <p>
-                  Wat ik in mijn werk als analist geleerd heb, is dat technologie alleen werkt als mensen er ook echt mee aan de slag gaan. Niet via een dik rapport, maar door naast je te staan, mee te denken en het samen te proberen.
+                  Wat ik heb geleerd: technologie werkt alleen als mensen er ook echt mee werken. Niet via een dik rapport, maar door naast je te staan, mee te denken en het samen te proberen.
                 </p>
                 <p>
                   Dat is ook hoe ik werk bij EnableFlow: praktisch, persoonlijk en zonder hype. Ik kom gewoon bij je langs in Groningen, Friesland of Drenthe, en we kijken samen wat AI voor jóuw bedrijf kan betekenen.
@@ -94,8 +94,8 @@ export const AboutPage = () => {
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-slate-900 mb-4">Mijn aanpak in het kort</h3>
 
-              <div className="flex items-start gap-4 p-4 bg-stone-50 rounded-xl">
-                <div className="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-teal-50 to-white rounded-xl border-l-4 border-teal-400 shadow-sm">
+                <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -106,8 +106,8 @@ export const AboutPage = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-stone-50 rounded-xl">
-                <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-amber-50 to-white rounded-xl border-l-4 border-amber-400 shadow-sm">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -119,8 +119,8 @@ export const AboutPage = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-stone-50 rounded-xl">
-                <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 bg-gradient-to-br from-slate-50 to-white rounded-xl border-l-4 border-slate-400 shadow-sm">
+                <div className="w-10 h-10 bg-gradient-to-br from-slate-600 to-slate-800 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -135,61 +135,66 @@ export const AboutPage = () => {
         </div>
       </section>
 
-      {/* Achtergrond kaarten */}
-      <section className="py-16 px-4 bg-stone-50">
+      {/* Competentie kaarten */}
+      <section className="py-16 px-4 bg-gradient-to-br from-slate-50 via-white to-teal-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">Achtergrond & ervaring</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">Wat ik voor je doe</h2>
             <p className="text-slate-600 max-w-xl mx-auto">
-              Jaren van werken met processen en technologie, nu ingezet voor Noord-Nederlandse ondernemers.
+              Van analyse tot implementatie en training — ik begeleid je bij elke stap.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center mb-4">
+
+            {/* Kaart 1: Werkprocessen */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-lg hover:border-teal-200 transition-all duration-300 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="font-bold text-slate-900 mb-2">Provincie Groningen</h3>
-              <p className="text-teal-600 text-sm font-medium mb-2">Business Analist</p>
+              <h3 className="font-bold text-slate-900 mb-2">Werkprocessen doorgronden</h3>
+              <p className="text-teal-600 text-sm font-medium mb-3">Analyse & optimalisatie</p>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Ervaring in procesoptimalisatie, stakeholdermanagement en het verbinden van mensen en technologie binnen complexe organisaties.
+                Snel zien waar tijd verloren gaat. Van offertestroom tot klantcommunicatie — ik breng het in kaart en maak het slimmer.
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-              </div>
-              <h3 className="font-bold text-slate-900 mb-2">Procesoptimalisatie</h3>
-              <p className="text-amber-600 text-sm font-medium mb-2">Analyse & verbetering</p>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Jarenlange ervaring met het in kaart brengen van werkprocessen en het vinden van slimme oplossingen die échte tijdsbesparing opleveren.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-4">
+            {/* Kaart 2: AI-tools */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-lg hover:border-amber-200 transition-all duration-300 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2" />
                 </svg>
               </div>
-              <h3 className="font-bold text-slate-900 mb-2">AI-implementatie</h3>
-              <p className="text-slate-500 text-sm font-medium mb-2">Praktisch & resultaatgericht</p>
+              <h3 className="font-bold text-slate-900 mb-2">AI-tools implementeren</h3>
+              <p className="text-amber-600 text-sm font-medium mb-3">Microsoft Copilot · Claude · Gemini</p>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Microsoft Copilot 365, Claude en Gemini: van orientatie tot volledige implementatie en training van je team.
+                Van oriëntatie tot volledig werkende oplossing. Ik regel de setup, configuratie en koppeling met jouw werkwijze.
               </p>
             </div>
+
+            {/* Kaart 3: Teams */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-lg hover:border-slate-300 transition-all duration-300 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-800 rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Teams begeleiden & trainen</h3>
+              <p className="text-slate-500 text-sm font-medium mb-3">Adoptie & gedragsverandering</p>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Nieuwe tools werken alleen als je team ze ook echt gebruikt. Ik train, ondersteun en zorg dat de verandering beklijft.
+              </p>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* Contact CTA */}
-      <section className="py-16 px-4 bg-slate-900">
+      <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
             Benieuwd wat AI voor jou kan doen?
@@ -200,13 +205,13 @@ export const AboutPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-200"
+              className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all duration-200"
             >
               Plan een gesprek →
             </Link>
             <a
               href="tel:+31630534740"
-              className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg border border-white/30 hover:border-white/50 transition-all duration-200"
+              className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg border border-white/30 hover:border-white/50 transition-all duration-200 backdrop-blur-sm"
             >
               📞 06 30 53 47 40
             </a>
