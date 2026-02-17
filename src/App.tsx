@@ -4,6 +4,7 @@ import { Layout } from './components/layout/Layout';
 import { HomePage } from './pages/HomePage';
 import { UseCasesPage } from './pages/UseCasesPage';
 import { ContactPage } from './pages/ContactPage';
+import { AboutPage } from './pages/AboutPage';
 
 // Component to handle hash-based redirects for backward compatibility
 const HashRedirectHandler = () => {
@@ -33,6 +34,7 @@ function App() {
       <HashRedirectHandler />
       <Routes>
         <Route path="/" element={<Layout><HomePage /></Layout>} />
+        <Route path="/over-mij" element={<Layout><AboutPage /></Layout>} />
         <Route path="/use-cases" element={<Layout><UseCasesPage /></Layout>} />
         <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
       </Routes>

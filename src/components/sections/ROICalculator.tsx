@@ -70,13 +70,13 @@ export const ROICalculator: React.FC<ROICalculatorProps> = ({
                 max="200"
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(Number(e.target.value))}
-                className="w-full pl-10 pr-4 py-3 border-2 border-slate-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none text-slate-900 font-semibold transition-all"
+                className="w-full pl-10 pr-4 py-3 border-2 border-stone-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none text-slate-900 font-semibold transition-all"
               />
             </div>
           </div>
 
           {/* Result Card */}
-          <div className="bg-gradient-to-br from-teal-500 via-cyan-500 to-purple-500 rounded-2xl p-8 text-center shadow-2xl">
+          <div className="bg-slate-900 rounded-2xl p-8 text-center shadow-xl">
             <p className="text-white/90 text-sm font-semibold mb-2 uppercase tracking-wide">
               Potentiële maandelijkse besparing
             </p>
@@ -103,7 +103,7 @@ export const ROICalculator: React.FC<ROICalculatorProps> = ({
             <div className="mt-6 text-center">
               <Link
                 to="/contact"
-                className="inline-block bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200"
+                className="inline-block bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200"
               >
                 Ontdek jouw exacte besparingspotentieel →
               </Link>
