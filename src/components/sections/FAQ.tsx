@@ -84,7 +84,7 @@ export const FAQ = () => {
         </div>
 
         {/* Still have questions CTA */}
-        <div className="mt-12 text-center bg-gradient-to-r from-teal-50 via-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-teal-200">
+        <div className="mt-12 text-center bg-amber-50 rounded-2xl p-8 border-2 border-amber-100">
           <h3 className="text-xl font-bold text-slate-900 mb-2">
             Nog een andere vraag?
           </h3>
@@ -92,8 +92,8 @@ export const FAQ = () => {
             Neem gerust contact met ons op. We helpen je graag verder!
           </p>
           <a
-            href="#contact"
-            className="inline-block bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200"
+            href="/contact"
+            className="inline-block bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200"
           >
             Stel je vraag →
           </a>

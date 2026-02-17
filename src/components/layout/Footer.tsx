@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -7,21 +8,29 @@ export const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-teal-400 via-cyan-400 to-purple-500 rounded-lg"></div>
+              <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg"></div>
               <span className="text-lg font-bold text-white">
                 Enable<span className="text-teal-400">Flow</span> <span className="text-slate-500">AI</span>
               </span>
             </div>
             <p className="text-sm">
-              AI Consultancy voor MKB in Noord-Nederland. Slimmer werken met AI.
+              Slimmer werken met AI voor Noord-Nederlandse ondernemers.
             </p>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <p className="text-sm mb-2">📍 Noord-Nederland</p>
-            <p className="text-sm mb-2">📧 info@enableflow.nl</p>
-            <p className="text-sm">📞 Op aanvraag</p>
+            <p className="text-sm mb-2">
+              <a href="mailto:info@enableflow.nl" className="hover:text-teal-400 transition-colors">
+                📧 info@enableflow.nl
+              </a>
+            </p>
+            <p className="text-sm">
+              <a href="tel:+31630534740" className="hover:text-teal-400 transition-colors">
+                📞 06 30 53 47 40
+              </a>
+            </p>
           </div>
 
           <div>
@@ -32,11 +41,16 @@ export const Footer = () => {
             <p className="text-sm mt-2 text-slate-500">
               Noord-Nederland
             </p>
+            <div className="mt-4">
+              <Link to="/over-mij" className="text-sm text-slate-400 hover:text-teal-400 transition-colors">
+                Over mij
+              </Link>
+            </div>
           </div>
         </div>
 
         <div className="border-t border-slate-800 pt-8 text-center text-sm">
-          <p>© 2024 EnableFlow AI. Alle rechten voorbehouden.</p>
+          <p>© 2025 EnableFlow AI. Alle rechten voorbehouden.</p>
         </div>
       </div>
     </footer>
