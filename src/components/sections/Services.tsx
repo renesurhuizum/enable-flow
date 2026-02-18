@@ -117,7 +117,7 @@ export const Services = () => {
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-teal-400 via-cyan-400 to-teal-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+              <div className="w-16 h-16 bg-teal-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                 1
               </div>
               <h4 className="font-bold text-slate-900 mb-2">Analyse & Advies</h4>
@@ -127,7 +127,7 @@ export const Services = () => {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-violet-400 via-violet-500 to-rose-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+              <div className="w-16 h-16 bg-cyan-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                 2
               </div>
               <h4 className="font-bold text-slate-900 mb-2">Strategie & Plan</h4>
@@ -137,7 +137,7 @@ export const Services = () => {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-rose-400 via-rose-500 to-violet-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+              <div className="w-16 h-16 bg-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                 3
               </div>
               <h4 className="font-bold text-slate-900 mb-2">Implementatie & Training</h4>
@@ -147,7 +147,7 @@ export const Services = () => {
             </div>
           </div>
 
-          <div className="mt-10 bg-gradient-to-r from-teal-50 via-violet-50 to-rose-50 rounded-xl p-6 border-2 border-teal-200">
+          <div className="mt-10 bg-sky-50 rounded-xl p-6 border-2 border-teal-200">
             <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
               <span className="text-2xl">🎯</span>
               Waarom EnableFlow AI?
@@ -161,11 +161,11 @@ export const Services = () => {
                 <span className="text-slate-700">Specialisatie in Microsoft 365 omgevingen</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-violet-500 font-bold">✓</span>
+                <span className="text-teal-500 font-bold">✓</span>
                 <span className="text-slate-700">Ervaring met Claude & Gemini integraties</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-rose-500 font-bold">✓</span>
+                <span className="text-teal-500 font-bold">✓</span>
                 <span className="text-slate-700">Praktische workshops & hands-on training</span>
               </div>
               <div className="flex items-center gap-2">

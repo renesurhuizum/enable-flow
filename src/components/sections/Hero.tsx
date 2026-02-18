@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-amber-50 to-white relative overflow-hidden">
+    <section className="py-20 px-4 bg-gradient-to-b from-sky-50 to-white relative overflow-hidden">
       {/* Subtle warm background shape */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-50"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-60"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-50 rounded-full blur-3xl opacity-60"></div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <p className="text-sm font-semibold text-teal-600 uppercase tracking-wider mb-4">

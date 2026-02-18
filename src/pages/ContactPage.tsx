@@ -3,7 +3,7 @@ import { ContactForm } from '../components/forms/ContactForm';
 
 export const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white">
       {/* Hero Header */}
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
@@ -30,7 +30,7 @@ export const ContactPage = () => {
               <p className="text-xs text-slate-500 mt-1">Gratis & vrijblijvend</p>
             </div>
             <div className="bg-white rounded-xl p-4 text-center shadow-sm border border-stone-100">
-              <p className="text-2xl font-bold text-amber-600">Noord-NL</p>
+              <p className="text-2xl font-bold text-teal-600">Noord-NL</p>
               <p className="text-xs text-slate-500 mt-1">Lokaal & persoonlijk</p>
             </div>
           </div>
@@ -66,13 +66,13 @@ export const ContactPage = () => {
               href="tel:+31630534740"
               className="group bg-white/10 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 text-center"
             >
-              <div className="w-14 h-14 bg-amber-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 bg-teal-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                 <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
               <h3 className="font-bold text-white mb-1">Telefoon</h3>
-              <p className="text-amber-300 text-sm">06 30 53 47 40</p>
+              <p className="text-teal-300 text-sm">06 30 53 47 40</p>
             </a>
 
             {/* LinkedIn */}

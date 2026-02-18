@@ -134,7 +134,7 @@ const concreteExamples = [
     title: 'Customer Insights',
     description: 'Klantfeedback analyseren en trends ontdekken. AI leest duizenden reviews, e-mails en enquêtes om actionable insights te geven.',
     icon: '💡',
-    gradient: 'from-yellow-500 to-orange-500',
+    gradient: 'from-teal-400 to-cyan-500',
     tool: 'Claude / ChatGPT',
   },
   {
