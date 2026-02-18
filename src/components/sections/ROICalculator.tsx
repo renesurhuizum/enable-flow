@@ -45,7 +45,7 @@ export const ROICalculator: React.FC<ROICalculatorProps> = ({
               max="100"
               value={employees}
               onChange={(e) => setEmployees(Number(e.target.value))}
-              className="w-full h-2 bg-gradient-to-r from-teal-200 to-purple-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
+              className="w-full h-2 bg-gradient-to-r from-teal-200 to-violet-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
             />
             <div className="flex justify-between text-xs text-slate-500 mt-1">
               <span>1</span>
