@@ -84,7 +84,7 @@ export const FAQ = () => {
         </div>
 
         {/* Still have questions CTA */}
-        <div className="mt-12 text-center bg-amber-50 rounded-2xl p-8 border-2 border-amber-100">
+        <div className="mt-12 text-center bg-sky-50 rounded-2xl p-8 border-2 border-sky-100">
           <h3 className="text-xl font-bold text-slate-900 mb-2">
             Nog een andere vraag?
           </h3>

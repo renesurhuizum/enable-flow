@@ -34,7 +34,7 @@ const partners = [
   {
     name: 'n8n',
     description: 'Workflow automatisering die al jouw tools en AI-systemen naadloos verbindt.',
-    gradient: 'from-rose-400 to-pink-500',
+    gradient: 'from-rose-400 to-rose-500',
     logo: (
       <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
         <path d="M12.74 3.194L18.5 7.09c.395.267.638.72.638 1.204v7.412c0 .484-.243.937-.638 1.204l-5.76 3.896a1.396 1.396 0 0 1-1.48 0l-5.76-3.896A1.448 1.448 0 0 1 4.862 15.706V8.294c0-.484.243-.937.638-1.204l5.76-3.896a1.396 1.396 0 0 1 1.48 0zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
