@@ -32,7 +32,7 @@ export const ROICalculator: React.FC<ROICalculatorProps> = ({
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-8 shadow-xl border border-slate-200">
+        <div className="bg-white rounded-2xl p-8 shadow-md border border-slate-200">
           {/* Input: Number of employees */}
           <div className="mb-8">
             <label htmlFor="roi-employees" className="block text-slate-700 font-semibold mb-3">
@@ -70,7 +70,7 @@ export const ROICalculator: React.FC<ROICalculatorProps> = ({
                 max="200"
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(Number(e.target.value))}
-                className="w-full pl-10 pr-4 py-3 border-2 border-stone-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none text-slate-900 font-semibold transition-all"
+                className="w-full pl-10 pr-4 py-3 border-2 border-slate-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-100 outline-none text-slate-900 font-semibold transition-all"
               />
             </div>
           </div>

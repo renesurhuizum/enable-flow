@@ -2,10 +2,10 @@ import React from 'react';
 
 export const Services = () => {
   return (
-    <section id="diensten" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-cyan-50 relative overflow-hidden">
+    <section id="diensten" className="py-20 px-4 bg-gradient-to-b from-slate-50 to-cyan-50 relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-violet-300 to-rose-300 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-teal-300 to-cyan-300 rounded-full blur-3xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+      <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-violet-300 to-violet-200 rounded-full blur-3xl opacity-20"></div>
+      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-teal-300 to-cyan-300 rounded-full blur-3xl opacity-20"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
@@ -19,7 +19,7 @@ export const Services = () => {
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {/* Service 1: Consultancy */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-200 to-teal-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
 
             <div className="relative z-10">
@@ -49,10 +49,10 @@ export const Services = () => {
 
           {/* Service 2: Implementation (Popular) */}
           <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden border-2 border-violet-400 transform md:scale-105">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 via-rose-500 to-violet-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-xl z-20 animate-pulse">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-violet-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-xl z-20">
               ⭐ Populair
             </div>
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-200 to-rose-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-200 to-violet-100 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
 
             <div className="relative z-10 mt-2">
               <div className="w-14 h-14 bg-gradient-to-br from-violet-400 to-violet-600 rounded-xl mb-4 flex items-center justify-center">
@@ -81,11 +81,11 @@ export const Services = () => {
           </div>
 
           {/* Service 3: Training */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-rose-200 to-violet-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-200 to-violet-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
 
             <div className="relative z-10">
-              <div className="w-14 h-14 bg-gradient-to-br from-rose-400 to-rose-600 rounded-xl mb-4 flex items-center justify-center">
+              <div className="w-14 h-14 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl mb-4 flex items-center justify-center">
                 <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
@@ -93,15 +93,15 @@ export const Services = () => {
               <h3 className="text-xl font-bold text-slate-900 mb-3">AI Training</h3>
               <ul className="space-y-2 mb-6">
                 <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-rose-500 mr-2 font-bold">✓</span>
+                  <span className="text-teal-500 mr-2 font-bold">✓</span>
                   <span>Prompt Engineering Basics</span>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-rose-500 mr-2 font-bold">✓</span>
+                  <span className="text-teal-500 mr-2 font-bold">✓</span>
                   <span>AI voor Management</span>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-rose-500 mr-2 font-bold">✓</span>
+                  <span className="text-teal-500 mr-2 font-bold">✓</span>
                   <span>Copilot voor teams</span>
                 </li>
               </ul>
@@ -127,7 +127,7 @@ export const Services = () => {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-cyan-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+              <div className="w-16 h-16 bg-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                 2
               </div>
               <h4 className="font-bold text-slate-900 mb-2">Strategie & Plan</h4>
@@ -147,7 +147,7 @@ export const Services = () => {
             </div>
           </div>
 
-          <div className="mt-10 bg-sky-50 rounded-xl p-6 border-2 border-teal-200">
+          <div className="mt-10 bg-slate-50 rounded-xl p-6 border-2 border-teal-200">
             <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
               <span className="text-2xl">🎯</span>
               Waarom EnableFlow AI?
@@ -169,7 +169,7 @@ export const Services = () => {
                 <span className="text-slate-700">Praktische workshops & hands-on training</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-cyan-500 font-bold">✓</span>
+                <span className="text-teal-500 font-bold">✓</span>
                 <span className="text-slate-700">Lokaal in Noord-Nederland (persoonlijke service)</span>
               </div>
             </div>
