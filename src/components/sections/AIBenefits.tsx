@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AIBenefits = () => {
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-sky-50 to-slate-50">
+    <section className="py-16 px-4 bg-gradient-to-b from-slate-50 to-cyan-50">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left column - Benefits */}
@@ -24,7 +24,7 @@ export const AIBenefits = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-lg">💡</span>
                 </div>
                 <div>
@@ -54,7 +54,7 @@ export const AIBenefits = () => {
                 <div className="space-y-4">
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <div className="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center">
                         <span className="text-white font-bold">M</span>
                       </div>
                       <h4 className="font-bold text-white">Microsoft Copilot 365</h4>

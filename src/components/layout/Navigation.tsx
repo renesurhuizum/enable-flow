@@ -12,7 +12,7 @@ export const Navigation = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <nav className="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-stone-100">
+    <nav className="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -68,7 +68,7 @@ export const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="md:hidden p-2 rounded-lg text-slate-700 hover:bg-stone-100 transition-colors"
+            className="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -93,14 +93,14 @@ export const Navigation = () => {
             isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="py-4 space-y-2 border-t border-stone-200">
+          <div className="py-4 space-y-2 border-t border-slate-200">
             <Link
               to="/"
               onClick={closeMenu}
               className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive('/')
                   ? 'bg-teal-50 text-teal-600'
-                  : 'text-slate-700 hover:bg-stone-50'
+                  : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
               Home
@@ -111,7 +111,7 @@ export const Navigation = () => {
               className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive('/over-mij')
                   ? 'bg-teal-50 text-teal-600'
-                  : 'text-slate-700 hover:bg-stone-50'
+                  : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
               Over mij
@@ -122,7 +122,7 @@ export const Navigation = () => {
               className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive('/use-cases')
                   ? 'bg-teal-50 text-teal-600'
-                  : 'text-slate-700 hover:bg-stone-50'
+                  : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
               Use Cases

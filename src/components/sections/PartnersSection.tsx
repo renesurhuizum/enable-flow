@@ -24,7 +24,7 @@ const partners = [
   {
     name: 'Gemini / Google',
     description: 'Multimodale AI voor tekst, beeld en data-analyse binnen Google Workspace.',
-    gradient: 'from-blue-400 to-indigo-500',
+    gradient: 'from-violet-400 to-violet-600',
     logo: (
       <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
         <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12c6.627 0 12-5.373 12-12S18.627 0 12 0zm-.182 5.357c1.462 0 2.692.498 3.69 1.342l-1.586 1.544c-.648-.548-1.36-.823-2.104-.823-1.809 0-3.286 1.404-3.286 3.274 0 1.87 1.477 3.274 3.286 3.274.995 0 1.703-.298 2.21-.705.494-.396.82-.975.94-1.691H11.82V9.274h5.53c.066.355.1.72.1 1.1 0 1.57-.513 2.882-1.407 3.786-1.004 1.015-2.388 1.583-4.224 1.583-3.31 0-6.096-2.727-6.096-6.04 0-3.313 2.786-6.04 6.096-6.04z" />
@@ -34,7 +34,7 @@ const partners = [
   {
     name: 'n8n',
     description: 'Workflow automatisering die al jouw tools en AI-systemen naadloos verbindt.',
-    gradient: 'from-rose-400 to-rose-500',
+    gradient: 'from-teal-400 to-teal-600',
     logo: (
       <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
         <path d="M12.74 3.194L18.5 7.09c.395.267.638.72.638 1.204v7.412c0 .484-.243.937-.638 1.204l-5.76 3.896a1.396 1.396 0 0 1-1.48 0l-5.76-3.896A1.448 1.448 0 0 1 4.862 15.706V8.294c0-.484.243-.937.638-1.204l5.76-3.896a1.396 1.396 0 0 1 1.48 0zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
@@ -64,7 +64,7 @@ export const PartnersSection = () => {
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="group relative bg-white rounded-2xl p-6 border-2 border-slate-100 hover:border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white rounded-2xl p-6 border-2 border-slate-100 hover:border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
               {/* Logo icon */}
               <div className={`w-14 h-14 bg-gradient-to-br ${partner.gradient} rounded-xl flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>

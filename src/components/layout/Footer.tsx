@@ -50,7 +50,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-slate-800 pt-8 text-center text-sm">
-          <p>© 2025 EnableFlow AI. Alle rechten voorbehouden.</p>
+          <p>© 2026 EnableFlow AI. Alle rechten voorbehouden.</p>
         </div>
       </div>
     </footer>

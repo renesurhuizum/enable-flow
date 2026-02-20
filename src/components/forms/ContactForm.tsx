@@ -102,9 +102,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-violet-50 relative overflow-hidden">
+    <section id="contact" className="py-20 px-4 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-200 to-rose-200 rounded-full blur-3xl opacity-20"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-200 to-violet-100 rounded-full blur-3xl opacity-20"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-200 to-cyan-200 rounded-full blur-3xl opacity-20"></div>
 
       <div className="max-w-5xl mx-auto relative z-10">
@@ -139,7 +139,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               onClick={() => setActiveTab('scan')}
               className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                 activeTab === 'scan'
-                  ? 'bg-gradient-to-r from-violet-500 to-rose-500 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-violet-500 to-violet-600 text-white shadow-lg'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -166,15 +166,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   <span className="text-slate-700">Hands-on implementatie, niet alleen adviezen</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-rose-500 font-bold flex-shrink-0">💬</span>
+                  <span className="text-teal-500 font-bold flex-shrink-0">💬</span>
                   <span className="text-slate-700">Geen corporate jargon, we spreken jouw taal</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-cyan-500 font-bold flex-shrink-0">⚡</span>
+                  <span className="text-teal-500 font-bold flex-shrink-0">⚡</span>
                   <span className="text-slate-700">Snel schakelen, geen langdradige trajecten</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-blue-500 font-bold flex-shrink-0">🎯</span>
+                  <span className="text-teal-500 font-bold flex-shrink-0">🎯</span>
                   <span className="text-slate-700">Specialisatie in Microsoft 365 omgevingen</span>
                 </div>
               </div>
@@ -184,7 +184,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           {/* Right content - Form */}
           <div className="lg:col-span-2">
             {/* Trust Badges - Prominent */}
-            <div className="bg-gradient-to-r from-teal-50 via-violet-50 to-rose-50 rounded-2xl p-6 mb-6 border-2 border-teal-200">
+            <div className="bg-gradient-to-r from-teal-50 to-violet-50 rounded-2xl p-6 mb-6 border-2 border-teal-200">
               <div className="grid sm:grid-cols-2 gap-4 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">✓</span>
@@ -812,7 +812,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-violet-500 to-rose-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="w-full bg-gradient-to-r from-violet-500 to-violet-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     {isSubmitting ? 'Versturen...' : 'Vraag gratis AI Scan aan →'}
                   </button>
