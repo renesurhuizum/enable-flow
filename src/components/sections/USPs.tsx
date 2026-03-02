@@ -23,7 +23,7 @@ export const USPs = () => {
               </svg>
             </div>
             <h3 className="font-bold text-slate-900 mb-2">Lokaal & Persoonlijk</h3>
-            <p className="text-slate-600 text-sm">Noord-Nederland, wij komen langs</p>
+            <p className="text-slate-600 text-sm">Op locatie of online — wij komen bij je langs</p>
           </div>
 
           {/* USP 2 */}

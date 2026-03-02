@@ -48,6 +48,16 @@ export const Navigation = () => {
               Over mij
             </Link>
             <Link
+              to="/diensten"
+              className={`text-sm font-medium transition-colors ${
+                isActive('/diensten')
+                  ? 'text-teal-600'
+                  : 'text-slate-700 hover:text-teal-600'
+              }`}
+            >
+              Diensten
+            </Link>
+            <Link
               to="/use-cases"
               className={`text-sm font-medium transition-colors ${
                 isActive('/use-cases')
@@ -115,6 +125,17 @@ export const Navigation = () => {
               }`}
             >
               Over mij
+            </Link>
+            <Link
+              to="/diensten"
+              onClick={closeMenu}
+              className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive('/diensten')
+                  ? 'bg-teal-50 text-teal-600'
+                  : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              Diensten
             </Link>
             <Link
               to="/use-cases"
