@@ -1,22 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FlowBackground } from '../ui/FlowBackground';
 
 export const Hero = () => {
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-sky-50 to-white relative overflow-hidden">
-      {/* Subtle warm background shape */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-50"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-50 rounded-full blur-3xl opacity-60"></div>
+      {/* Animated SVG flow lines */}
+      <FlowBackground />
+
+      {/* Floating background blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-50 animate-floatblob"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-50 rounded-full blur-3xl opacity-60 animate-floatblob-alt"></div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <p className="text-sm font-semibold text-teal-600 uppercase tracking-wider mb-4">
-          Noord-Nederland
+          AI Consultancy voor MKB
         </p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-6">
           Supercharge the way you work
         </h1>
         <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-          Slimmer werken met AI — voor Noord-Nederlandse ondernemers. Praktische begeleiding bij Microsoft Copilot 365, Claude en Gemini.
+          Slimmer werken met AI. Praktische begeleiding bij Microsoft Copilot 365, Claude en Gemini — hands-on, concreet en zonder gedoe.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
@@ -33,7 +37,7 @@ export const Hero = () => {
           </Link>
         </div>
         <p className="mt-6 text-sm text-slate-500">
-          Gratis & vrijblijvend · Lokaal in Noord-Nederland · Reactie binnen 24 uur
+          Gratis & vrijblijvend · Persoonlijk bij je langs · Reactie binnen 24 uur
         </p>
       </div>
     </section>

@@ -153,7 +153,7 @@ export const Services = () => {
               Waarom EnableFlow AI?
             </h4>
             <p className="text-slate-700 mb-4">
-              Als lokaal AI-consultancy bureau in Noord-Nederland kennen we de uitdagingen van MKB-bedrijven. We spreken jouw taal, geen corporate jargon. We komen bij je langs, denken mee en implementeren hands-on. Geen langdradige adviezen, maar concrete resultaten.
+              Als hands-on AI-consultancy bureau kennen we de uitdagingen van MKB-bedrijven. We spreken jouw taal, geen corporate jargon. We komen bij je langs, denken mee en implementeren hands-on. Geen langdradige adviezen, maar concrete resultaten.
             </p>
             <div className="grid sm:grid-cols-2 gap-3 text-sm">
               <div className="flex items-center gap-2">
@@ -170,7 +170,7 @@ export const Services = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-teal-500 font-bold">✓</span>
-                <span className="text-slate-700">Lokaal in Noord-Nederland (persoonlijke service)</span>
+                <span className="text-slate-700">Persoonlijk bij je langs (op locatie of online)</span>
               </div>
             </div>
           </div>

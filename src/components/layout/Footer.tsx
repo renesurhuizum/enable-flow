@@ -14,13 +14,12 @@ export const Footer = () => {
               </span>
             </div>
             <p className="text-sm">
-              Slimmer werken met AI voor Noord-Nederlandse ondernemers.
+              Slimmer werken met AI voor MKB-ondernemers.
             </p>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <p className="text-sm mb-2">📍 Noord-Nederland</p>
             <p className="text-sm mb-2">
               <a href="mailto:info@enableflow.nl" className="hover:text-teal-400 transition-colors">
                 📧 info@enableflow.nl
@@ -34,18 +33,14 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Regio</h4>
-            <p className="text-sm">
-              Groningen • Leeuwarden • Drachten • Assen • Heerenveen
-            </p>
-            <p className="text-sm mt-2 text-slate-500">
-              Noord-Nederland
-            </p>
-            <div className="mt-4">
-              <Link to="/over-mij" className="text-sm text-slate-400 hover:text-teal-400 transition-colors">
-                Over mij
-              </Link>
-            </div>
+            <h4 className="text-white font-semibold mb-4">Navigatie</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/" className="hover:text-teal-400 transition-colors">Home</Link></li>
+              <li><Link to="/diensten" className="hover:text-teal-400 transition-colors">Diensten</Link></li>
+              <li><Link to="/use-cases" className="hover:text-teal-400 transition-colors">Use Cases</Link></li>
+              <li><Link to="/over-mij" className="hover:text-teal-400 transition-colors">Over mij</Link></li>
+              <li><Link to="/contact" className="hover:text-teal-400 transition-colors">Contact</Link></li>
+            </ul>
           </div>
         </div>
 

@@ -11,3 +11,63 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes dashflow {
+  from {
+    stroke-dashoffset: 600;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dashflow-slow {
+  from {
+    stroke-dashoffset: 900;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes floatblob {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.04);
+  }
+}
+
+@keyframes floatblob-alt {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(14px) scale(1.03);
+  }
+}
+
+.animate-dashflow {
+  stroke-dasharray: 600;
+  animation: dashflow 4s linear infinite;
+}
+
+.animate-dashflow-slow {
+  stroke-dasharray: 900;
+  animation: dashflow-slow 6s linear infinite;
+}
+
+.animate-dashflow-delay {
+  stroke-dasharray: 600;
+  animation: dashflow 5s linear infinite;
+  animation-delay: 1.5s;
+}
+
+.animate-floatblob {
+  animation: floatblob 6s ease-in-out infinite;
+}
+
+.animate-floatblob-alt {
+  animation: floatblob-alt 8s ease-in-out infinite;
+}

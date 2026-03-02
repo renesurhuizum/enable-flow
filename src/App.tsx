@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { UseCasesPage } from './pages/UseCasesPage';
 import { ContactPage } from './pages/ContactPage';
 import { AboutPage } from './pages/AboutPage';
+import { DienstenPage } from './pages/DienstenPage';
 
 // Component to handle hash-based redirects for backward compatibility
 const HashRedirectHandler = () => {
@@ -16,12 +17,7 @@ const HashRedirectHandler = () => {
     if (hash === '#contact') {
       navigate('/contact');
     } else if (hash === '#diensten') {
-      // Scroll to services section on homepage
-      navigate('/');
-      setTimeout(() => {
-        const servicesSection = document.getElementById('diensten');
-        servicesSection?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      navigate('/diensten');
     }
   }, [navigate]);
 
@@ -35,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/over-mij" element={<Layout><AboutPage /></Layout>} />
+        <Route path="/diensten" element={<Layout><DienstenPage /></Layout>} />
         <Route path="/use-cases" element={<Layout><UseCasesPage /></Layout>} />
         <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
       </Routes>

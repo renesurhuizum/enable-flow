@@ -30,8 +30,8 @@ export const ContactPage = () => {
               <p className="text-xs text-slate-500 mt-1">Gratis & vrijblijvend</p>
             </div>
             <div className="bg-white rounded-xl p-4 text-center shadow-sm border border-slate-100">
-              <p className="text-2xl font-bold text-teal-600">Noord-NL</p>
-              <p className="text-xs text-slate-500 mt-1">Lokaal & persoonlijk</p>
+              <p className="text-2xl font-bold text-teal-600">Op locatie</p>
+              <p className="text-xs text-slate-500 mt-1">Persoonlijk bij je langs</p>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export const ContactPage = () => {
           {/* Location info */}
           <div className="mt-10 text-center">
             <p className="text-slate-400 text-sm">
-              Gevestigd in <span className="text-white font-semibold">Groningen</span> — actief in heel <span className="text-white font-semibold">Noord-Nederland</span>
+              Persoonlijk contact — <span className="text-white font-semibold">op locatie</span> of <span className="text-white font-semibold">online</span>
             </p>
             <p className="text-slate-500 text-xs mt-2">
               Maandag t/m vrijdag, 09:00 - 17:00
