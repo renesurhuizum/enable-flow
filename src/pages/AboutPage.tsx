@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export const AboutPage = () => {
+  useEffect(() => {
+    document.title = 'Over mij — René de Boer | EnableFlow AI';
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white">
 

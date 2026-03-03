@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ROICalculator } from '../components/sections/ROICalculator';
 
@@ -147,6 +147,10 @@ const concreteExamples = [
 ];
 
 export const UseCasesPage = () => {
+  useEffect(() => {
+    document.title = 'AI Use Cases voor MKB — Praktische voorbeelden | EnableFlow AI';
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}

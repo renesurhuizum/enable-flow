@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ContactForm } from '../components/forms/ContactForm';
 
 export const ContactPage = () => {
+  useEffect(() => {
+    document.title = 'Contact — Gratis AI Consult of AI Readiness Scan | EnableFlow AI';
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white">
       {/* Hero Header */}

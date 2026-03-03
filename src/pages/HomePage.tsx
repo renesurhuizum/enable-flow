@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Hero } from '../components/sections/Hero';
 import { PartnersSection } from '../components/sections/PartnersSection';
 import { AIBenefits } from '../components/sections/AIBenefits';
@@ -8,7 +8,9 @@ import { FAQ } from '../components/sections/FAQ';
 import { ROICalculator } from '../components/sections/ROICalculator';
 
 export const HomePage = () => {
-  return (
+  useEffect(() => {
+    document.title = 'EnableFlow AI — Slimmer werken met AI voor MKB';
+  }, []);
     <>
       <Hero />
       <AIBenefits />
