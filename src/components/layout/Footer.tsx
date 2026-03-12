@@ -7,11 +7,8 @@ export const Footer = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg"></div>
-              <span className="text-lg font-bold text-white">
-                Enable<span className="text-teal-400">Flow</span> <span className="text-slate-500">AI</span>
-              </span>
+            <div className="flex items-center mb-4">
+              <img src="/images/enableflow-logo-horizontal-reversed.svg" alt="EnableFlow AI" className="h-9 w-auto" />
             </div>
             <p className="text-sm">
               AI die écht werkt voor jouw bedrijf.
