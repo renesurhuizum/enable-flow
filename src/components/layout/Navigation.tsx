@@ -16,13 +16,8 @@ export const Navigation = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
-            <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg"></div>
-            <span className="text-xl font-bold">
-              <span className="text-slate-800">Enable</span>
-              <span className="text-teal-600">Flow</span>
-              <span className="text-slate-400 text-lg"> AI</span>
-            </span>
+          <Link to="/" className="flex items-center" onClick={closeMenu}>
+            <img src="/images/enableflow-logo-horizontal.svg" alt="EnableFlow AI" className="h-9 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
