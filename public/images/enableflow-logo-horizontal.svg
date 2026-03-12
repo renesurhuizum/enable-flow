@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" width="300" height="60">
+  <defs>
+    <linearGradient id="chev3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Chevron 1 (teal, faint) -->
+  <path d="M 10 6 L 28 30 L 10 54"
+        fill="none" stroke="#14b8a6" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.22"/>
+  <!-- Chevron 2 (cyan, mid) -->
+  <path d="M 24 6 L 42 30 L 24 54"
+        fill="none" stroke="#06b6d4" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+  <!-- Chevron 3 (gradient, full) -->
+  <path d="M 38 6 L 56 30 L 38 54"
+        fill="none" stroke="url(#chev3)" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Wordmark -->
+  <text x="76" y="39"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        font-size="28" font-weight="700" fill="#0f172a" letter-spacing="-0.5">Enable<tspan fill="#0d9488">Flow</tspan></text>
+  <!-- AI label -->
+  <text x="238" y="26"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="700" fill="#7c3aed" letter-spacing="1">AI</text>
+</svg>

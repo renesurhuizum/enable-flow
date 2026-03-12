@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60">
+  <defs>
+    <linearGradient id="chev3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Chevron 1 (teal, faint) -->
+  <path d="M 7 9 L 25 30 L 7 51"
+        fill="none" stroke="#14b8a6" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.22"/>
+  <!-- Chevron 2 (cyan, mid) -->
+  <path d="M 21 9 L 39 30 L 21 51"
+        fill="none" stroke="#06b6d4" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+  <!-- Chevron 3 (gradient, full) -->
+  <path d="M 35 9 L 53 30 L 35 51"
+        fill="none" stroke="url(#chev3)" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

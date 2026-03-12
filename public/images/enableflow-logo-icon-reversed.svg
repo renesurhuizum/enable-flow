@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60">
+  <defs>
+    <linearGradient id="chev3r" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="60" height="60" fill="#0f172a"/>
+
+  <path d="M 7 9 L 25 30 L 7 51"
+        fill="none" stroke="white" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.18"/>
+  <path d="M 21 9 L 39 30 L 21 51"
+        fill="none" stroke="white" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+  <path d="M 35 9 L 53 30 L 35 51"
+        fill="none" stroke="url(#chev3r)" stroke-width="5.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
