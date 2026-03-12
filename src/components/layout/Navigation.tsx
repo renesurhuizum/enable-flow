@@ -68,6 +68,16 @@ export const Navigation = () => {
               Use Cases
             </Link>
             <Link
+              to="/scan"
+              className={`text-sm font-medium transition-colors ${
+                isActive('/scan')
+                  ? 'text-teal-600'
+                  : 'text-slate-700 hover:text-teal-600'
+              }`}
+            >
+              Gratis Scan
+            </Link>
+            <Link
               to="/contact"
               className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-full font-medium hover:shadow-md transition-all duration-200"
             >
@@ -147,6 +157,17 @@ export const Navigation = () => {
               }`}
             >
               Use Cases
+            </Link>
+            <Link
+              to="/scan"
+              onClick={closeMenu}
+              className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive('/scan')
+                  ? 'bg-teal-50 text-teal-600'
+                  : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              Gratis Scan
             </Link>
             <Link
               to="/contact"

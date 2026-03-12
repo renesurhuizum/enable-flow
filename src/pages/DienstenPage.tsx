@@ -160,10 +160,10 @@ export const DienstenPage = () => {
                 Gratis AI Consult →
               </Link>
               <Link
-                to="/contact"
+                to="/scan"
                 className="bg-white text-slate-700 px-8 py-4 rounded-full font-semibold text-lg border-2 border-slate-200 hover:border-teal-400 hover:text-teal-700 hover:shadow-md transition-all duration-200"
               >
-                AI Readiness Scan →
+                Doe de gratis AI Scan →
               </Link>
             </div>
           </div>

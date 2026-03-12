@@ -15,7 +15,7 @@ export const ContactPage = () => {
               Klaar om slimmer te werken met AI?
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-              Kies tussen een vrijblijvend consult of een grondige AI Readiness Scan met persoonlijk rapport. We helpen je graag op weg.
+              Plan een vrijblijvend gesprek in. We komen bij je langs of spreken online af — 30 minuten die direct waarde opleveren.
             </p>
           </div>
 

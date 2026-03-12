@@ -16,6 +16,15 @@ export const AboutPage = () => {
                 src="/images/rene-profile.jpg"
                 alt="René de Boer - Oprichter EnableFlow AI"
                 className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-xl mb-6 ring-4 ring-teal-100"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  target.onerror = null;
+                  target.style.display = 'none';
+                  const placeholder = document.createElement('div');
+                  placeholder.className = 'w-56 h-56 md:w-64 md:h-64 rounded-2xl shadow-xl mb-6 ring-4 ring-teal-100 bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center';
+                  placeholder.innerHTML = '<span style="font-size:5rem">👤</span>';
+                  target.parentNode?.insertBefore(placeholder, target);
+                }}
               />
 
               {/* Naamkaartje */}
