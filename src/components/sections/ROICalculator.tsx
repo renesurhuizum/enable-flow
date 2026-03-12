@@ -102,10 +102,10 @@ export const ROICalculator: React.FC<ROICalculatorProps> = ({
           {showCTA && (
             <div className="mt-6 text-center">
               <Link
-                to="/contact"
+                to="/scan"
                 className="inline-block bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-200"
               >
-                Ontdek jouw exacte besparingspotentieel →
+                Bereken jouw exacte besparing met de gratis scan →
               </Link>
             </div>
           )}

@@ -94,7 +94,7 @@ export const ProcessSection = () => {
         <div className="text-center mt-12">
           <p className="text-slate-600 mb-4">Benieuwd waar AI jouw bedrijf kan helpen?</p>
           <Link
-            to="/contact"
+            to="/scan"
             className="inline-flex items-center bg-teal-600 hover:bg-teal-700 text-white px-8 py-3.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200"
           >
             Doe de gratis scan →
