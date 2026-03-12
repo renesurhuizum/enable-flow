@@ -14,7 +14,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="text-sm">
-              Slimmer werken met AI voor MKB-ondernemers.
+              AI die écht werkt voor jouw bedrijf.
             </p>
           </div>
 

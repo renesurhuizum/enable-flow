@@ -28,7 +28,7 @@ export const Services = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">AI Consultancy</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">AI Strategie & Advies</h3>
               <ul className="space-y-2 mb-6">
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
@@ -36,11 +36,11 @@ export const Services = () => {
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>AI Strategie Workshop</span>
+                  <span>Concrete kansen in kaart brengen</span>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Business case ontwikkeling</span>
+                  <span>Stappenplan met verwachte ROI</span>
                 </li>
               </ul>
               <p className="text-sm font-medium text-slate-500">Prijs op aanvraag</p>
@@ -61,19 +61,19 @@ export const Services = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">AI Implementatie</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">AI Implementatie & Automatisering</h3>
               <ul className="space-y-2 mb-6">
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-violet-500 mr-2 font-bold">✓</span>
-                  <span>Microsoft Copilot 365 uitrol</span>
+                  <span>Tijdrovende processen automatiseren</span>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-violet-500 mr-2 font-bold">✓</span>
-                  <span>Procesautomatisering</span>
+                  <span>AI-assistenten voor jouw team</span>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-violet-500 mr-2 font-bold">✓</span>
-                  <span>Custom AI-oplossingen</span>
+                  <span>Doorlopende ondersteuning na livegang</span>
                 </li>
               </ul>
               <p className="text-sm font-medium text-slate-500">Prijs op aanvraag</p>
@@ -90,19 +90,19 @@ export const Services = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">AI Training</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">AI Adoptie & Training</h3>
               <ul className="space-y-2 mb-6">
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Prompt Engineering Basics</span>
+                  <span>Praktische trainingen op maat</span>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>AI voor Management</span>
+                  <span>AI voor management & teams</span>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Copilot voor teams</span>
+                  <span>Op locatie of online — volledig op maat</span>
                 </li>
               </ul>
               <p className="text-sm font-medium text-slate-500">Prijs op aanvraag</p>
@@ -110,67 +110,39 @@ export const Services = () => {
           </div>
         </div>
 
-        {/* Additional SEO Content - How we work */}
-        <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl p-8 md:p-12 shadow-xl border border-slate-200">
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 text-center">
-            Hoe werken wij?
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-teal-500 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-                1
-              </div>
-              <h4 className="font-bold text-slate-900 mb-2">Analyse & Advies</h4>
-              <p className="text-slate-600 text-sm">
-                We starten met een gratis AI Readiness Scan om jouw huidige situatie, processen en kansen in kaart te brengen.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-                2
-              </div>
-              <h4 className="font-bold text-slate-900 mb-2">Strategie & Plan</h4>
-              <p className="text-slate-600 text-sm">
-                Op basis van de scan ontwikkelen we samen een concrete AI-strategie met haalbare doelen en verwachte ROI.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-                3
-              </div>
-              <h4 className="font-bold text-slate-900 mb-2">Implementatie & Training</h4>
-              <p className="text-slate-600 text-sm">
-                We rollen AI-tools uit, trainen jouw team en zorgen voor succesvolle adoptie met doorlopende ondersteuning.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10 bg-slate-50 rounded-xl p-6 border-2 border-teal-200">
-            <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <span className="text-2xl">🎯</span>
+        {/* Why EnableFlow */}
+        <div className="bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl p-8 md:p-12 shadow-xl text-white">
+          <div className="max-w-3xl mx-auto text-center">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Waarom EnableFlow AI?
-            </h4>
-            <p className="text-slate-700 mb-4">
-              Als hands-on AI-consultancy bureau kennen we de uitdagingen van MKB-bedrijven. We spreken jouw taal, geen corporate jargon. We komen bij je langs, denken mee en implementeren hands-on. Geen langdradige adviezen, maar concrete resultaten.
+            </h3>
+            <p className="text-teal-100 mb-8 text-lg">
+              Wij spreken jouw taal, geen corporate jargon. We komen bij je langs, denken mee en bouwen AI die écht past bij jouw bedrijf — niet een kant-en-klare tool die je er zelf maar bij moet leren.
             </p>
-            <div className="grid sm:grid-cols-2 gap-3 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-teal-500 font-bold">✓</span>
-                <span className="text-slate-700">Specialisatie in Microsoft 365 omgevingen</span>
+            <div className="grid sm:grid-cols-2 gap-4 text-left">
+              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
+                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-teal-50 text-sm">Concrete resultaten, geen vage rapporten</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-teal-500 font-bold">✓</span>
-                <span className="text-slate-700">Ervaring met Claude & Gemini integraties</span>
+              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
+                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-teal-50 text-sm">Persoonlijk bij je langs in Noord-Nederland</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-teal-500 font-bold">✓</span>
-                <span className="text-slate-700">Praktische workshops & hands-on training</span>
+              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
+                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-teal-50 text-sm">Eerste resultaten binnen 2 weken na start</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-teal-500 font-bold">✓</span>
-                <span className="text-slate-700">Persoonlijk bij je langs (op locatie of online)</span>
+              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
+                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-teal-50 text-sm">Doorlopende begeleiding, geen eenmalig project</span>
               </div>
             </div>
           </div>
