@@ -265,81 +265,7 @@ export const ScanForm: React.FC = () => {
     );
   }
 
-  // ── Stap indicator
-  const StepIndicator = () => (
-    <div className="flex items-center justify-center gap-2 mb-8">
-      {[1, 2, 3].map((s) => (
-        <React.Fragment key={s}>
-          <div className={`flex items-center gap-2 ${step === s ? 'text-teal-700' : step > s ? 'text-slate-400' : 'text-slate-300'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all ${
-              step === s ? 'border-teal-500 bg-teal-500 text-white' :
-              step > s ? 'border-slate-300 bg-slate-100 text-slate-500' :
-              'border-slate-200 text-slate-300'
-            }`}>{s}</div>
-            <span className="text-sm font-medium hidden sm:inline">
-              {s === 1 ? 'Bedrijfsprofiel' : s === 2 ? 'AI Readiness' : 'ROI & Resultaat'}
-            </span>
-          </div>
-          {s < 3 && <div className={`flex-1 h-0.5 max-w-12 ${step > s ? 'bg-teal-300' : 'bg-slate-200'}`} />}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-
   const inputClass = 'w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-teal-400 focus:ring-4 focus:ring-teal-100 outline-none transition-all';
-
-  // ── Stap 1: Bedrijfsprofiel
-  const Step1 = () => (
-    <div className="space-y-4">
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Naam <span className="text-red-500">*</span></label>
-          <input type="text" required value={data.naam} onChange={(e) => set('naam', e.target.value)} className={inputClass} placeholder="Je naam" />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Bedrijf <span className="text-red-500">*</span></label>
-          <input type="text" required value={data.bedrijf} onChange={(e) => set('bedrijf', e.target.value)} className={inputClass} placeholder="Bedrijfsnaam" />
-        </div>
-      </div>
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">E-mail <span className="text-red-500">*</span></label>
-          <input type="email" required value={data.email} onChange={(e) => set('email', e.target.value)}
-            className={`w-full px-4 py-3 rounded-xl border-2 focus:ring-4 outline-none transition-all ${data.email && !isValidEmail(data.email) ? 'border-red-300 focus:border-red-400 focus:ring-red-100' : 'border-slate-200 focus:border-teal-400 focus:ring-teal-100'}`}
-            placeholder="je@email.nl" />
-          {data.email && !isValidEmail(data.email) && <p className="text-red-600 text-sm mt-1">Voer een geldig e-mailadres in</p>}
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Telefoon <span className="text-red-500">*</span></label>
-          <input type="tel" required value={data.telefoon} onChange={(e) => set('telefoon', e.target.value)} className={inputClass} placeholder="06-12345678" />
-        </div>
-      </div>
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Bedrijfsgrootte <span className="text-red-500">*</span></label>
-          <select required value={data.bedrijfsgrootte} onChange={(e) => set('bedrijfsgrootte', e.target.value)} className={inputClass}>
-            <option value="">Selecteer...</option>
-            <option value="1-10">1-10 medewerkers</option>
-            <option value="11-50">11-50 medewerkers</option>
-            <option value="51-100">51-100 medewerkers</option>
-            <option value="100+">100+ medewerkers</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Sector <span className="text-red-500">*</span></label>
-          <select required value={data.sector} onChange={(e) => set('sector', e.target.value)} className={inputClass}>
-            <option value="">Selecteer...</option>
-            <option value="zakelijke-dienstverlening">Zakelijke dienstverlening</option>
-            <option value="productie-industrie">Productie/industrie</option>
-            <option value="retail-ecommerce">Retail/e-commerce</option>
-            <option value="zorg-welzijn">Zorg & welzijn</option>
-            <option value="overheid-publiek">Overheid/publieke sector</option>
-            <option value="anders">Anders</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  );
 
   // ── Stap 2: AI Readiness
   const RadioGroup = ({ label, name, value, options, onChange }: {
@@ -501,13 +427,79 @@ export const ScanForm: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="bg-white rounded-2xl shadow-xl border-2 border-teal-200 p-8">
-        <StepIndicator />
+        {/* Step indicator — inlined to prevent remount-on-render focus loss */}
+        <div className="flex items-center justify-center gap-2 mb-8">
+          {[1, 2, 3].map((s) => (
+            <React.Fragment key={s}>
+              <div className={`flex items-center gap-2 ${step === s ? 'text-teal-700' : step > s ? 'text-slate-400' : 'text-slate-300'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all ${
+                  step === s ? 'border-teal-500 bg-teal-500 text-white' :
+                  step > s ? 'border-slate-300 bg-slate-100 text-slate-500' :
+                  'border-slate-200 text-slate-300'
+                }`}>{s}</div>
+                <span className="text-sm font-medium hidden sm:inline">
+                  {s === 1 ? 'Bedrijfsprofiel' : s === 2 ? 'AI Readiness' : 'ROI & Resultaat'}
+                </span>
+              </div>
+              {s < 3 && <div className={`flex-1 h-0.5 max-w-12 ${step > s ? 'bg-teal-300' : 'bg-slate-200'}`} />}
+            </React.Fragment>
+          ))}
+        </div>
 
         {step === 1 && (
           <>
             <h2 className="text-2xl font-bold text-slate-900 mb-1">Jouw bedrijfsprofiel</h2>
             <p className="text-slate-600 text-sm mb-6">Stap 1 van 3 — Basisinformatie voor een persoonlijk rapport</p>
-            <Step1 />
+            {/* Step 1 — inlined to prevent remount-on-render focus loss */}
+            <div className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Naam <span className="text-red-500">*</span></label>
+                  <input type="text" required value={data.naam} onChange={(e) => set('naam', e.target.value)} className={inputClass} placeholder="Je naam" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Bedrijf <span className="text-red-500">*</span></label>
+                  <input type="text" required value={data.bedrijf} onChange={(e) => set('bedrijf', e.target.value)} className={inputClass} placeholder="Bedrijfsnaam" />
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">E-mail <span className="text-red-500">*</span></label>
+                  <input type="email" required value={data.email} onChange={(e) => set('email', e.target.value)}
+                    className={`w-full px-4 py-3 rounded-xl border-2 focus:ring-4 outline-none transition-all ${data.email && !isValidEmail(data.email) ? 'border-red-300 focus:border-red-400 focus:ring-red-100' : 'border-slate-200 focus:border-teal-400 focus:ring-teal-100'}`}
+                    placeholder="je@email.nl" />
+                  {data.email && !isValidEmail(data.email) && <p className="text-red-600 text-sm mt-1">Voer een geldig e-mailadres in</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Telefoon <span className="text-red-500">*</span></label>
+                  <input type="tel" required value={data.telefoon} onChange={(e) => set('telefoon', e.target.value)} className={inputClass} placeholder="06-12345678" />
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Bedrijfsgrootte <span className="text-red-500">*</span></label>
+                  <select required value={data.bedrijfsgrootte} onChange={(e) => set('bedrijfsgrootte', e.target.value)} className={inputClass}>
+                    <option value="">Selecteer...</option>
+                    <option value="1-10">1-10 medewerkers</option>
+                    <option value="11-50">11-50 medewerkers</option>
+                    <option value="51-100">51-100 medewerkers</option>
+                    <option value="100+">100+ medewerkers</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Sector <span className="text-red-500">*</span></label>
+                  <select required value={data.sector} onChange={(e) => set('sector', e.target.value)} className={inputClass}>
+                    <option value="">Selecteer...</option>
+                    <option value="zakelijke-dienstverlening">Zakelijke dienstverlening</option>
+                    <option value="productie-industrie">Productie/industrie</option>
+                    <option value="retail-ecommerce">Retail/e-commerce</option>
+                    <option value="zorg-welzijn">Zorg & welzijn</option>
+                    <option value="overheid-publiek">Overheid/publieke sector</option>
+                    <option value="anders">Anders</option>
+                  </select>
+                </div>
+              </div>
+            </div>
             <div className="mt-6 flex justify-end">
               <button onClick={() => step1Valid && setStep(2)} disabled={!step1Valid}
                 className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed">
