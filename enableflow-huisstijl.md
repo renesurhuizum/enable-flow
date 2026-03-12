@@ -1,6 +1,6 @@
 # EnableFlow AI — Huisstijl Handboek
 
-**Versie 1.0 | Februari 2026**  
+**Versie 1.1 | Maart 2026**  
 *Dit handboek beschrijft de visuele identiteit en communicatiestijl van EnableFlow AI. Gebruik het als leidraad voor website, social media, presentaties, en alle andere communicatiemiddelen.*
 
 ---
@@ -24,8 +24,11 @@
 ### Missie
 Slimmer werken met AI voor Noord-Nederlandse ondernemers — praktisch, nuchter en resultaatgericht.
 
-### Tagline
-**"Slimmer werken met AI"**
+### Tagline / Hero H1
+**"Laat AI het zware werk doen."**
+
+### Sectorlabel (boven de H1)
+**"AI Consultancy voor MKB"**
 
 ### Kernwaarden
 
@@ -214,6 +217,14 @@ Kenmerken:
 - Te abstracte tech-visuals
 - Drukke, rommelige achtergronden
 
+### Emoji als inline accent
+
+Naast Lucide Icons worden op de website **emoji sparingly** gebruikt als inline visuele accenten (bijv. ⚡ 💡 🚀 ✓). Dit is toegestaan uitsluitend voor:
+- Voordelen-lijsten en bullet-points
+- Inline tekst-accenten in korte labels
+
+**Lucide Icons blijven de standaard** voor alle card-iconen, sectie-iconen en navigatie-gerelateerde elementen.
+
 ### Decoratieve elementen
 
 De website gebruikt subtiele decoratieve blur-bollen als achtergrond-effect:
@@ -313,7 +324,7 @@ Hover: hover:shadow-2xl transition-all duration-300
 ```
 Border: border-2 border-violet-400
 Transform: md:scale-105
-Badge: "Meest gekozen" in violet
+Badge: "⭐ Populair" in violet
 ```
 
 ### Badges & Labels
@@ -365,13 +376,18 @@ Gebaseerd op Tailwind 4px grid:
 
 Stack: React + Tailwind CSS + Vite, gedeployed op Vercel
 
-Secties en hun stijlpatroon:
-1. **Navbar** — Wit achtergrond, sticky, logo links, nav rechts, CTA button teal
-2. **Hero** — Sky-50 → wit gradient, grote h1, subtitle slate-600, dubbele CTA
-3. **Diensten** — Slate-50 → cyan-50 gradient, 3-koloms grid met cards
-4. **Over ons** — Donkere sectie (slate-900), witte tekst
-5. **Contact** — Wit of licht, formulier + contactinfo naast elkaar
-6. **Footer** — Slate-900, witte tekst, social links
+Secties en hun stijlpatroon (in volgorde op de homepage):
+
+1. **Navbar** — Wit achtergrond, sticky, logo + naam links ("EnableFlow AI"), nav-links rechts, CTA button teal rechts
+2. **Hero** — Licht gradient achtergrond, sectorlabel ("AI Consultancy voor MKB") boven de H1, grote H1 ("Laat AI het zware werk doen."), ondertitel slate-600, dubbele CTA-knoppen, 3 statistieken-balkjes eronder (uur/week, gratis, Noord-Nederland)
+3. **Aanpak — "Zo werken wij"** — Lichte achtergrond, 3-stappen grid: _Scan & Diagnose_, _Ontwerp & Implementatie_, _Lancering & Groei_; elk met genummerde badge, teal icoon, bulletlijst; CTA onderaan
+4. **Voordelen — "Waarom AI implementeren?"** — Twee-koloms layout: links tekst + 3 voordeel-cards (icoon + titel + subtekst), rechts donker paneel "Wat jij ervan merkt" met 3 concrete uitkomsten
+5. **USP's — "Waarom kiezen voor ons?"** — 4-koloms icon-grid: Lokaal & Persoonlijk, Hands-on, Geen AI-hype, Snelle resultaten; teal iconen met lichte achtergrond
+6. **ROI Calculator — "Bereken jouw potentiële besparing"** — Lichte sectie, slider (aantal medewerkers 1-100), uurloon inputveld, live berekende besparing in donker resultaat-blok; CTA naar scan
+7. **Diensten — "Onze Diensten"** — 3-koloms card-grid: _AI Strategie & Advies_, _AI Implementatie & Automatisering_ (featured: "⭐ Populair", border-violet, scale-105), _AI Adoptie & Training_; direct gevolgd door donkere "Waarom EnableFlow AI?" sectie met teal/groen gradient achtergrond en 4 USP-badges
+8. **Technology Partners — "Powered by de beste AI-platforms"** — 4 partner-cards: OpenAI/ChatGPT, Claude/Anthropic, Gemini/Google, n8n; badges rij eronder: Microsoft 365, Google Workspace, Zapier, Make
+9. **FAQ — "Veelgestelde vragen"** — Accordion-stijl lijst, 6 vragen; CTA "Stel je vraag →" onderaan
+10. **Footer** — Slate-900 donker, witte tekst, 3 kolommen: merk + tagline / Contact (email + telefoon) / Navigatielinks; copyright onderaan
 
 ### LinkedIn
 
@@ -469,6 +485,7 @@ Secties en hun stijlpatroon:
 | Versie | Datum | Wijziging |
 |--------|-------|-----------|
 | 1.0 | Februari 2026 | Initiële versie op basis van enableflow.nl |
+| 1.1 | Maart 2026 | Tagline bijgewerkt; "Over ons" → "Over mij"; featured badge tekst; websitestructuur uitgebreid naar 10 secties; emoji-gebruik gedocumenteerd |
 
 ---
 
