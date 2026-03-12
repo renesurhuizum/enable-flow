@@ -13,7 +13,7 @@ export const AboutPage = () => {
             {/* Foto kolom */}
             <div className="flex flex-col items-center md:items-start">
               <img
-                src="https://media.licdn.com/dms/image/v2/D4E03AQHeo-N8tWKdzQ/profile-displayphoto-crop_800_800/B4EZwJKiB8GcAI-/0/1769680284699?e=1772668800&v=beta&t=2cI_Rd47kfuxD_gUJJgt27gi6fro6rjm2DK3ZYwlj7s"
+                src="/images/rene-profile.jpg"
                 alt="René de Boer - Oprichter EnableFlow AI"
                 className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-xl mb-6 ring-4 ring-teal-100"
               />

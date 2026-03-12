@@ -17,10 +17,10 @@ export const Hero = () => {
           AI Consultancy voor MKB
         </p>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-          Supercharge the way you work
+          Laat AI het zware werk doen.
         </h1>
         <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-          Slimmer werken met AI. Praktische begeleiding bij Microsoft Copilot 365, Claude en Gemini — hands-on, concreet en zonder gedoe.
+          Meer dan 5 uur tijdsbesparing per medewerker per week. Wij implementeren AI die écht werkt voor jouw bedrijf — hands-on, persoonlijk en zonder gedoe.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
@@ -33,12 +33,25 @@ export const Hero = () => {
             to="/contact"
             className="bg-white text-slate-700 px-8 py-4 rounded-full font-semibold text-lg border-2 border-slate-200 hover:border-teal-400 hover:text-teal-700 hover:shadow-md transition-all duration-200"
           >
-            AI Readiness Scan →
+            Doe de gratis Readiness Scan →
           </Link>
         </div>
-        <p className="mt-6 text-sm text-slate-500">
-          Gratis & vrijblijvend · Persoonlijk bij je langs · Reactie binnen 24 uur
-        </p>
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+          <div className="flex items-center gap-2">
+            <span className="text-teal-600 font-bold text-lg">5+ uur/week</span>
+            <span className="text-slate-500 text-sm">bespaard per medewerker</span>
+          </div>
+          <div className="hidden sm:block w-px h-5 bg-slate-200"></div>
+          <div className="flex items-center gap-2">
+            <span className="text-teal-600 font-bold text-lg">Gratis</span>
+            <span className="text-slate-500 text-sm">Readiness Scan</span>
+          </div>
+          <div className="hidden sm:block w-px h-5 bg-slate-200"></div>
+          <div className="flex items-center gap-2">
+            <span className="text-teal-600 font-bold text-lg">Noord-Nederland</span>
+            <span className="text-slate-500 text-sm">Op locatie bij je langs</span>
+          </div>
+        </div>
       </div>
     </section>
   );
