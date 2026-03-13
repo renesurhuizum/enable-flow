@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Services = () => {
   return (
@@ -32,7 +33,7 @@ export const Services = () => {
               <ul className="space-y-2 mb-6">
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Gratis AI Readiness Scan</span>
+                  <Link to="/scan" className="text-teal-600 hover:underline font-medium">Gratis AI Readiness Scan</Link>
                 </li>
                 <li className="text-slate-600 flex items-start text-sm">
                   <span className="text-teal-500 mr-2 font-bold">✓</span>
