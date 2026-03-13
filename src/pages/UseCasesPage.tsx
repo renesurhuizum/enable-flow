@@ -148,7 +148,7 @@ const concreteExamples = [
 
 export const UseCasesPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white">
       {/* Hero Section */}
       <section className="py-20 px-4 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-300 to-violet-200 rounded-full blur-3xl opacity-30"></div>
@@ -156,10 +156,10 @@ export const UseCasesPage = () => {
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <p className="text-sm font-semibold text-teal-600 uppercase tracking-wider mb-3">
-            AI Use Cases
+            Praktijkvoorbeelden
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-            AI Use Cases voor jouw bedrijf
+            Zie wat AI voor jóuw bedrijf doet
           </h1>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
             Ontdek hoe AI jouw dagelijkse processen kan automatiseren en je team productiever maakt. Van sales tot HR — concrete voorbeelden die je morgen al kunt inzetten.
@@ -282,15 +282,14 @@ export const UseCasesPage = () => {
             Benieuwd wat AI voor jouw bedrijf kan betekenen?
           </h2>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Plan een gratis AI Readiness Scan en ontdek jouw potentieel. Binnen 48 uur ontvang je een persoonlijk rapport met concrete aanbevelingen.
+            Doe de gratis AI Readiness Scan en ontdek in 10 minuten waar jouw bedrijf kansen laat liggen. Je krijgt direct je score en top 3 aanbevelingen.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
-              to="/contact"
-              className="inline-block group relative bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              to="/scan"
+              className="inline-block bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all duration-200"
             >
-              <span className="relative z-10">Plan je gratis AI Readiness Scan →</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              Doe de gratis AI Readiness Scan →
             </Link>
             <Link
               to="/contact"
