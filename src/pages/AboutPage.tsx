@@ -67,10 +67,10 @@ export const AboutPage = () => {
                 Hallo, ik ben René
               </h1>
               <p className="text-lg text-slate-700 mb-4 leading-relaxed">
-                Ik help Noord-Nederlandse ondernemers concreet resultaat halen uit AI. Niet via een theoretisch adviesrapport, maar gewoon langs komen, meedenken en samen aan de slag gaan.
+                Ik help Noord-Nederlandse ondernemers concreet resultaat halen uit AI — geen dikke rapporten, maar gewoon samen aan de slag. Mijn klanten besparen gemiddeld 5 uur per week op taken die ze al lang wilden automatiseren.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
-                Of je nu wil starten met Microsoft Copilot 365, een slim klantenservice-proces wil bouwen, of simpelweg wil weten wat AI voor jóuw bedrijf kan doen — ik zorg dat het werkt. Praktisch, eerlijk en zonder hype.
+                Of je nu wil starten met Microsoft Copilot 365, een slim klantenservice-proces wil bouwen, of simpelweg wil weten wat AI voor jóuw bedrijf kan doen — ik zorg dat het écht werkt.
               </p>
             </div>
           </div>
@@ -92,10 +92,10 @@ export const AboutPage = () => {
                   EnableFlow is opgericht vanuit een eenvoudige overtuiging: AI moet ook beschikbaar zijn voor het MKB. Niet alleen voor grote bedrijven met een eigen IT-afdeling, maar ook voor de accountant, de aannemer of het marketingbureau in de regio.
                 </p>
                 <p>
-                  Wat ik heb geleerd: technologie werkt alleen als mensen er ook echt mee werken. Niet via een dik rapport, maar door naast je te staan, mee te denken en het samen te proberen.
+                  Mijn ervaring: technologie werkt alleen als mensen er ook echt mee willen werken. Dat lukt niet met een pdf-rapport. Dat lukt wel als je naast iemand gaat zitten, het laat zien en samen oefent.
                 </p>
                 <p>
-                  Dat is ook hoe ik werk bij EnableFlow: praktisch, persoonlijk en zonder hype. Ik kom gewoon bij je langs in Groningen, Friesland of Drenthe, en we kijken samen wat AI voor jóuw bedrijf kan betekenen.
+                  Zo werk ik bij EnableFlow. Ik kom gewoon bij je langs in Groningen, Friesland of Drenthe, en we kijken samen wat AI voor jóuw bedrijf kan betekenen.
                 </p>
               </div>
             </div>
@@ -207,7 +207,7 @@ export const AboutPage = () => {
       <section className="py-16 px-4 bg-slate-900">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Benieuwd wat AI voor jou kan doen?
+            Klaar om aan de slag te gaan?
           </h2>
           <p className="text-slate-300 mb-8 text-lg">
             Plan een gratis kennismakingsgesprek. Ik kom bij je langs of we spreken af via Teams — geheel vrijblijvend.
