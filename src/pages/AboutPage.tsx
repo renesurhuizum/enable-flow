@@ -213,12 +213,14 @@ export const AboutPage = () => {
             Plan een gratis kennismakingsgesprek. Ik kom bij je langs of we spreken af via Teams — geheel vrijblijvend.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/enableflow-info/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all duration-200"
             >
-              Plan een gesprek →
-            </Link>
+              Plan gratis kennismakingsgesprek →
+            </a>
             <a
               href="tel:+31630534740"
               className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg border border-white/30 hover:border-white/50 transition-all duration-200 backdrop-blur-sm flex items-center justify-center gap-2"

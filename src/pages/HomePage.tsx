@@ -7,6 +7,7 @@ import { USPs } from '../components/sections/USPs';
 import { Services } from '../components/sections/Services';
 import { FAQ } from '../components/sections/FAQ';
 import { ROICalculator } from '../components/sections/ROICalculator';
+import { SubsidieSection } from '../components/sections/SubsidieSection';
 
 export const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ export const HomePage = () => {
       <USPs />
       <ROICalculator />
       <Services />
+      <SubsidieSection />
       <PartnersSection />
       <FAQ />
     </>

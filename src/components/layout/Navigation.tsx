@@ -72,12 +72,14 @@ export const Navigation = () => {
             >
               Gratis Scan
             </Link>
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/enableflow-info/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-full font-medium hover:shadow-md transition-all duration-200"
             >
-              Contact
-            </Link>
+              Plan gesprek
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -164,13 +166,15 @@ export const Navigation = () => {
             >
               Gratis Scan
             </Link>
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/enableflow-info/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={closeMenu}
               className="block mx-4 mt-4 text-center bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full font-medium transition-all duration-200"
             >
-              Contact
-            </Link>
+              Plan gesprek
+            </a>
           </div>
         </div>
       </div>

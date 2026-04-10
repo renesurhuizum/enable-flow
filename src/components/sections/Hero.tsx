@@ -23,12 +23,14 @@ export const Hero = () => {
           Meer dan 5 uur tijdsbesparing per medewerker per week. Wij implementeren AI die écht werkt voor jouw bedrijf — hands-on, persoonlijk en zonder gedoe.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            to="/contact"
+          <a
+            href="https://calendly.com/enableflow-info/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all duration-200"
           >
-            Gratis AI Consult →
-          </Link>
+            Plan gratis kennismakingsgesprek →
+          </a>
           <Link
             to="/scan"
             className="bg-white text-slate-700 px-8 py-4 rounded-full font-semibold text-lg border-2 border-slate-200 hover:border-teal-400 hover:text-teal-700 hover:shadow-md transition-all duration-200"
