@@ -97,6 +97,42 @@ export function getTopRecs(scores: ScanScores): { dim: string; text: string }[] 
     }));
 }
 
+export interface Step1Fields {
+  naam: string;
+  bedrijf: string;
+  email: string;
+  telefoon: string;
+  bedrijfsgrootte: string;
+  sector: string;
+}
+
+export interface Step2Fields {
+  teamVertrouwdheid: number;
+  managementSteun: number;
+  procesStandaard: number;
+  repetieveUren: number;
+  dataOpslag: number;
+  dataKwaliteit: number;
+  cloudGebruik: number;
+  systeemKoppeling: number;
+  urgentie: number;
+  primairDoel: string;
+}
+
+export function isStep1Valid(d: Step1Fields): boolean {
+  return !!(d.naam && d.bedrijf && d.email && d.telefoon && d.bedrijfsgrootte && d.sector);
+}
+
+export function isStep2Valid(d: Step2Fields): boolean {
+  return [
+    d.teamVertrouwdheid, d.managementSteun,
+    d.procesStandaard, d.repetieveUren,
+    d.dataOpslag, d.dataKwaliteit,
+    d.cloudGebruik, d.systeemKoppeling,
+    d.urgentie,
+  ].every(v => v >= 0) && !!d.primairDoel;
+}
+
 export function calcRoi(params: {
   medewerkers: number;
   uurloon: number;
