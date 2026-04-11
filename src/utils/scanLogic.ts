@@ -39,7 +39,7 @@ export const SECTOR_MULTIPLIER: Record<string, number> = {
   'anders': 1.0,
 };
 
-const RECS: Record<string, { low: string; mid: string }> = {
+export const RECS: Record<string, { low: string; mid: string }> = {
   teamgereedheid: {
     low: 'Begin met een korte AI-kennismaking voor het hele team (2 uur). Zorg dat iedereen begrijpt wat AI wél en niet kan — dit bepaalt het succes van elke verdere stap.',
     mid: 'Verdiep het gebruik met hands-on workshops per afdeling. Focus op dagelijkse taken die medewerkers al kennen.',
