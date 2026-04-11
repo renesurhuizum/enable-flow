@@ -97,6 +97,14 @@ export function getTopRecs(scores: ScanScores): { dim: string; text: string }[] 
     }));
 }
 
+export const DIM_LABELS: Record<string, string> = {
+  teamgereedheid: 'Teamgereedheid',
+  procesrijpheid: 'Procesrijpheid',
+  datagereedheid: 'Datagereedheid',
+  technischeBasis: 'Technische basis',
+  urgentieAmbitie: 'Urgentie & Ambitie',
+};
+
 export interface Step1Fields {
   naam: string;
   bedrijf: string;
