@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calcScores, getNiveau, getTopRecs, calcRoi, type ScanScoreInput } from './scanLogic';
+import { calcScores, getNiveau, getTopRecs, calcRoi, SECTOR_MULTIPLIER, type ScanScoreInput } from './scanLogic';
 
 // Helper to build a ScanScoreInput with a fixed total score spread evenly
 function makeInputWithTotal(approxTotal: number): ScanScoreInput {
@@ -138,5 +138,56 @@ describe('calcRoi edge cases', () => {
     const zorg = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 15, sector: 'zorg-welzijn' });
     const anders = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 15, sector: 'anders' });
     expect(zorg.monthly).toBe(anders.monthly);
+  });
+
+  it('totalScore=0 uses base 3h/week (formula: 3 + 0/30*4 = 3)', () => {
+    // weeklyHoursSaved = 3 + (0/30)*4 = 3
+    // monthly = round(10 * 50 * 3 * 4 * 1.0) = 6000
+    const roi = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 0, sector: 'anders' });
+    expect(roi.monthly).toBe(6_000);
+  });
+
+  it('totalScore=30 uses max 7h/week (formula: 3 + 30/30*4 = 7)', () => {
+    // weeklyHoursSaved = 3 + (30/30)*4 = 7
+    // monthly = round(10 * 50 * 7 * 4 * 1.0) = 14000
+    const roi = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 30, sector: 'anders' });
+    expect(roi.monthly).toBe(14_000);
+  });
+
+  it('retail-ecommerce multiplier 1.1 produces 10% more than anders', () => {
+    const base = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 15, sector: 'anders' });
+    const retail = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 15, sector: 'retail-ecommerce' });
+    expect(retail.monthly).toBeCloseTo(base.monthly * 1.1, 0);
+  });
+});
+
+describe('getNiveau CSS classes', () => {
+  it('returns correct border class for each niveau', () => {
+    expect(getNiveau(10).border).toBe('border-amber-200');
+    expect(getNiveau(30).border).toBe('border-blue-200');
+    expect(getNiveau(60).border).toBe('border-teal-200');
+    expect(getNiveau(80).border).toBe('border-violet-200');
+  });
+});
+
+describe('SECTOR_MULTIPLIER exact values', () => {
+  it('zakelijke-dienstverlening is 1.2', () => {
+    expect(SECTOR_MULTIPLIER['zakelijke-dienstverlening']).toBe(1.2);
+  });
+
+  it('retail-ecommerce is 1.1', () => {
+    expect(SECTOR_MULTIPLIER['retail-ecommerce']).toBe(1.1);
+  });
+
+  it('zorg-welzijn is 1.0', () => {
+    expect(SECTOR_MULTIPLIER['zorg-welzijn']).toBe(1.0);
+  });
+
+  it('overheid-publiek is 0.9', () => {
+    expect(SECTOR_MULTIPLIER['overheid-publiek']).toBe(0.9);
+  });
+
+  it('has exactly 6 sectors', () => {
+    expect(Object.keys(SECTOR_MULTIPLIER)).toHaveLength(6);
   });
 });
