@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calcScores, getNiveau, getTopRecs, calcRoi, SECTOR_MULTIPLIER, type ScanScoreInput } from './scanLogic';
+import { calcScores, getNiveau, getTopRecs, calcRoi, SECTOR_MULTIPLIER, isStep1Valid, isStep2Valid, type ScanScoreInput } from './scanLogic';
 
 const FULL_SCORE: ScanScoreInput = {
   teamVertrouwdheid: 3, managementSteun: 3,
@@ -184,5 +184,76 @@ describe('calcRoi', () => {
     const unknown = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 15, sector: 'unknown' });
     const anders = calcRoi({ medewerkers: 10, uurloon: 50, totalScore: 15, sector: 'anders' });
     expect(unknown.monthly).toBe(anders.monthly);
+  });
+});
+
+describe('isStep1Valid', () => {
+  const VALID: Parameters<typeof isStep1Valid>[0] = {
+    naam: 'René', bedrijf: 'EnableFlow', email: 'info@enableflow.nl',
+    telefoon: '0612345678', bedrijfsgrootte: '1-10', sector: 'zakelijke-dienstverlening',
+  };
+
+  it('returns true when all fields are filled', () => {
+    expect(isStep1Valid(VALID)).toBe(true);
+  });
+
+  it('returns false when naam is empty', () => {
+    expect(isStep1Valid({ ...VALID, naam: '' })).toBe(false);
+  });
+
+  it('returns false when bedrijf is empty', () => {
+    expect(isStep1Valid({ ...VALID, bedrijf: '' })).toBe(false);
+  });
+
+  it('returns false when email is empty', () => {
+    expect(isStep1Valid({ ...VALID, email: '' })).toBe(false);
+  });
+
+  it('returns false when telefoon is empty', () => {
+    expect(isStep1Valid({ ...VALID, telefoon: '' })).toBe(false);
+  });
+
+  it('returns false when bedrijfsgrootte is empty', () => {
+    expect(isStep1Valid({ ...VALID, bedrijfsgrootte: '' })).toBe(false);
+  });
+
+  it('returns false when sector is empty', () => {
+    expect(isStep1Valid({ ...VALID, sector: '' })).toBe(false);
+  });
+});
+
+describe('isStep2Valid', () => {
+  const VALID_STEP2: Parameters<typeof isStep2Valid>[0] = {
+    teamVertrouwdheid: 2, managementSteun: 2,
+    procesStandaard: 1, repetieveUren: 3,
+    dataOpslag: 2, dataKwaliteit: 1,
+    cloudGebruik: 3, systeemKoppeling: 2,
+    urgentie: 2, primairDoel: 'kostenbesparing',
+  };
+
+  it('returns true when all scores are >= 0 and primairDoel is set', () => {
+    expect(isStep2Valid(VALID_STEP2)).toBe(true);
+  });
+
+  it('returns false when primairDoel is empty', () => {
+    expect(isStep2Valid({ ...VALID_STEP2, primairDoel: '' })).toBe(false);
+  });
+
+  it('returns false when any score is -1 (unset)', () => {
+    expect(isStep2Valid({ ...VALID_STEP2, urgentie: -1 })).toBe(false);
+  });
+
+  it('returns false when teamVertrouwdheid is -1', () => {
+    expect(isStep2Valid({ ...VALID_STEP2, teamVertrouwdheid: -1 })).toBe(false);
+  });
+
+  it('returns true when all scores are 0 (but primairDoel filled)', () => {
+    expect(isStep2Valid({
+      teamVertrouwdheid: 0, managementSteun: 0,
+      procesStandaard: 0, repetieveUren: 0,
+      dataOpslag: 0, dataKwaliteit: 0,
+      cloudGebruik: 0, systeemKoppeling: 0,
+      urgentie: 0, primairDoel: 'groei',
+    })).toBe(true);
   });
 });
