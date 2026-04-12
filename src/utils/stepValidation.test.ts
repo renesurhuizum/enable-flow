@@ -50,6 +50,28 @@ describe('isStep1Valid', () => {
   it('returns false when all fields are empty', () => {
     expect(isStep1Valid({ naam: '', bedrijf: '', email: '', telefoon: '', bedrijfsgrootte: '', sector: '' })).toBe(false);
   });
+
+  it('returns false when email is non-empty but invalid format', () => {
+    expect(isStep1Valid({ ...VALID_STEP1, email: 'niet-een-email' })).toBe(false);
+  });
+
+  it('returns false when email is missing @ sign', () => {
+    expect(isStep1Valid({ ...VALID_STEP1, email: 'janacme.nl' })).toBe(false);
+  });
+
+  it('returns false when email has no domain TLD', () => {
+    expect(isStep1Valid({ ...VALID_STEP1, email: 'jan@acme' })).toBe(false);
+  });
+
+  it('returns true when all fields are valid including a properly formatted email', () => {
+    expect(isStep1Valid({ ...VALID_STEP1, email: 'info@enableflow.nl' })).toBe(true);
+  });
+
+  it('matches ScanForm behavior: non-empty invalid email returns false', () => {
+    // ScanForm uses isValidEmail separately; isStep1Valid now enforces the same check
+    expect(isStep1Valid({ ...VALID_STEP1, email: 'not-an-email' })).toBe(false);
+    expect(isStep1Valid({ ...VALID_STEP1, email: '@nodomain.com' })).toBe(false);
+  });
 });
 
 describe('isStep2Valid', () => {

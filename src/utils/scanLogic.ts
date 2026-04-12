@@ -1,4 +1,5 @@
 // Pure business logic extracted from ScanForm for testability
+import { isValidEmail } from './validation';
 
 export interface ScanScoreInput {
   teamVertrouwdheid: number;
@@ -128,7 +129,7 @@ export interface Step2Fields {
 }
 
 export function isStep1Valid(d: Step1Fields): boolean {
-  return !!(d.naam && d.bedrijf && d.email && d.telefoon && d.bedrijfsgrootte && d.sector);
+  return !!(d.naam && d.bedrijf && isValidEmail(d.email) && d.telefoon && d.bedrijfsgrootte && d.sector);
 }
 
 export function isStep2Valid(d: Step2Fields): boolean {
