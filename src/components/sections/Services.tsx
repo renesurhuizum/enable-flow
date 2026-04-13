@@ -1,182 +1,121 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+const SERVICES = [
+  {
+    name: 'AI Quickscan',
+    price: '€395',
+    period: 'éénmalig',
+    tagline: 'Weet binnen een week waar AI jou tijd bespaart.',
+    features: [
+      'Analyse van jouw processen op AI-kansen',
+      'Concrete ROI-berekening per kans',
+      'Prioriteitenlijst met aanbevolen tools',
+      'Persoonlijk gesprek met René',
+    ],
+    cta: 'Plan een Quickscan',
+    href: 'https://calendly.com/enableflow-info/30min',
+    highlight: false,
+  },
+  {
+    name: 'AI Starter',
+    price: '€995',
+    period: 'éénmalig',
+    tagline: 'Jouw eerste automatisering live in 2 weken.',
+    features: [
+      'Alles uit de Quickscan',
+      'Implementatie van 1–2 automatiseringen',
+      'Training van jouw team',
+      '30 dagen nazorg',
+    ],
+    cta: 'Start met AI Starter',
+    href: '/scan',
+    highlight: true,
+    badge: '⭐ Meest gekozen',
+  },
+  {
+    name: 'AI Partnership',
+    price: '€495',
+    period: '/maand',
+    tagline: 'Continue AI-begeleiding terwijl je bedrijf groeit.',
+    features: [
+      'Doorlopende implementatie & optimalisatie',
+      'Maandelijkse voortgangssessie',
+      'Team-trainingen op aanvraag',
+      'Prioriteits-support',
+    ],
+    cta: 'Bespreek Partnership',
+    href: 'https://calendly.com/enableflow-info/30min',
+    highlight: false,
+  },
+] as const;
 
-export const Services = () => {
+export default function Services() {
   return (
-    <section id="diensten" className="py-20 px-4 bg-gradient-to-b from-slate-50 to-cyan-50 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-violet-300 to-violet-200 rounded-full blur-3xl opacity-20"></div>
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-br from-teal-300 to-cyan-300 rounded-full blur-3xl opacity-20"></div>
+    <section className="bg-slate-50 py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-black tracking-[-0.03em] text-[#0d0d0d] mb-3">
+          Kies wat bij je past
+        </h2>
+        <p className="text-slate-500 text-lg mb-14 max-w-lg">
+          Van een eerste verkenning tot een vaste AI-partner. Altijd persoonlijk begeleid door René.
+        </p>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Onze Diensten
-          </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Van strategie tot implementatie - we begeleiden je volledige AI-transformatie met hands-on ondersteuning en praktische oplossingen.
-          </p>
-        </div>
+        <div className="grid md:grid-cols-3 gap-6 mb-6">
+          {SERVICES.map(s => (
+            <div
+              key={s.name}
+              className={`relative bg-white rounded-2xl p-6 flex flex-col border transition-shadow hover:shadow-lg ${
+                s.highlight
+                  ? 'border-emerald-400 shadow-md ring-1 ring-emerald-400/30 md:scale-[1.03]'
+                  : 'border-slate-200'
+              }`}
+            >
+              {s.badge && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                  {s.badge}
+                </span>
+              )}
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* Service 1: Consultancy */}
-          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-200 to-teal-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-
-            <div className="relative z-10">
-              <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-xl mb-4 flex items-center justify-center">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
+              <div className="mb-4">
+                <div className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-1">{s.name}</div>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-3xl font-black tracking-tight text-[#0d0d0d]">{s.price}</span>
+                  <span className="text-sm text-slate-500">{s.period}</span>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-1">AI Quickscan</h3>
-              <p className="text-2xl font-bold text-teal-600 mb-3">€395 <span className="text-sm font-normal text-slate-500">eenmalig</span></p>
-              <ul className="space-y-2 mb-6">
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Diepgaande analyse van jouw processen</span>
-                </li>
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Concrete AI-kansen in kaart gebracht</span>
-                </li>
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Stappenplan met verwachte ROI</span>
-                </li>
+
+              <p className="text-sm font-semibold text-[#0d0d0d] mb-4 leading-snug">{s.tagline}</p>
+
+              <ul className="space-y-2.5 mb-6 flex-1">
+                {s.features.map(f => (
+                  <li key={f} className="flex items-start gap-2 text-sm text-slate-600">
+                    <span className="text-emerald-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                    {f}
+                  </li>
+                ))}
               </ul>
+
               <a
-                href="https://calendly.com/enableflow-info/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-center w-full bg-teal-50 hover:bg-teal-100 text-teal-700 font-semibold py-2 px-4 rounded-xl text-sm transition-colors duration-200"
+                href={s.href}
+                target={s.href.startsWith('http') ? '_blank' : undefined}
+                rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={`block text-center py-3 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 ${
+                  s.highlight
+                    ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-lg shadow-emerald-500/25'
+                    : 'border-2 border-slate-200 text-[#0d0d0d] hover:border-emerald-300'
+                }`}
               >
-                Boek een gesprek →
+                {s.cta}
               </a>
             </div>
-          </div>
-
-          {/* Service 2: Implementation (Popular) */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative border-2 border-violet-400 transform md:scale-105">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-violet-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-xl z-20">
-              ⭐ Populair
-            </div>
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-200 to-violet-100 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-
-            <div className="relative z-10 mt-2">
-              <div className="w-14 h-14 bg-gradient-to-br from-violet-400 to-violet-600 rounded-xl mb-4 flex items-center justify-center">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-1">AI Starter</h3>
-              <p className="text-2xl font-bold text-violet-600 mb-3">€995 <span className="text-sm font-normal text-slate-500">eenmalig</span></p>
-              <ul className="space-y-2 mb-6">
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-violet-500 mr-2 font-bold">✓</span>
-                  <span>Tijdrovende processen automatiseren</span>
-                </li>
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-violet-500 mr-2 font-bold">✓</span>
-                  <span>AI-assistenten voor jouw team</span>
-                </li>
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-violet-500 mr-2 font-bold">✓</span>
-                  <span>Eerste resultaten binnen 2 weken</span>
-                </li>
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-violet-500 mr-2 font-bold">✓</span>
-                  <span>Doorlopende ondersteuning na livegang</span>
-                </li>
-              </ul>
-              <a
-                href="https://calendly.com/enableflow-info/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-center w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-xl text-sm transition-colors duration-200"
-              >
-                Boek een gesprek →
-              </a>
-            </div>
-          </div>
-
-          {/* Service 3: Training */}
-          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-200 to-violet-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-
-            <div className="relative z-10">
-              <div className="w-14 h-14 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl mb-4 flex items-center justify-center">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-1">AI Partnership</h3>
-              <p className="text-2xl font-bold text-teal-600 mb-3">€495 <span className="text-sm font-normal text-slate-500">/ maand</span></p>
-              <ul className="space-y-2 mb-6">
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Doorlopende AI-begeleiding & optimalisatie</span>
-                </li>
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Trainingen voor management & teams</span>
-                </li>
-                <li className="text-slate-600 flex items-start text-sm">
-                  <span className="text-teal-500 mr-2 font-bold">✓</span>
-                  <span>Op locatie of online — volledig op maat</span>
-                </li>
-              </ul>
-              <a
-                href="https://calendly.com/enableflow-info/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-center w-full bg-teal-50 hover:bg-teal-100 text-teal-700 font-semibold py-2 px-4 rounded-xl text-sm transition-colors duration-200"
-              >
-                Boek een gesprek →
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Why EnableFlow */}
-        <div className="bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl p-8 md:p-12 shadow-xl text-white">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Waarom EnableFlow AI?
-            </h3>
-            <p className="text-teal-100 mb-8 text-lg">
-              Wij spreken jouw taal, geen corporate jargon. We komen bij je langs, denken mee en bouwen AI die écht past bij jouw bedrijf — niet een kant-en-klare tool die je er zelf maar bij moet leren.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 text-left">
-              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
-                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-teal-50 text-sm">Concrete resultaten, geen vage rapporten</span>
-              </div>
-              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
-                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-teal-50 text-sm">Persoonlijk bij je langs in Noord-Nederland</span>
-              </div>
-              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
-                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-teal-50 text-sm">Eerste resultaten binnen 2 weken na start</span>
-              </div>
-              <div className="flex items-start gap-3 bg-white/10 rounded-xl p-4">
-                <svg className="w-5 h-5 text-teal-200 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-teal-50 text-sm">Doorlopende begeleiding, geen eenmalig project</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p className="text-xs text-slate-400 text-center">
+          Mogelijk deels vergoed via subsidie.{' '}
+          <a href="https://calendly.com/enableflow-info/30min" target="_blank" rel="noopener noreferrer" className="underline hover:text-slate-600">
+            Vraag René ernaar
+          </a>.
+        </p>
       </div>
     </section>
   );
-};
+}
