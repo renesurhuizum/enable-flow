@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ProcessSection } from '../components/sections/ProcessSection';
+import ProcessSection from '../components/sections/ProcessSection';
 
 export const DienstenPage = () => {
   return (
