@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ROICalculator } from '../components/sections/ROICalculator';
 
 const industries = [
   {
@@ -268,9 +267,6 @@ export const UseCasesPage = () => {
           </div>
         </div>
       </section>
-
-      {/* ROI Calculator - Reusable component */}
-      <ROICalculator showCTA={false} />
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-slate-900 relative overflow-hidden">
