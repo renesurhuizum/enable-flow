@@ -1,301 +1,217 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CTASection from '../components/sections/CTASection';
 
-const industries = [
+const TASK_TYPES = [
   {
-    name: 'Sales & Marketing',
-    gradient: 'from-teal-400 via-teal-500 to-teal-600',
-    icon: '📈',
-    description: 'AI transformeert sales en marketing door patronen te herkennen in klantgedrag, campagnes te personaliseren en leads sneller te converteren. Van automatische follow-up emails tot predictive lead scoring.',
+    id: 'communicatie',
+    title: 'Communicatie automatiseren',
+    subtitle: 'Stop met handmatig schrijven — laat AI de concepten maken.',
+    colorBg: 'bg-emerald-50',
+    colorBorder: 'border-emerald-200',
+    colorBadge: 'bg-emerald-100 text-emerald-700',
+    colorHeading: 'text-emerald-700',
     useCases: [
       {
-        title: 'Lead generation & nurturing',
-        detail: 'AI analyseert website-bezoekers en social media interacties om warme leads te identificeren. Copilot helpt bij het schrijven van gepersonaliseerde outreach berichten.',
+        name: 'E-mail drafting',
+        tool: 'Microsoft Copilot',
+        saving: '−3u/week',
+        description:
+          'Automatisch concept-e-mails in Outlook op basis van een korte briefing. In jouw schrijfstijl, direct verstuurbaar.',
       },
       {
-        title: 'Geautomatiseerde email campaigns',
-        detail: 'Laat AI de beste verzendtijd, onderwerpregel en content bepalen. A/B testing wordt automatisch uitgevoerd en geoptimaliseerd.',
+        name: 'Vergadernotities',
+        tool: 'Teams Copilot',
+        saving: '−2u/week',
+        description:
+          'Vergaderingen automatisch samenvatten met actiepunten, besluiten en follow-ups — direct na afloop klaar.',
       },
       {
-        title: 'Content creatie voor social media',
-        detail: 'Genereer social media posts, blog artikelen en ad copy in jouw tone-of-voice. Claude en ChatGPT leveren consistente content op schaal.',
-      },
-      {
-        title: 'Sales forecasting',
-        detail: 'Voorspel omzet nauwkeuriger met AI-modellen die historische data, seizoenspatronen en markttrends combineren.',
+        name: 'Klantcommunicatie',
+        tool: 'ChatGPT / Claude',
+        saving: '−2u/week',
+        description:
+          'Standaard klantberichten, offertebevestigingen en follow-ups automatisch opstellen op basis van jouw inputs.',
       },
     ],
   },
   {
-    name: 'Customer Service',
-    gradient: 'from-violet-400 via-violet-500 to-violet-600',
-    icon: '💬',
-    description: 'Verbeter klanttevredenheid en verkort wachttijden met AI-ondersteunde klantenservice. Van slimme chatbots tot real-time sentiment analyse die je team helpt om klanten beter te bedienen.',
+    id: 'data',
+    title: 'Data & rapportage',
+    subtitle: 'Van ruwe data naar bruikbaar inzicht, zonder formule-kennis.',
+    colorBg: 'bg-blue-50',
+    colorBorder: 'border-blue-200',
+    colorBadge: 'bg-blue-100 text-blue-700',
+    colorHeading: 'text-blue-700',
     useCases: [
       {
-        title: '24/7 chatbot ondersteuning',
-        detail: 'Een AI-chatbot beantwoordt veelgestelde vragen direct, escaleert complexe vragen naar je team, en leert continu bij van eerdere interacties.',
+        name: 'Excel-analyses',
+        tool: 'Copilot + Excel',
+        saving: '−1.5u/week',
+        description:
+          'Stel vragen in gewoon Nederlands aan je spreadsheet. Draaitabellen, grafieken en inzichten zonder formules.',
       },
       {
-        title: 'Ticket classificatie & routing',
-        detail: 'AI categoriseert inkomende tickets automatisch op urgentie en onderwerp, en stuurt ze door naar de juiste medewerker.',
+        name: 'Voortgangsrapportages',
+        tool: 'Copilot + Word',
+        saving: '−1u/week',
+        description:
+          'Wekelijkse of maandelijkse rapportages automatisch genereren op basis van bestaande data.',
       },
       {
-        title: 'Sentiment analyse',
-        detail: 'Detecteer ontevreden klanten vroegtijdig door AI-analyse van e-mails, reviews en social media berichten. Voorkom churn door proactief te handelen.',
-      },
-      {
-        title: 'Antwoord suggesties voor support teams',
-        detail: 'Copilot geeft je support medewerkers real-time suggesties voor antwoorden, gebaseerd op de kennisbank en eerdere oplossingen.',
+        name: 'Klantinzichten',
+        tool: 'Claude / ChatGPT',
+        saving: '−1.5u/week',
+        description:
+          'Analyseer klantfeedback, reviews en enquêtes op schaal. Ontdek trends en verbeterpunten in minuten.',
       },
     ],
   },
   {
-    name: 'Operations & Finance',
-    gradient: 'from-teal-400 via-teal-500 to-teal-600',
-    icon: '💼',
-    description: 'Stroomlijn je financiële processen en operaties met AI. Van automatische factuurverwerking tot geavanceerde budgetvoorspellingen — bespaar uren per week op administratieve taken.',
+    id: 'documenten',
+    title: 'Documenten & content',
+    subtitle: 'Professionele documenten in minuten, in jouw eigen stijl.',
+    colorBg: 'bg-violet-50',
+    colorBorder: 'border-violet-200',
+    colorBadge: 'bg-violet-100 text-violet-700',
+    colorHeading: 'text-violet-700',
     useCases: [
       {
-        title: 'Factuurverwerking',
-        detail: 'AI leest en verwerkt facturen automatisch: herkent bedragen, BTW-nummers en leveranciers. Voorkom menselijke fouten en bespaar uren invoerwerk.',
+        name: 'Presentaties',
+        tool: 'PowerPoint + AI',
+        saving: '−2u/week',
+        description:
+          'Professionele slides op basis van een briefing of bestaand document. Visueel opgemaakt, direct bruikbaar.',
       },
       {
-        title: 'Contract analyse',
-        detail: 'Laat AI contracten scannen op risico\'s, deadlines en afwijkende clausules. Binnen minuten een samenvatting van een contract van 50 pagina\'s.',
+        name: 'Offertes & voorstellen',
+        tool: 'Word + AI',
+        saving: '−1.5u/week',
+        description:
+          'Gepersonaliseerde offertes en projectvoorstellen in minuten — consistent, professioneel en in jouw tone.',
       },
       {
-        title: 'Data-entry automatisering',
-        detail: 'Automatiseer het overzetten van data tussen systemen. AI herkent patronen en vult formulieren, spreadsheets en databases automatisch in.',
-      },
-      {
-        title: 'Budget forecasting',
-        detail: 'AI combineert historische uitgaven, geplande projecten en marktdata voor nauwkeurigere budgetprognoses. Zie afwijkingen maanden eerder aankomen.',
+        name: 'Handleidingen & procedures',
+        tool: 'ChatGPT / Copilot',
+        saving: '−1u/week',
+        description:
+          'Interne documentatie, handleidingen en procedures snel opstellen of updaten.',
       },
     ],
   },
   {
-    name: 'HR & Recruitment',
-    gradient: 'from-cyan-400 via-cyan-500 to-cyan-600',
-    icon: '👥',
-    description: 'Van werving tot onboarding: AI maakt HR-processen efficiënter en eerlijker. Bespaar tijd op administratieve taken en focus op wat echt telt — je mensen.',
+    id: 'processen',
+    title: 'Processen verbinden',
+    subtitle: 'Zet repetitief werk op de automatische piloot.',
+    colorBg: 'bg-amber-50',
+    colorBorder: 'border-amber-200',
+    colorBadge: 'bg-amber-100 text-amber-700',
+    colorHeading: 'text-amber-700',
     useCases: [
       {
-        title: 'CV screening',
-        detail: 'AI scant honderden CV\'s in minuten en matcht kandidaten op basis van vaardigheden, ervaring en cultuurfit. Objectiever en sneller dan handmatige screening.',
+        name: 'CRM-koppelingen',
+        tool: 'n8n + AI',
+        saving: '−3u/week',
+        description:
+          'Verbind je CRM, e-mail en boekhouding automatisch. Nieuwe leads worden direct verwerkt zonder handmatig werk.',
       },
       {
-        title: 'Interview scheduling',
-        detail: 'Automatiseer het plannen van interviews door agenda\'s te synchroniseren, beschikbaarheid te checken en uitnodigingen te versturen.',
+        name: 'Automatische triggers',
+        tool: 'n8n + Make',
+        saving: '−2u/week',
+        description:
+          'Stel workflows in die automatisch starten bij specifieke events — nieuwe order, ingevuld formulier, ontvangen e-mail.',
       },
       {
-        title: 'Onboarding documentatie',
-        detail: 'Genereer gepersonaliseerde onboarding pakketten per functie. AI stelt de juiste handleidingen, trainingen en checklists samen.',
-      },
-      {
-        title: 'Employee feedback analyse',
-        detail: 'Analyseer medewerkerstevredenheids-enquêtes met AI om trends, verbeterpunten en quick wins te identificeren. Anoniem en objectief.',
+        name: 'Factuurverwerking',
+        tool: 'n8n + AI',
+        saving: '−1.5u/week',
+        description:
+          'Inkomende facturen automatisch herkennen, categoriseren en doorsturen naar de juiste persoon of systeem.',
       },
     ],
-  },
-];
-
-const concreteExamples = [
-  {
-    title: 'Email Drafting',
-    description: 'Automatisch concept emails in Outlook met Copilot. Van klantcommunicatie tot interne updates — in je eigen schrijfstijl.',
-    icon: '✉️',
-    gradient: 'from-teal-500 to-cyan-500',
-    tool: 'Microsoft Copilot 365',
-  },
-  {
-    title: 'Meeting Notes',
-    description: 'Vergaderingen automatisch samenvatten in Teams. Inclusief actiepunten, besluiten en follow-ups — direct na de meeting klaar.',
-    icon: '📝',
-    gradient: 'from-violet-500 to-violet-600',
-    tool: 'Microsoft Copilot 365',
-  },
-  {
-    title: 'Data Analysis',
-    description: 'Excel rapporten genereren met één prompt. Draaitabellen, grafieken en inzichten — zonder formule-kennis. Stel vragen in gewoon Nederlands.',
-    icon: '📊',
-    gradient: 'from-teal-500 to-cyan-500',
-    tool: 'Microsoft Copilot 365',
-  },
-  {
-    title: 'Document Creation',
-    description: 'Professionele presentaties en rapporten maken in minuten. PowerPoint slides, Word documenten en proposals op basis van je briefing.',
-    icon: '📄',
-    gradient: 'from-cyan-500 to-teal-600',
-    tool: 'Microsoft Copilot 365',
-  },
-  {
-    title: 'Customer Insights',
-    description: 'Klantfeedback analyseren en trends ontdekken. AI leest duizenden reviews, e-mails en enquêtes om actionable insights te geven.',
-    icon: '💡',
-    gradient: 'from-teal-400 to-cyan-500',
-    tool: 'Claude / ChatGPT',
-  },
-  {
-    title: 'Process Automation',
-    description: 'Repetitieve taken automatiseren met AI workflows via n8n. Verbind je CRM, email, boekhouding en meer in slimme automatiseringen.',
-    icon: '⚡',
-    gradient: 'from-violet-400 to-violet-600',
-    tool: 'n8n + AI',
   },
 ];
 
 export const UseCasesPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white">
-      {/* Hero Section */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-300 to-violet-200 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-300 to-cyan-300 rounded-full blur-3xl opacity-30"></div>
+    <div className="min-h-screen bg-white">
 
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <p className="text-sm font-semibold text-teal-600 uppercase tracking-wider mb-3">
-            Praktijkvoorbeelden
+      {/* 01 — Hero */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-xs font-bold tracking-[0.12em] uppercase text-emerald-600 mb-4">
+            Use Cases
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-            Zie wat AI voor jóuw bedrijf doet
+          <h1 className="text-4xl md:text-5xl font-black leading-[1.05] tracking-[-0.04em] text-[#0d0d0d] mb-6">
+            Wat wij voor jouw team automatiseren.
           </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-            Ontdek hoe AI jouw dagelijkse processen kan automatiseren en je team productiever maakt. Van sales tot HR — concrete voorbeelden die je morgen al kunt inzetten.
+          <p className="text-lg text-[#555] leading-[1.7] max-w-2xl mx-auto">
+            Concrete toepassingen met meetbare tijdsbesparing — geen theorie, maar resultaten die je morgen al kunt inzetten.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium">Sales & Marketing</span>
-            <span className="bg-violet-100 text-violet-700 px-4 py-2 rounded-full text-sm font-medium">Customer Service</span>
-            <span className="bg-violet-100 text-violet-700 px-4 py-2 rounded-full text-sm font-medium">Operations & Finance</span>
-            <span className="bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium">HR & Recruitment</span>
-          </div>
         </div>
       </section>
 
-      {/* Use Cases by Industry - Expanded */}
-      <section className="py-16 px-4 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              AI toepassingen per afdeling
-            </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Elke afdeling heeft unieke kansen voor AI-implementatie. Hieronder vind je concrete toepassingen met uitleg hoe ze werken en wat ze opleveren.
-            </p>
-          </div>
-
-          <div className="space-y-16">
-            {industries.map((industry) => (
-              <div key={industry.name} className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200">
-                {/* Industry header */}
-                <div className="flex items-start gap-4 mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${industry.gradient} rounded-2xl flex items-center justify-center text-3xl shadow-lg flex-shrink-0`}>
-                    {industry.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                      {industry.name}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed">
-                      {industry.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Use cases grid */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  {industry.useCases.map((useCase, idx) => (
-                    <div key={idx} className="bg-slate-50 rounded-xl p-5 border border-slate-100 hover:border-slate-200 transition-colors">
-                      <h4 className="font-bold text-slate-900 mb-2 flex items-start gap-2">
-                        <span className="text-teal-500 mt-0.5">→</span>
-                        {useCase.title}
-                      </h4>
-                      <p className="text-slate-600 text-sm leading-relaxed">
-                        {useCase.detail}
-                      </p>
+      {/* 02 — Taaktype-secties */}
+      <div className="divide-y divide-slate-100">
+        {TASK_TYPES.map((type) => (
+          <section key={type.id} className="py-16 px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="mb-8">
+                <h2 className={`text-2xl font-black tracking-[-0.04em] mb-2 ${type.colorHeading}`}>
+                  {type.title}
+                </h2>
+                <p className="text-[#555]">{type.subtitle}</p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6">
+                {type.useCases.map((uc) => (
+                  <div
+                    key={uc.name}
+                    className={`rounded-2xl p-6 border ${type.colorBg} ${type.colorBorder}`}
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="font-bold text-[#0d0d0d] text-base">{uc.name}</h3>
+                      <span
+                        className={`text-xs font-bold px-2 py-1 rounded-full flex-shrink-0 ml-2 ${type.colorBadge}`}
+                      >
+                        {uc.saving}
+                      </span>
                     </div>
-                  ))}
-                </div>
+                    <p className="text-xs text-slate-400 font-medium mb-3">{uc.tool}</p>
+                    <p className="text-[#555] text-sm leading-[1.7]">{uc.description}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
+        ))}
+      </div>
 
-      {/* Concrete Examples Section */}
-      <section className="py-16 px-4 bg-slate-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-sm font-semibold text-teal-400 uppercase tracking-wider mb-2">
-              Praktijkvoorbeelden
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Concrete voorbeelden uit de praktijk
-            </h2>
-            <p className="text-slate-300 max-w-2xl mx-auto">
-              Deze AI-toepassingen kun je morgen al inzetten. Geen maandenlange implementaties, maar directe resultaten.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {concreteExamples.map((example) => (
-              <div
-                key={example.title}
-                className="group relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-              >
-                {/* Icon */}
-                <div className={`w-14 h-14 bg-gradient-to-br ${example.gradient} rounded-xl flex items-center justify-center mb-4 text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  {example.icon}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-bold text-white mb-2">
-                  {example.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-slate-300 text-sm leading-relaxed mb-3">
-                  {example.description}
-                </p>
-
-                {/* Tool badge */}
-                <span className="inline-block bg-white/10 text-white/80 text-xs px-3 py-1 rounded-full border border-white/20">
-                  {example.tool}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-slate-900 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-violet-400 to-violet-300 rounded-full blur-3xl opacity-20"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-teal-400 to-cyan-400 rounded-full blur-3xl opacity-20"></div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Benieuwd wat AI voor jouw bedrijf kan betekenen?
-          </h2>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Doe de gratis AI Readiness Scan en ontdek in 10 minuten waar jouw bedrijf kansen laat liggen. Je krijgt direct je score en top 3 aanbevelingen.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+      {/* 03 — Callout */}
+      <section className="py-12 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-bold text-[#0d0d0d] mb-1">
+                Niet gevonden wat je zoekt?
+              </p>
+              <p className="text-[#555] text-sm">
+                Elke organisatie heeft unieke processen. René kijkt graag mee wat er bij jou mogelijk is.
+              </p>
+            </div>
             <Link
               to="/scan"
-              className="inline-block bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all duration-200"
+              className="flex-shrink-0 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white px-6 py-3 rounded-[10px] font-bold text-sm shadow-[0_4px_18px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_24px_rgba(16,185,129,0.45)] transition-shadow whitespace-nowrap"
             >
-              Doe de gratis AI Readiness Scan →
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-block bg-white/10 backdrop-blur-sm text-white px-10 py-4 rounded-full font-semibold text-lg border border-white/30 hover:bg-white/20 hover:scale-105 transition-all duration-300"
-            >
-              Of plan een gratis consult
+              Plan een gratis scan →
             </Link>
           </div>
         </div>
       </section>
+
+      {/* 04 — CTA */}
+      <CTASection />
+
     </div>
   );
 };
