@@ -1,200 +1,206 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import ProcessSection from '../components/sections/ProcessSection';
+import CTASection from '../components/sections/CTASection';
+
+const SERVICES = [
+  {
+    id: 'quickscan',
+    label: 'AI QUICKSCAN',
+    price: '€395',
+    period: 'éénmalig',
+    tagline: 'Weet binnen een week waar AI jou tijd bespaart.',
+    features: [
+      'Analyse van jouw processen op AI-kansen',
+      'Concrete ROI-berekening per kans',
+      'Prioriteitenlijst met aanbevolen tools',
+      'Persoonlijk gesprek met René',
+    ],
+    cta: 'Plan een Quickscan',
+    href: 'https://calendly.com/enableflow-info/30min',
+    highlight: false,
+    badge: null,
+  },
+  {
+    id: 'starter',
+    label: 'AI STARTER',
+    price: '€995',
+    period: 'éénmalig',
+    tagline: 'Jouw eerste automatisering live in 2 weken.',
+    features: [
+      'Alles uit de Quickscan',
+      'Implementatie van 1–2 automatiseringen',
+      'Training van jouw team',
+      '30 dagen nazorg',
+    ],
+    cta: 'Start met AI Starter',
+    href: 'https://calendly.com/enableflow-info/30min',
+    highlight: true,
+    badge: '⭐ Meest gekozen',
+  },
+  {
+    id: 'partnership',
+    label: 'AI PARTNERSHIP',
+    price: '€495',
+    period: '/maand',
+    tagline: 'Continue AI-begeleiding terwijl je bedrijf groeit.',
+    features: [
+      'Doorlopende implementatie & optimalisatie',
+      'Maandelijkse voortgangssessie',
+      'Team-trainingen op aanvraag',
+      'Prioriteits-support',
+    ],
+    cta: 'Bespreek Partnership',
+    href: 'https://calendly.com/enableflow-info/30min',
+    highlight: false,
+    badge: null,
+  },
+] as const;
+
+const FAQ_ITEMS = [
+  {
+    q: 'Moet ik al Microsoft 365 of andere tools hebben?',
+    a: 'Nee. René bekijkt samen met je welke tools het beste passen bij jouw situatie. Soms zijn bestaande tools al voldoende — en soms is een eenvoudige oplossing beter dan een duur pakket.',
+  },
+  {
+    q: 'Wat als de automatisering niet oplevert wat ik verwacht?',
+    a: 'We starten altijd met een scan. Als de kansen er niet zijn, zeggen we dat eerlijk — zonder verdere verplichting. Geen resultaat = geen doorgang.',
+  },
+  {
+    q: 'Kan ik stoppen wanneer ik wil?',
+    a: 'Ja. Het Partnership is maandelijks opzegbaar. De Quickscan en AI Starter zijn éénmalige trajecten zonder doorlopende verplichting.',
+  },
+];
 
 export const DienstenPage = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white">
-      {/* Hero Header */}
-      <section className="py-20 px-4">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-sm font-semibold text-teal-600 uppercase tracking-wider mb-3">
-            Wat we doen
+    <div className="min-h-screen bg-white">
+
+      {/* 01 — Hero */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-xs font-bold tracking-[0.12em] uppercase text-emerald-600 mb-4">
+            Diensten & Prijzen
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Van scan tot resultaat
+          <h1 className="text-4xl md:text-5xl font-black leading-[1.05] tracking-[-0.04em] text-[#0d0d0d] mb-6">
+            Van scan naar automatisering in 3 stappen.
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Wij implementeren AI die écht werkt voor jouw bedrijf — geen standaard pakketjes, maar maatwerk op basis van jouw processen en doelen.
+          <p className="text-lg text-[#555] leading-[1.7] max-w-2xl mx-auto">
+            Geen langlopende trajecten. Geen vage rapporten. Jouw eerste AI-automatisering is live binnen 2 weken.
           </p>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-8 px-4 pb-20">
+      {/* 02 — Pricing */}
+      <section className="py-16 px-6 bg-slate-50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {/* Service 1: Consultancy */}
-            <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-200 to-teal-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-
-              <div className="relative z-10">
-                <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-xl mb-4 flex items-center justify-center">
-                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <h2 className="text-xl font-bold text-slate-900 mb-1">AI Quickscan</h2>
-                <p className="text-2xl font-bold text-teal-600 mb-3">€395 <span className="text-sm font-normal text-slate-500">eenmalig</span></p>
-                <p className="text-slate-600 text-sm mb-5">
-                  We brengen jouw huidige situatie in kaart en bepalen samen waar AI de meeste waarde toevoegt voor jouw bedrijf.
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+            {SERVICES.map((s) => (
+              <div
+                key={s.id}
+                className={`relative bg-white rounded-2xl p-8 flex flex-col ${
+                  s.highlight
+                    ? 'border-2 border-emerald-500 scale-[1.03] shadow-xl'
+                    : 'border border-slate-200 shadow-md'
+                }`}
+              >
+                {s.badge && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                    {s.badge}
+                  </div>
+                )}
+                <p className="text-xs font-bold tracking-[0.08em] uppercase text-slate-400 mb-3">
+                  {s.label}
                 </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Diepgaande analyse van jouw processen</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Concrete AI-kansen in kaart gebracht</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Stappenplan met verwachte ROI</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Concrete aanbevelingen, geen vage rapporten</span>
-                  </li>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="text-4xl font-black tracking-[-0.04em] text-[#0d0d0d]">
+                    {s.price}
+                  </span>
+                  <span className="text-slate-400 text-sm">{s.period}</span>
+                </div>
+                <p className="font-bold text-[#0d0d0d] mb-6">{s.tagline}</p>
+                <ul className="space-y-3 mb-8 flex-1">
+                  {s.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-[#555]">
+                      <svg
+                        aria-hidden="true"
+                        className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
                 </ul>
                 <a
-                  href="https://calendly.com/enableflow-info/30min"
+                  href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-center w-full bg-teal-50 hover:bg-teal-100 text-teal-700 font-semibold py-2 px-4 rounded-xl text-sm transition-colors duration-200"
+                  className={`block text-center py-3 px-6 rounded-[10px] font-bold text-sm transition-all ${
+                    s.highlight
+                      ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-[0_4px_18px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_24px_rgba(16,185,129,0.45)]'
+                      : 'border border-slate-200 text-[#0d0d0d] hover:border-emerald-300 hover:text-emerald-700'
+                  }`}
                 >
-                  Boek een gesprek →
+                  {s.cta}
                 </a>
               </div>
-            </div>
-
-            {/* Service 2: Implementation (Popular) */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden border-2 border-violet-400 transform md:scale-105">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-violet-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-xl z-20">
-                ⭐ Populair
-              </div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-200 to-violet-100 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-
-              <div className="relative z-10 mt-2">
-                <div className="w-14 h-14 bg-gradient-to-br from-violet-400 to-violet-600 rounded-xl mb-4 flex items-center justify-center">
-                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <h2 className="text-xl font-bold text-slate-900 mb-1">AI Starter</h2>
-                <p className="text-2xl font-bold text-violet-600 mb-3">€995 <span className="text-sm font-normal text-slate-500">eenmalig</span></p>
-                <p className="text-slate-600 text-sm mb-5">
-                  We rollen AI-tools hands-on uit in jouw organisatie — van procesautomatisering tot AI-assistenten. Inclusief begeleiding van het team.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-violet-500 mr-2 font-bold">✓</span>
-                    <span>Tijdrovende processen automatiseren</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-violet-500 mr-2 font-bold">✓</span>
-                    <span>AI-assistenten voor jouw team</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-violet-500 mr-2 font-bold">✓</span>
-                    <span>Eerste resultaten binnen 2 weken</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-violet-500 mr-2 font-bold">✓</span>
-                    <span>Doorlopende ondersteuning na livegang</span>
-                  </li>
-                </ul>
-                <a
-                  href="https://calendly.com/enableflow-info/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-center w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-xl text-sm transition-colors duration-200"
-                >
-                  Boek een gesprek →
-                </a>
-              </div>
-            </div>
-
-            {/* Service 3: Training */}
-            <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-200 to-violet-200 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-
-              <div className="relative z-10">
-                <div className="w-14 h-14 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl mb-4 flex items-center justify-center">
-                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </div>
-                <h2 className="text-xl font-bold text-slate-900 mb-1">AI Partnership</h2>
-                <p className="text-2xl font-bold text-teal-600 mb-3">€495 <span className="text-sm font-normal text-slate-500">/ maand</span></p>
-                <p className="text-slate-600 text-sm mb-5">
-                  Doorlopende AI-begeleiding voor jouw bedrijf — zodat iedereen AI daadwerkelijk gebruikt en er waarde uit haalt.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Doorlopende AI-begeleiding & optimalisatie</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Trainingen voor management & teams</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Maandelijkse voortgangssessie</span>
-                  </li>
-                  <li className="text-slate-600 flex items-start text-sm">
-                    <span className="text-teal-500 mr-2 font-bold">✓</span>
-                    <span>Op locatie of online — volledig op maat</span>
-                  </li>
-                </ul>
-                <a
-                  href="https://calendly.com/enableflow-info/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-center w-full bg-teal-50 hover:bg-teal-100 text-teal-700 font-semibold py-2 px-4 rounded-xl text-sm transition-colors duration-200"
-                >
-                  Boek een gesprek →
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
+          <p className="text-center text-slate-400 text-sm mt-8">
+            Mogelijk deels vergoed via subsidie. Vraag René ernaar.
+          </p>
         </div>
       </section>
 
-      {/* Process */}
+      {/* 03 — Process */}
       <ProcessSection />
 
-      <section className="py-8 px-4 pb-20">
+      {/* 04 — FAQ */}
+      <section className="py-16 px-6 bg-slate-50">
         <div className="max-w-6xl mx-auto">
-          {/* CTA */}
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">
-              Klaar om aan de slag te gaan?
-            </h2>
-            <p className="text-slate-600 mb-8 max-w-xl mx-auto">
-              Start met een gratis AI Readiness Scan of plan direct een vrijblijvend gesprek in.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://calendly.com/enableflow-info/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all duration-200"
+          <h2 className="text-2xl font-black tracking-[-0.04em] text-[#0d0d0d] mb-8">
+            Veelgestelde vragen
+          </h2>
+          <div className="space-y-3">
+            {FAQ_ITEMS.map((item, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-xl border border-slate-200 overflow-hidden"
               >
-                Plan gratis kennismakingsgesprek →
-              </a>
-              <Link
-                to="/scan"
-                className="bg-white text-slate-700 px-8 py-4 rounded-full font-semibold text-lg border-2 border-slate-200 hover:border-teal-400 hover:text-teal-700 hover:shadow-md transition-all duration-200"
-              >
-                Doe de gratis AI Scan →
-              </Link>
-            </div>
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#0d0d0d] text-sm hover:bg-slate-50 transition-colors"
+                  aria-expanded={openFaq === i}
+                >
+                  {item.q}
+                  <span aria-hidden="true" className="text-slate-400 ml-4 flex-shrink-0">
+                    {openFaq === i ? '−' : '+'}
+                  </span>
+                </button>
+                {openFaq === i && (
+                  <div className="px-6 pb-4 text-[#555] text-sm leading-[1.7]">
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* 05 — CTA */}
+      <CTASection />
+
     </div>
   );
 };
