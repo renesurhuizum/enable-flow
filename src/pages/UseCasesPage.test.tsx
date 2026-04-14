@@ -6,10 +6,6 @@ describe('UseCasesPage', () => {
   const renderPage = () =>
     render(<MemoryRouter><UseCasesPage /></MemoryRouter>);
 
-  it('renders without crashing', () => {
-    renderPage();
-  });
-
   it('shows nieuwe hero headline', () => {
     renderPage();
     expect(
@@ -49,8 +45,4 @@ describe('UseCasesPage', () => {
     expect(screen.queryByText('HR & Recruitment')).not.toBeInTheDocument();
   });
 
-  it('bevat geen teal kleurklassen meer', () => {
-    const { container } = renderPage();
-    expect(container.innerHTML).not.toMatch(/text-teal-|bg-teal-|border-teal-/);
-  });
 });

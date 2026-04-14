@@ -13,6 +13,7 @@ const TASK_TYPES = [
     colorHeading: 'text-emerald-700',
     useCases: [
       {
+        id: 'email-drafting',
         name: 'E-mail drafting',
         tool: 'Microsoft Copilot',
         saving: '−3u/week',
@@ -20,6 +21,7 @@ const TASK_TYPES = [
           'Automatisch concept-e-mails in Outlook op basis van een korte briefing. In jouw schrijfstijl, direct verstuurbaar.',
       },
       {
+        id: 'vergadernotities',
         name: 'Vergadernotities',
         tool: 'Teams Copilot',
         saving: '−2u/week',
@@ -27,6 +29,7 @@ const TASK_TYPES = [
           'Vergaderingen automatisch samenvatten met actiepunten, besluiten en follow-ups — direct na afloop klaar.',
       },
       {
+        id: 'klantcommunicatie',
         name: 'Klantcommunicatie',
         tool: 'ChatGPT / Claude',
         saving: '−2u/week',
@@ -45,6 +48,7 @@ const TASK_TYPES = [
     colorHeading: 'text-blue-700',
     useCases: [
       {
+        id: 'excel-analyses',
         name: 'Excel-analyses',
         tool: 'Copilot + Excel',
         saving: '−1.5u/week',
@@ -52,6 +56,7 @@ const TASK_TYPES = [
           'Stel vragen in gewoon Nederlands aan je spreadsheet. Draaitabellen, grafieken en inzichten zonder formules.',
       },
       {
+        id: 'voortgangsrapportages',
         name: 'Voortgangsrapportages',
         tool: 'Copilot + Word',
         saving: '−1u/week',
@@ -59,6 +64,7 @@ const TASK_TYPES = [
           'Wekelijkse of maandelijkse rapportages automatisch genereren op basis van bestaande data.',
       },
       {
+        id: 'klantinzichten',
         name: 'Klantinzichten',
         tool: 'Claude / ChatGPT',
         saving: '−1.5u/week',
@@ -77,6 +83,7 @@ const TASK_TYPES = [
     colorHeading: 'text-violet-700',
     useCases: [
       {
+        id: 'presentaties',
         name: 'Presentaties',
         tool: 'PowerPoint + AI',
         saving: '−2u/week',
@@ -84,6 +91,7 @@ const TASK_TYPES = [
           'Professionele slides op basis van een briefing of bestaand document. Visueel opgemaakt, direct bruikbaar.',
       },
       {
+        id: 'offertes',
         name: 'Offertes & voorstellen',
         tool: 'Word + AI',
         saving: '−1.5u/week',
@@ -91,6 +99,7 @@ const TASK_TYPES = [
           'Gepersonaliseerde offertes en projectvoorstellen in minuten — consistent, professioneel en in jouw tone.',
       },
       {
+        id: 'handleidingen',
         name: 'Handleidingen & procedures',
         tool: 'ChatGPT / Copilot',
         saving: '−1u/week',
@@ -109,6 +118,7 @@ const TASK_TYPES = [
     colorHeading: 'text-amber-700',
     useCases: [
       {
+        id: 'crm-koppelingen',
         name: 'CRM-koppelingen',
         tool: 'n8n + AI',
         saving: '−3u/week',
@@ -116,6 +126,7 @@ const TASK_TYPES = [
           'Verbind je CRM, e-mail en boekhouding automatisch. Nieuwe leads worden direct verwerkt zonder handmatig werk.',
       },
       {
+        id: 'automatische-triggers',
         name: 'Automatische triggers',
         tool: 'n8n + Make',
         saving: '−2u/week',
@@ -123,6 +134,7 @@ const TASK_TYPES = [
           'Stel workflows in die automatisch starten bij specifieke events — nieuwe order, ingevuld formulier, ontvangen e-mail.',
       },
       {
+        id: 'factuurverwerking',
         name: 'Factuurverwerking',
         tool: 'n8n + AI',
         saving: '−1.5u/week',
@@ -131,7 +143,7 @@ const TASK_TYPES = [
       },
     ],
   },
-];
+] as const;
 
 export const UseCasesPage = () => {
   return (
@@ -166,7 +178,7 @@ export const UseCasesPage = () => {
               <div className="grid md:grid-cols-3 gap-6">
                 {type.useCases.map((uc) => (
                   <div
-                    key={uc.name}
+                    key={uc.id}
                     className={`rounded-2xl p-6 border ${type.colorBg} ${type.colorBorder}`}
                   >
                     <div className="flex items-start justify-between mb-3">
@@ -203,7 +215,7 @@ export const UseCasesPage = () => {
               to="/scan"
               className="flex-shrink-0 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white px-6 py-3 rounded-[10px] font-bold text-sm shadow-[0_4px_18px_rgba(16,185,129,0.35)] hover:shadow-[0_6px_24px_rgba(16,185,129,0.45)] transition-shadow whitespace-nowrap"
             >
-              Plan een gratis scan →
+              Plan een gratis scan <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
