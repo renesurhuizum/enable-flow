@@ -84,8 +84,9 @@ De homepage is volledig opnieuw ontworpen (zie spec `2026-04-13-homepage-redesig
 - Eyebrow: `DIENSTEN & PRIJZEN`
 
 **02 — Pricing kaarten (3 stuks)**
-- Hergebruik de data en stijl van de nieuwe `Services.tsx` (homepage)
-- Result-first copy per kaart (zelfde als homepage):
+- Zelfde visuele stijl als de nieuwe `Services.tsx` (emerald highlight, schaal-effect, resultaat-first copy)
+- **Niet** dezelfde component hergebruiken — DienstenPage heeft meer feature-bullets en andere CTA-teksten
+- Result-first copy per kaart:
   - Quickscan €395: *"Weet binnen een week waar AI jou tijd bespaart."*
   - AI Starter €995: *"Jouw eerste automatisering live in 2 weken."* (emerald highlight, ⭐ Meest gekozen)
   - AI Partnership €495/mnd: *"Continue AI-begeleiding terwijl je bedrijf groeit."*
