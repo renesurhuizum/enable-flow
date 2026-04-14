@@ -167,7 +167,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                      E-mail <span className="text-red-500">*</span>
+                      E-mailadres <span className="text-red-500">*</span>
                     </label>
                     <input id="email" type="email" required value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -183,7 +183,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   </div>
                   <div>
                     <label htmlFor="telefoon" className="block text-sm font-medium text-slate-700 mb-2">
-                      Telefoon <span className="text-red-500">*</span>
+                      Telefoonnummer <span className="text-red-500">*</span>
                     </label>
                     <input id="telefoon" type="tel" required value={formData.telefoon}
                       onChange={(e) => setFormData({...formData, telefoon: e.target.value})}
