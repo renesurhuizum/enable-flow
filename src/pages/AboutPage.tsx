@@ -1,39 +1,39 @@
 import CTASection from '../components/sections/CTASection';
 
+const values = [
+  {
+    title: 'Eerlijk & nuchter',
+    body: 'Ik vertel wat AI wél kan doen, maar ook wat niet. Geen beloftes die ik niet waar kan maken.',
+  },
+  {
+    title: 'Lokaal & persoonlijk',
+    body: 'Ik kom gewoon bij je langs. Noord-Nederland is mijn werkgebied — geen gezichtsloze consultancy uit de Randstad.',
+  },
+  {
+    title: 'Hands-on & praktisch',
+    body: 'Niet alleen advies, maar ook echt implementeren. Van installatie tot training — van A tot Z.',
+  },
+];
+
+const competencies = [
+  {
+    title: 'Werkprocessen doorgronden',
+    sub: 'Analyse & optimalisatie',
+    body: 'Snel zien waar tijd verloren gaat. Van offertestroom tot klantcommunicatie — ik breng het in kaart en maak het slimmer.',
+  },
+  {
+    title: 'AI-tools implementeren',
+    sub: 'Microsoft Copilot · Claude · n8n',
+    body: 'Van oriëntatie tot volledig werkende oplossing. Ik regel de setup, configuratie en koppeling met jouw werkwijze.',
+  },
+  {
+    title: 'Teams begeleiden & trainen',
+    sub: 'Adoptie & gedragsverandering',
+    body: 'Nieuwe tools werken alleen als je team ze ook echt gebruikt. Ik train, ondersteun en zorg dat de verandering beklijft.',
+  },
+];
+
 export const AboutPage = () => {
-  const values = [
-    {
-      title: 'Eerlijk & nuchter',
-      body: 'Ik vertel wat AI wél kan doen, maar ook wat niet. Geen beloftes die ik niet waar kan maken.',
-    },
-    {
-      title: 'Lokaal & persoonlijk',
-      body: 'Ik kom gewoon bij je langs. Noord-Nederland is mijn werkgebied — geen gezichtsloze consultancy uit de Randstad.',
-    },
-    {
-      title: 'Hands-on & praktisch',
-      body: 'Niet alleen advies, maar ook echt implementeren. Van installatie tot training — van A tot Z.',
-    },
-  ];
-
-  const competencies = [
-    {
-      title: 'Werkprocessen doorgronden',
-      sub: 'Analyse & optimalisatie',
-      body: 'Snel zien waar tijd verloren gaat. Van offertestroom tot klantcommunicatie — ik breng het in kaart en maak het slimmer.',
-    },
-    {
-      title: 'AI-tools implementeren',
-      sub: 'Microsoft Copilot · Claude · n8n',
-      body: 'Van oriëntatie tot volledig werkende oplossing. Ik regel de setup, configuratie en koppeling met jouw werkwijze.',
-    },
-    {
-      title: 'Teams begeleiden & trainen',
-      sub: 'Adoptie & gedragsverandering',
-      body: 'Nieuwe tools werken alleen als je team ze ook echt gebruikt. Ik train, ondersteun en zorg dat de verandering beklijft.',
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-white">
 
@@ -107,7 +107,7 @@ export const AboutPage = () => {
                 className="flex items-start gap-4 p-6 bg-white rounded-xl border-l-4 border-emerald-400 shadow-sm"
               >
                 <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg aria-hidden="true" className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -135,7 +135,7 @@ export const AboutPage = () => {
                 className="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="w-12 h-12 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg aria-hidden="true" className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
