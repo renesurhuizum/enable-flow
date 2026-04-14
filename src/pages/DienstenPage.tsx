@@ -4,18 +4,18 @@ import CTASection from '../components/sections/CTASection';
 
 const SERVICES = [
   {
-    id: 'quickscan',
-    label: 'AI QUICKSCAN',
+    id: 'strategiesessie',
+    label: 'AI STRATEGIESESSIE',
     price: '€395',
     period: 'éénmalig',
-    tagline: 'Weet binnen een week waar AI jou tijd bespaart.',
+    tagline: 'René analyseert jouw processen persoonlijk en laat zien wat AI concreet oplevert.',
     features: [
-      'Analyse van jouw processen op AI-kansen',
-      'Concrete ROI-berekening per kans',
-      'Prioriteitenlijst met aanbevolen tools',
-      'Persoonlijk gesprek met René',
+      'René komt bij je langs op locatie',
+      'Analyse van jouw processen & AI-kansen',
+      'Concreet implementatieplan met ROI',
+      'Geen vage rapporten — direct actiegericht',
     ],
-    cta: 'Plan een Quickscan',
+    cta: 'Plan een Strategiesessie',
     href: 'https://calendly.com/enableflow-info/30min',
     highlight: false,
     badge: null,
@@ -27,7 +27,7 @@ const SERVICES = [
     period: 'éénmalig',
     tagline: 'Jouw eerste automatisering live in 2 weken.',
     features: [
-      'Alles uit de Quickscan',
+      'Alles uit de Strategiesessie',
       'Implementatie van 1–2 automatiseringen',
       'Training van jouw team',
       '30 dagen nazorg',
@@ -67,7 +67,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Kan ik stoppen wanneer ik wil?',
-    a: 'Ja. Het Partnership is maandelijks opzegbaar. De Quickscan en AI Starter zijn éénmalige trajecten zonder doorlopende verplichting.',
+    a: 'Ja. Het Partnership is maandelijks opzegbaar. De Strategiesessie en AI Starter zijn éénmalige trajecten zonder doorlopende verplichting.',
   },
 ];
 

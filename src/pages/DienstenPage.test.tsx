@@ -19,7 +19,7 @@ describe('DienstenPage', () => {
 
   it('shows drie pricing kaarten', () => {
     renderPage();
-    expect(screen.getByText('AI QUICKSCAN')).toBeInTheDocument();
+    expect(screen.getByText('AI STRATEGIESESSIE')).toBeInTheDocument();
     expect(screen.getByText('AI STARTER')).toBeInTheDocument();
     expect(screen.getByText('AI PARTNERSHIP')).toBeInTheDocument();
   });
@@ -27,7 +27,7 @@ describe('DienstenPage', () => {
   it('shows result-first taglines', () => {
     renderPage();
     expect(
-      screen.getByText(/Weet binnen een week waar AI jou tijd bespaart/i)
+      screen.getByText(/René analyseert jouw processen persoonlijk/i)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/Jouw eerste automatisering live in 2 weken/i)

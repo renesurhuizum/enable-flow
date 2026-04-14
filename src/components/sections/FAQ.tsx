@@ -4,12 +4,12 @@ const FAQS = [
   {
     question: 'Wat kost een traject bij Enable Flow?',
     answer:
-      'We starten altijd met een Quickscan (€395). Op basis daarvan kies je voor een Starter-pakket (€995 éénmalig) of een doorlopend Partnership (€495/maand). Mogelijk deels vergoed via subsidie.',
+      'We starten altijd met een AI Strategiesessie (€395). René komt bij je langs, analyseert jouw processen, en geeft je een concreet plan. Op basis daarvan kies je voor een Starter-pakket (€995 éénmalig) of een doorlopend Partnership (€495/maand). Mogelijk deels vergoed via subsidie.',
   },
   {
     question: 'Hoe snel zie ik resultaat?',
     answer:
-      'Na de Quickscan heb je direct inzicht in jouw AI-kansen. De eerste werkende automatisering is doorgaans live binnen 2 weken na de Starter.',
+      'Na de Strategiesessie heb je direct inzicht in jouw AI-kansen. De eerste werkende automatisering is doorgaans live binnen 2 weken na de Starter.',
   },
   {
     question: 'Moet ik al Microsoft 365 of andere tools hebben?',
