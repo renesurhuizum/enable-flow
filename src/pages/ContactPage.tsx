@@ -2,9 +2,9 @@ import React from 'react';
 import { ContactForm } from '../components/forms/ContactForm';
 
 const STATS = [
-  { value: '24u', label: 'Reactietijd' },
-  { value: 'Gratis', label: 'Altijd vrijblijvend' },
-  { value: 'Op locatie', label: 'Noord-Nederland' },
+  { id: 'reactietijd', value: '24u', label: 'Reactietijd' },
+  { id: 'vrijblijvend', value: 'Gratis', label: 'Altijd vrijblijvend' },
+  { id: 'locatie', value: 'Op locatie', label: 'Noord-Nederland' },
 ] as const;
 
 const CONTACT_ITEMS = [
@@ -67,7 +67,7 @@ export const ContactPage = () => {
           <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
             {STATS.map((stat) => (
               <div
-                key={stat.label}
+                key={stat.id}
                 className="bg-white rounded-xl p-4 text-center shadow-sm border border-slate-100"
               >
                 <p className="text-xl font-black tracking-[-0.04em] text-emerald-600">

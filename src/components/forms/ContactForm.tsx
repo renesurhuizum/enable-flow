@@ -14,10 +14,12 @@ interface ConsultFormData {
 }
 
 interface ContactFormProps {
+  defaultTab?: string;
   showContactHeader?: boolean;
 }
 
 export const ContactForm: React.FC<ContactFormProps> = ({
+  defaultTab: _defaultTab,
   showContactHeader = true,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
