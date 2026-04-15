@@ -2,39 +2,45 @@
 
 **Doel:** Verbeter de test coverage zo veel mogelijk. Voeg tests toe voor ongeteste functies, fix failing tests, en verbeter de algehele codekwaliteit meetbaar via testresultaten.
 **Testcommando:** `npm test`
-**Gestart:** 2026-04-11 04:22
-**Baseline:** 0 tests (geen testbestanden aanwezig; vitest wel geïnstalleerd na run 02:00)
-**Branch:** autoresearch/2026-04-11-04-22
+**Gestart:** 2026-04-14 23:06
+**Baseline:** 238 tests (19 test files, alle passing)
+**Branch:** autoresearch/2026-04-14-23-06
 **Max iteraties:** 10
 
 ## Experimenten
 
 | # | Hypothesis | Score | Delta | Status |
 |---|---|---|---|---|
-| 1 | 9 tests voor `isValidEmail` — meest geïsoleerde logica | 9 | +9 | ✅ kept |
-| 2 | Extraheer `calcScores/getNiveau/getTopRecs/calcRoi` naar `scanLogic.ts` + 23 tests | 32 | +23 | ✅ kept |
-| 3 | 15 boundary/edge-case tests: grenswaardes getNiveau, primairDoel-effect, calcRoi edge | 47 | +15 | ✅ kept |
-| 4 | Extraheer `isStep1Valid/isStep2Valid` als pure functies + 13 validatietests | 60 | +13 | ✅ kept |
-| 5 | ROI-formule verificatie + alle 6 sector-multipliers + extra email tests (linter +9) | 98 | +38 | ✅ kept |
-| 6 | 14 integratietests voor 3 klantprofielen end-to-end (Oriënterend/Klaar/Gevorderd) | 112 | +14 | ✅ kept |
-| 7 | Extraheer `validateConsultForm` + 9 tests voor ContactForm submit-validatie | 121 | +9 | ✅ kept |
-| 8 | 10 invariant/property tests: pct 0-100, recs altijd 3, yearly=12x monthly | 140 | +19 | ✅ kept |
-| 9 | Exporteer RECS + 9 aanbevelingstests (low/mid drempel, content, threshold=3) | 149 | +9 | ✅ kept |
-| 10 | Exporteer DIM_LABELS + snapshot tests voor bekende input/output paren | 156 | +7 | ✅ kept |
+| 1 | HomePage ontbreekt volledig — voeg render + hero + CTA + FAQ + slider tests toe | 249 | +11 | ✅ Commit |
+| 2 | Navigation component heeft geen tests — voeg logo, links, extern Calendly, mobile toggle toe | 259 | +10 | ✅ Commit |
+| 3 | FAQ component is ongetest — voeg heading, toggle open/close, mutual exclusion tests toe | 268 | +9 | ✅ Commit |
+| 4 | Hero, CTASection, Services hebben geen tests — sections.test.tsx aanmaken | 285 | +17 | ✅ Commit |
+| 5 | Footer, Layout, ROICard hebben geen tests — layout.test.tsx aanmaken | 302 | +17 | ✅ Commit |
+| 6 | ProcessSection, PainSection, SocialProofBar, Testimonials, UseCasesPreview ongetest | 324 | +22 | ✅ Commit |
+| 7 | ContactForm volledig ongetest — render, email validatie, field interacties | 340 | +16 | ✅ Commit |
+| 8 | ScanForm stap 1 & navigatie ongetest — step 1 render, validatie, Terug | 350 | +10 | ✅ Commit |
+| 9 | App routing ongetest — 6 routes, nav/footer aanwezig, unknown route | 359 | +9 | ✅ Commit |
+| 10 | ScanForm stap 2 → stap 3 flow ongetest (radio interactie + ROI resultaten) | 365 | +6 | ✅ Commit |
 
 ## Samenvatting
 
-- **Iteraties uitgevoerd:** 10 / 10
-- **Baseline score:** 0 tests
-- **Beste score bereikt:** 156 tests (11 test files, alle passing)
-- **Verbetering:** 0 → 156 tests (+156)
-- **Succesvolle commits:** 10 — alle iteraties verbeterden de score
-- **Mislukte experimenten:** 0 (1 failing assertion gecorrigeerd in iter 2)
+**Eindscore:** 365 tests (29 test files) — baseline was 238 (19 test files)  
+**Totale delta:** +127 tests (+53%) in 10 iteraties  
+**Alle tests passing:** ✅
 
-### Gecreëerde bestanden
-- `src/utils/scanLogic.ts` — pure business logic geëxtraheerd uit ScanForm (exports: `calcScores`, `getNiveau`, `getTopRecs`, `calcRoi`, `isStep1Valid`, `isStep2Valid`, `SECTOR_MULTIPLIER`, `RECS`, `DIM_LABELS`)
-- `src/utils/validation.ts` — uitgebreid met `validateConsultForm`
-- 9 testbestanden spanning unit → edge → integration → invariant → snapshot
+### Wat is gedaan
 
-### Aanbeveling
-De pure logic-extractie in `scanLogic.ts` is de meest waardevolle verbetering: het maakt business logic testbaar én herbruikbaar. ScanForm.tsx en ContactForm.tsx kunnen nu importeren uit deze module. Een volgende sessie kan de import in ScanForm.tsx bijwerken om duplicatie te verwijderen, of React-component tests toevoegen met `@testing-library/react` voor de UI-interacties.
+Alle eerder ongeteste delen van de codebase zijn gedekt:
+- **Pages:** HomePage (hero, CTA, FAQ toggle, ROI slider)
+- **Layout:** Navigation (logo, links, Calendly, mobile toggle), Footer, Layout wrapper, ROICard sliders
+- **Sections:** Hero, CTASection, Services, ProcessSection, PainSection, SocialProofBar, TestimonialsSection, UseCasesPreview
+- **Forms:** ContactForm (render, email validatie, field interacties), ScanForm (stap 1 + stap 2 → stap 3 flow met radio inputs + ROI resultaten)
+- **Routing:** App.tsx — alle 6 routes, nav/footer aanwezig, unknown route levert niets op
+
+### Technische inzichten
+
+- `sr-only` radio inputs vereisen directe `fireEvent.click` op het `<input>` element via `container.querySelectorAll('input[name="..."]')`, niet via label-tekst klikken
+- Unlabelled `<select>` elements: gebruik `getAllByRole('combobox')` en index op positie
+- `MemoryRouter` is vereist voor alle componenten die `<Link>` of `useNavigate` gebruiken
+- Named exports (`export const X`) vereisen `{ X }` import-syntax, niet default imports
+- BrowserRouter conflict in App.tsx: gebruik `MemoryRouter + Routes` in App.test.tsx
